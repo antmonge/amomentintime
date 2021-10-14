@@ -1,0 +1,20 @@
+{
+  "name": "amomentintime",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "build": "cd client && npm install && npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@web3-react/core": "^6.1.9",
+    "@web3-react/injected-connector": "^6.0.7",
+    "ethers": "^5.4.7",
+    "express": "^4.17.1",
+    "web3": "^1.6.0"
+  }
+}
