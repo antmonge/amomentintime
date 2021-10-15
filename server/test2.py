@@ -2,6 +2,7 @@ import sys
 import os
 import cairo
 import PIL
+Import boto3
 from PIL import Image
 import numpy
 from random import randint, choice
@@ -422,7 +423,7 @@ for i in range (0, its):
 
 # Create gif
 
-images[0].save('https://bucketeer-be56a818-47b8-45ac-8891-d13ecbace823.s3.amazonaws.com/public/test.gif', save_all=True, append_images=images[1:], optimize=False, duration=3, loop=1)
+images[0].save('test.gif', save_all=True, append_images=images[1:], optimize=False, duration=3, loop=1)
 
 # Create png
 
@@ -430,17 +431,26 @@ srf3 = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
 ctx3 = cairo.Context(srf3)
 ctx3.set_source_surface(srf,0.0,0.0)
 ctx3.paint()
-fileobj = 'https://bucketeer-be56a818-47b8-45ac-8891-d13ecbace823.s3.amazonaws.com/public/test.png'
+fileobj = 'test.png'
 srf3.write_to_png(fileobj)
 
 # Create svg
 
-srf4 = cairo.SVGSurface('https://bucketeer-be56a818-47b8-45ac-8891-d13ecbace823.s3.amazonaws.com/public/test.svg', width, height)
+srf4 = cairo.SVGSurface('test.svg', width, height)
 ctx4 = cairo.Context(srf4)
 ctx4.set_source_surface(srf,0.0,0.0)
 ctx4.paint()
 
+s3 = boto3.resource('s3')
 
+gifdata = open('test.gif', 'rb')
+s3.Bucket('bucketeer-be56a818-47b8-45ac-8891-d13ecbace823').put_object(Key='test.gif', Body=gifdata)
+
+pngdata = open('test.png', 'rb')
+s3.Bucket('bucketeer-be56a818-47b8-45ac-8891-d13ecbace823').put_object(Key='test.png', Body=gifdata)
+
+svgdata = open('test.svg', 'rb')
+s3.Bucket('bucketeer-be56a818-47b8-45ac-8891-d13ecbace823').put_object(Key='test.svg', Body=gifdata)
 
 
 
