@@ -2,7 +2,7 @@ import sys
 import os
 import cairo
 import PIL
-Import boto3
+import boto3
 from PIL import Image
 import numpy
 from random import randint, choice
