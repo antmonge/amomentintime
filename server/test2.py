@@ -422,7 +422,7 @@ for i in range (0, its):
 
 # Create gif
 
-images[0].save('client/src/test.gif', save_all=True, append_images=images[1:], optimize=False, duration=3, loop=1)
+images[0].save('https://bucketeer-be56a818-47b8-45ac-8891-d13ecbace823.s3.amazonaws.com/public/test.gif', save_all=True, append_images=images[1:], optimize=False, duration=3, loop=1)
 
 # Create png
 
@@ -430,12 +430,12 @@ srf3 = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
 ctx3 = cairo.Context(srf3)
 ctx3.set_source_surface(srf,0.0,0.0)
 ctx3.paint()
-fileobj = 'client/src/test.png'
+fileobj = 'https://bucketeer-be56a818-47b8-45ac-8891-d13ecbace823.s3.amazonaws.com/public/test.png'
 srf3.write_to_png(fileobj)
 
 # Create svg
 
-srf4 = cairo.SVGSurface('client/src/test.svg', width, height)
+srf4 = cairo.SVGSurface('https://bucketeer-be56a818-47b8-45ac-8891-d13ecbace823.s3.amazonaws.com/public/test.svg', width, height)
 ctx4 = cairo.Context(srf4)
 ctx4.set_source_surface(srf,0.0,0.0)
 ctx4.paint()
