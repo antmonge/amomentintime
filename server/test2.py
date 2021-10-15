@@ -7,7 +7,7 @@ import numpy
 from random import randint, choice
 from math import pi, sqrt
 from io import BytesIO
-from graphics import update
+#from graphics import update
 
 # Notes
 # Pattern 1 = Solid, 2 = Radial Gradient, 3 = Linear Gradient
