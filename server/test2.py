@@ -2,7 +2,7 @@ import sys
 import os
 import cairo
 import PIL
-import boto3
+#import boto3
 from PIL import Image
 import numpy
 from random import randint, choice
@@ -441,16 +441,16 @@ ctx4 = cairo.Context(srf4)
 ctx4.set_source_surface(srf,0.0,0.0)
 ctx4.paint()
 
-s3_client = boto3.client(
-    's3',
-    aws_access_key_id=ACCESS_KEY,
-    aws_secret_access_key=SECRET_KEY,
-    aws_session_token=SESSION_TOKEN
-)
+#s3_client = boto3.client(
+#    's3',
+#    aws_access_key_id=ACCESS_KEY,
+#    aws_secret_access_key=SECRET_KEY,
+#    aws_session_token=SESSION_TOKEN
+#)
 
-s3_client.upload_file('test.gif', 'bucketeer-be56a818-47b8-45ac-8891-d13ecbace823')
-s3_client.upload_file('test.svg', 'bucketeer-be56a818-47b8-45ac-8891-d13ecbace823')
-s3_client.upload_file('test.png', 'bucketeer-be56a818-47b8-45ac-8891-d13ecbace823')
+#s3_client.upload_file('test.gif', 'bucketeer-be56a818-47b8-45ac-8891-d13ecbace823')
+#s3_client.upload_file('test.svg', 'bucketeer-be56a818-47b8-45ac-8891-d13ecbace823')
+#s3_client.upload_file('test.png', 'bucketeer-be56a818-47b8-45ac-8891-d13ecbace823')
 
 
 
