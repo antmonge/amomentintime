@@ -1,2 +1,2 @@
 web: npm start
-api: python test2.py
+api: python server/test2.py

@@ -37,7 +37,7 @@ app.post('/api', (req, res) => {
   python.on('close', (code) => {
     console.log(`child process close all stdio with code ${code}`)
     //send data to browser
-    //res.json({"Test1})
+    //res.json({"Test1"})
   })
 });
 
@@ -48,4 +48,3 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}!`)
 })
-res.json({"Test1})
