@@ -9,21 +9,25 @@ app.use(bodyParser.json())
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 app.post('/api', (req, res) => {
+  res.json({"Test1"})
   console.log(`Start`)
   console.log(req.body)
   let dataToSend
 //  let largeDataSet = []
   // spawn new child process to call the python script
   const python = spawn('python', ['server/test2.py', req.body[1], req.body[3]])
+  res.json({"Test2"})
 //  console.log('Start')
   // collect data from script
   python.stdout.on('data', function (data) {
+    res.json({"Test3"})
     console.log(`Pipe data from python script ...`)
     dataToSend =  data;
 //    //largeDataSet.push(data)
   })
 
   python.stderr.on('data', function (data) {
+    res.json({"Test4"})
     console.log(`Python script error ${data}`)
     dataToSend =  data;
 //    //largeDataSet.push(data)
@@ -33,7 +37,7 @@ app.post('/api', (req, res) => {
   python.on('close', (code) => {
     console.log(`child process close all stdio with code ${code}`)
     //send data to browser
-    res.json(dataToSend)
+    //res.json({"Test1})
   })
 });
 
@@ -44,3 +48,4 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}!`)
 })
+res.json({"Test1})
