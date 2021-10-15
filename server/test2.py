@@ -441,16 +441,18 @@ ctx4 = cairo.Context(srf4)
 ctx4.set_source_surface(srf,0.0,0.0)
 ctx4.paint()
 
-s3 = boto3.resource('s3')
+s3_client = boto3.client(
+    's3',
+    aws_access_key_id=ACCESS_KEY,
+    aws_secret_access_key=SECRET_KEY,
+    aws_session_token=SESSION_TOKEN
+)
 
-gifdata = open('test.gif', 'rb')
-s3.Bucket('bucketeer-be56a818-47b8-45ac-8891-d13ecbace823').put_object(Key='test.gif', Body=gifdata)
+s3_client.upload_file('test.gif', 'bucketeer-be56a818-47b8-45ac-8891-d13ecbace823')
+s3_client.upload_file('test.svg', 'bucketeer-be56a818-47b8-45ac-8891-d13ecbace823')
+s3_client.upload_file('test.png', 'bucketeer-be56a818-47b8-45ac-8891-d13ecbace823')
 
-pngdata = open('test.png', 'rb')
-s3.Bucket('bucketeer-be56a818-47b8-45ac-8891-d13ecbace823').put_object(Key='test.png', Body=gifdata)
 
-svgdata = open('test.svg', 'rb')
-s3.Bucket('bucketeer-be56a818-47b8-45ac-8891-d13ecbace823').put_object(Key='test.svg', Body=gifdata)
 
 
 
