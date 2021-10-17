@@ -43,7 +43,7 @@ export default class App extends React.Component {
       body: JSON.stringify(formData),
     })
         .then(res => res.json())
-        .then(data => this.setState({data: data.message}));
+        .then(data => this.setState({data: data.message, imgsrc: "https://bucketeer-be56a818-47b8-45ac-8891-d13ecbace823.s3.amazonaws.com/public/" && data.message}));
     }
 
     render() {
@@ -75,7 +75,6 @@ export default class App extends React.Component {
                         <span>{this.state.data}</span>
                     </div>
                     <div className="Test">
-                        <img src={nft} alt="Did Not Mint Yet" />
 		       <img src={this.state.imgsrc} alt="Did Not Mint Yet" />
                     </div>
                 </div>
