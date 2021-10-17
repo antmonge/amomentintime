@@ -422,12 +422,6 @@ for i in range (0, its):
   aim = add_image(srf1)
   images.append(aim)
 
-
-age = 36
-txt = "My name is John, and I am {}"
-print(txt.format(age))
-
-
 imgpre = randint(1, 1000000)
 imgtxt = '{}-test.'
 imgname = imgtxt.format(imgpre)
