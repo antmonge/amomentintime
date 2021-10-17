@@ -423,7 +423,7 @@ for i in range (0, its):
 
 # Create gif
 
-images[0].save('https://bucketeer-be56a818-47b8-45ac-8891-d13ecbace823.s3.amazonaws.com/public/test.gif', save_all=True, append_images=images[1:], optimize=False, duration=3, loop=1)
+images[0].save('client/src/test.gif', save_all=True, append_images=images[1:], optimize=False, duration=3, loop=1)
 
 # Create png
 

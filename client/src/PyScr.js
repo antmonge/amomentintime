@@ -75,7 +75,6 @@ export default class App extends React.Component {
                     </div>
                     <div className="Test">
                         <img src={nft} alt="Did Not Mint Yet" />
-		       <img src="https://bucketeer-be56a818-47b8-45ac-8891-d13ecbace823.s3.amazonaws.com/public/test.gif" alt="Did Not Mint Yet" />
                     </div>
                 </div>
         </div>;
