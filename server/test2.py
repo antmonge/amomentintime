@@ -421,9 +421,12 @@ for i in range (0, its):
   aim = add_image(srf1)
   images.append(aim)
 
+MYDIR = os.path.dirname(__file__)
+print(MYDIR)
+
 # Create gif
 
-images[0].save('client/src/test.gif', save_all=True, append_images=images[1:], optimize=False, duration=3, loop=1)
+images[0].save(os.path.join(MYDIR, 'test.gif'), save_all=True, append_images=images[1:], optimize=False, duration=3, loop=1)
 
 # Create png
 
