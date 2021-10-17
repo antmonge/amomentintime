@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import App2 from './App';
-//import nft from './test.gif'
+import nft from './test.gif'
 
 export default class App extends React.Component {
     constructor(props) {
@@ -74,7 +74,7 @@ export default class App extends React.Component {
                         <span>{this.state.data}</span>
                     </div>
                     <div className="Test">
-                        <img src="test.gif" alt="Did Not Mint Yet" />
+                        <img src={nft} alt="Did Not Mint Yet" />
                     </div>
                 </div>
         </div>;
