@@ -5,6 +5,7 @@ import PIL
 import boto3
 from PIL import Image
 import numpy
+from config import BUCKETEER_AWS_ACCESS_KEY_ID, BUCKETEER_AWS_SECRET_ACCESS_KEY, BUCKETEER_BUCKET_NAME
 from random import randint, choice
 from math import pi, sqrt
 from io import BytesIO
