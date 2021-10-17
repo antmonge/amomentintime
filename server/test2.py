@@ -465,8 +465,8 @@ s3_client = session.client(
 )
 
 s3_client.upload_file(Filename='test.gif', Bucket=aws_bucket_name, Key='public/test.gif')
-s3_client.upload_file('public/test.svg', 'bucketeer-be56a818-47b8-45ac-8891-d13ecbace823')
-s3_client.upload_file('test.png', 'bucketeer-be56a818-47b8-45ac-8891-d13ecbace823')
+s3_client.upload_file('public/test.svg', 'bucketeer-be56a818-47b8-45ac-8891-d13ecbace823', 'public/test.svg')
+s3_client.upload_file('test.png', aws_bucket_name, 'public/test.png')
 
 
 
