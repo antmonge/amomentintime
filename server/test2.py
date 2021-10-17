@@ -426,7 +426,7 @@ print(MYDIR)
 
 # Create gif
 
-images[0].save('../client/src/test.gif'), save_all=True, append_images=images[1:], optimize=False, duration=3, loop=1)
+images[0].save('../client/src/test.gif', save_all=True, append_images=images[1:], optimize=False, duration=3, loop=1)
 
 # Create png
 
