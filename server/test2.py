@@ -5,7 +5,7 @@ import PIL
 import boto3
 from PIL import Image
 import numpy
-from config import BUCKETEER_AWS_ACCESS_KEY_ID, BUCKETEER_AWS_SECRET_ACCESS_KEY, BUCKETEER_BUCKET_NAME
+#from config import BUCKETEER_AWS_ACCESS_KEY_ID, BUCKETEER_AWS_SECRET_ACCESS_KEY, BUCKETEER_BUCKET_NAME
 from random import randint, choice
 from math import pi, sqrt
 from io import BytesIO
@@ -445,6 +445,11 @@ ctx4 = cairo.Context(srf4)
 ctx4.set_source_surface(srf,0.0,0.0)
 ctx4.paint()
 
+
+aws_access_key = os.environ.get('BUCKETEER_AWS_ACCESS_KEY_ID')
+aws_secret_key = os.environ.get('BUCKETEER_AWS_SECRET_ACCESS_KEY')
+aws_bucket_name = os.environ.get('BUCKETEER_BUCKET_NAME')
+
 session = boto3.session.Session()
 
 #s3 = session.client(
@@ -455,11 +460,11 @@ session = boto3.session.Session()
 
 s3_client = session.client(
     service_name='s3',
-    aws_access_key_id=BUCKETEER_AWS_ACCESS_KEY_ID,
-    aws_secret_access_key=BUCKETEER_AWS_SECRET_ACCESS_KEY,
+    aws_access_key_id=aws_access_key,
+    aws_secret_access_key=aws_secret_key,
 )
 
-s3_client.upload_file(Filename='test.gif', Bucket=BUCKETEER_BUCKET_NAME, Key='public/test.gif')
+s3_client.upload_file(Filename='test.gif', Bucket=aws_bucket_name, Key='public/test.gif')
 s3_client.upload_file('public/test.svg', 'bucketeer-be56a818-47b8-45ac-8891-d13ecbace823')
 s3_client.upload_file('test.png', 'bucketeer-be56a818-47b8-45ac-8891-d13ecbace823')
 
