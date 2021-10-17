@@ -2,7 +2,7 @@ import sys
 import os
 import cairo
 import PIL
-#import boto3
+import boto3
 from PIL import Image
 import numpy
 from random import randint, choice
@@ -439,21 +439,28 @@ srf3.write_to_png(fileobj)
 
 # Create svg
 
-srf4 = cairo.SVGSurface('client/src/test.svg', width, height)
+srf4 = cairo.SVGSurface('test.svg', width, height)
 ctx4 = cairo.Context(srf4)
 ctx4.set_source_surface(srf,0.0,0.0)
 ctx4.paint()
 
-#s3_client = boto3.client(
-#    's3',
-#    aws_access_key_id=ACCESS_KEY,
-#    aws_secret_access_key=SECRET_KEY,
-#    aws_session_token=SESSION_TOKEN
+session = boto3.session.Session()
+
+#s3 = session.client(
+#    service_name='s3',
+#    aws_access_key_id=get_aws_access_key_id(),
+#    aws_secret_access_key=get_aws_secret_access_key()
 #)
 
-#s3_client.upload_file('test.gif', 'bucketeer-be56a818-47b8-45ac-8891-d13ecbace823')
-#s3_client.upload_file('test.svg', 'bucketeer-be56a818-47b8-45ac-8891-d13ecbace823')
-#s3_client.upload_file('test.png', 'bucketeer-be56a818-47b8-45ac-8891-d13ecbace823')
+s3_client = session.client(
+    service_name='s3',
+    aws_access_key_id=BUCKETEER_AWS_ACCESS_KEY_ID,
+    aws_secret_access_key=BUCKETEER_AWS_SECRET_ACCESS_KEY,
+)
+
+s3_client.upload_file(Filename='test.gif', Bucket=BUCKETEER_BUCKET_NAME, Key='public/test.gif')
+s3_client.upload_file('public/test.svg', 'bucketeer-be56a818-47b8-45ac-8891-d13ecbace823')
+s3_client.upload_file('test.png', 'bucketeer-be56a818-47b8-45ac-8891-d13ecbace823')
 
 
 
