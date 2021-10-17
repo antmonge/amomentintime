@@ -422,12 +422,16 @@ for i in range (0, its):
   aim = add_image(srf1)
   images.append(aim)
 
-MYDIR = os.path.dirname(__file__)
-print(MYDIR)
+imgpre = "amonge"
+gifname = imgpre + '-test.gif'
+svgname = imgpre + '-test.svg'
+pngname = imgpre + '-test.png'
+
+print(gifname)
 
 # Create gif
 
-images[0].save('test.gif', save_all=True, append_images=images[1:], optimize=False, duration=3, loop=1)
+images[0].save(gifname, save_all=True, append_images=images[1:], optimize=False, duration=3, loop=1)
 
 # Create png
 
@@ -435,12 +439,12 @@ srf3 = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
 ctx3 = cairo.Context(srf3)
 ctx3.set_source_surface(srf,0.0,0.0)
 ctx3.paint()
-fileobj = 'test.png'
+fileobj = pngname
 srf3.write_to_png(fileobj)
 
 # Create svg
 
-srf4 = cairo.SVGSurface('test.svg', width, height)
+srf4 = cairo.SVGSurface(svgname, width, height)
 ctx4 = cairo.Context(srf4)
 ctx4.set_source_surface(srf,0.0,0.0)
 ctx4.paint()
