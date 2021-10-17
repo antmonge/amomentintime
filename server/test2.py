@@ -426,7 +426,7 @@ print(MYDIR)
 
 # Create gif
 
-images[0].save(os.path.join(MYDIR, 'test.gif'), save_all=True, append_images=images[1:], optimize=False, duration=3, loop=1)
+images[0].save('../client/src/test.gif'), save_all=True, append_images=images[1:], optimize=False, duration=3, loop=1)
 
 # Create png
 
@@ -439,7 +439,7 @@ srf3.write_to_png(fileobj)
 
 # Create svg
 
-srf4 = cairo.SVGSurface('test.svg', width, height)
+srf4 = cairo.SVGSurface('../client/src/test.svg', width, height)
 ctx4 = cairo.Context(srf4)
 ctx4.set_source_surface(srf,0.0,0.0)
 ctx4.paint()
