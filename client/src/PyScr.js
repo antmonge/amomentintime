@@ -1,23 +1,56 @@
 import React from 'react';
 import './App.css';
 import App2 from './App';
-import nft from './test.gif'
 
 export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-	  imgsrc: "https://bucketeer-be56a818-47b8-45ac-8891-d13ecbace823.s3.amazonaws.com/public/test.gif",
+          imgsrc: "https://bucketeer-be56a818-47b8-45ac-8891-d13ecbace823.s3.amazonaws.com/public/test.gif",
           value: "Not Clicked",
           data: "NA",
+          emotionIntroVal: 50,
+          emotionTemperVal: 50,
+          emotionAcceptVal: 50,
+          emotionSensVal: 50,
           soundStrengthVal: 50,
+          soundTypeVal: 50,
+          smellStrengthVal: 50,
+          smellTypeVal: 50,
+          tasteStrengthVal: 50,
+          tasteTypeVal: 50,
           weatherSkyVal: 50,
           weatherTempVal: 50
         };
         this.pyth = this.pyth.bind(this)
+        this.onIntrospectionChange = this.onIntrospectionChange.bind(this)
+        this.onTemperChange = this.onTemperChange.bind(this)
+        this.onAcceptanceChange = this.onAcceptanceChange.bind(this)
+        this.onSensitivityChange = this.onSensitivityChange.bind(this)
         this.onSkyConditionsChange = this.onSkyConditionsChange.bind(this)
         this.onTemperatureChange = this.onTemperatureChange.bind(this)
         this.onStrengthofSoundsChange = this.onStrengthofSoundsChange.bind(this)
+        this.onTypeofSoundsChange = this.onTypeofSoundsChange.bind(this)
+        this.onStrengthofSmellsChange = this.onStrengthofSmellsChange.bind(this)
+        this.onTypeofSmellsChange = this.onTypeofSmellsChange.bind(this)
+        this.onStrengthofTastesChange = this.onStrengthofTastesChange.bind(this)
+        this.onTypeofTastesChange = this.onTypeofTastesChange.bind(this)
+    }
+
+    onIntrospectionChange(newVal) {
+          this.setState({emotionIntroVal: newVal});
+    }
+
+    onTemperChange(newVal) {
+          this.setState({emotionTemperVal: newVal});
+    }
+
+    onAcceptanceChange(newVal) {
+          this.setState({emotionAcceptVal: newVal});
+    }
+
+    onSensitivityChange(newVal) {
+          this.setState({emotionSensVal: newVal});
     }
 
     onSkyConditionsChange(newVal) {
@@ -32,9 +65,29 @@ export default class App extends React.Component {
           this.setState({soundStrengthVal: newVal});
     }
 
+    onTypeofSoundsChange(newVal) {
+          this.setState({soundTypeVal: newVal});
+    }
+
+    onStrengthofSmellsChange(newVal) {
+          this.setState({smellStrengthVal: newVal});
+    }
+
+    onTypeofSmellsChange(newVal) {
+          this.setState({smellTypeVal: newVal});
+    }
+
+    onStrengthofTastesChange(newVal) {
+          this.setState({tasteStrengthVal: newVal});
+    }
+
+    onTypeofTastesChange(newVal) {
+          this.setState({tasteTypeVal: newVal});
+    }
+
     pyth() {
 
-      const formData = ['SkyConditions', this.state.weatherSkyVal, 'Temperature', this.state.weatherTempVal, 'StrengthofSounds', this.state.soundStrengthVal];
+      const formData = ['SkyConditions', this.state.weatherSkyVal, 'Temperature', this.state.weatherTempVal, 'StrengthofSounds', this.state.soundStrengthVal, 'TypeofSounds', this.state.soundTypeVal, 'StrengthofSmells', this.state.smellStrengthVal, 'TypeofSmells', this.state.smellTypeVal, 'StrengthofTastes', this.state.tasteStrengthVal, 'TypeofTastes', this.state.tasteTypeVal];
 
       fetch("/api", {
         method: 'POST',
@@ -47,15 +100,50 @@ export default class App extends React.Component {
     }
 
     render() {
-        const soundStrengthLab = ['Silence', 'Soft', 'Medium', 'Loud', 'Deafening'];
-        const soundStrengthDiv = 'StrengthofSounds';
+        const emotionIntroLab = ['Ecstasy', 'Joy', 'Contentment', 'Sadness', 'Grief'];
+        const emotionIntroDiv = 'IntrospectionEmotion';
+        const emotionTemperLab = ['Bliss', 'Calmness', 'Annoyance', 'Anger', 'Rage'];
+        const emotionTemperDiv = 'TemperEmotion';
+        const emotionAcceptLab = ['Proud', 'Satisfied', 'Self-Conscious/Pleased', 'Embarrassed', 'Humiliated'];
+        const emotionAcceptDiv = 'AcceptanceEmotion';
+        const emotionSensLab = ['Enthusiasm', 'Eagerness', 'Anxiety', 'Fear', 'Terror'];
+        const emotionSensDiv = 'SensitivityEmotion';
         const weatherSkyLab = ['Sunny', 'Partly Cloudy', 'Mostly Cloudy', 'Cloudy', 'Stormy'];
         const weatherSkyDiv = 'SkyConditions';
         const weatherTempLab = ['Hot', 'Warm', 'Cool', 'Crisp', 'Cold'];
         const weatherTempDiv = 'Temperature';
+        const soundStrengthLab = ['Silence', 'Soft', 'Medium', 'Loud', 'Deafening'];
+        const soundStrengthDiv = 'StrengthofSounds';
+        const soundTypeLab = ['Soothing', '', 'Melodic', '', 'Chaotic'];
+        const soundTypeDiv = 'TypeofSounds';
+        const smellStrengthLab = ['Subtle', '', '', '', 'Potent'];
+        const smellStrengthDiv = 'StrengthofSmells';
+        const smellTypeLab = ['Pleasant', '', '', '', 'Pungent'];
+        const smellTypeDiv = 'TypeofSmells';
+        const tasteStrengthLab = ['Subtle', '', '', '', 'Intense'];
+        const tasteStrengthDiv = 'StrengthofTastes';
+        const tasteTypeLab = ['Wonderful', 'Pleasant', 'Subtle', '', 'Disgusting'];
+        const tasteTypeDiv = 'TypeofTastes';
+        const physicalStrengthLab = ['Pleasure', '', '', '', 'Pain'];
+        const physicalStrengthDiv = 'StrengthofTastes';
+        const physicalTypeLab = ['Relaxing', '', '', '', 'Intense'];
+        const physicalTypeDiv = 'TypeofTastes'
 
         return <div className="App">
             <table>
+            <tr><td colspan="2">Emotional Experience:</td></tr>
+            <tr><td>Introspection Emotion
+            <App2 onChange={this.onIntrospectionChange} value={this.state.emotionIntroVal} lab={emotionIntroLab} div={emotionIntroDiv} />
+            </td>
+            <td>Temper Emotion
+            <App2 onChange={this.onTemperChange} value={this.state.emotionTemperVal} lab={emotionTemperLab} div={emotionTemperDiv} />
+            </td></tr>
+            <tr><td>Acceptance Emotion
+            <App2 onChange={this.onAcceptanceChange} value={this.state.emotionAcceptVal} lab={emotionAcceptLab} div={emotionAcceptDiv} />
+            </td>
+            <td>Sensitivity Emotion
+            <App2 onChange={this.onSensitivityChange} value={this.state.emotionSensVal} lab={emotionSensLab} div={emotionSensDiv} />
+            </td></tr>
             <tr><td colspan="2">Weather:</td></tr>
             <tr><td>Sky Conditions
             <App2 onChange={this.onSkyConditionsChange} value={this.state.weatherSkyVal} lab={weatherSkyLab} div={weatherSkyDiv} />
@@ -63,10 +151,41 @@ export default class App extends React.Component {
             <td>Temperature
             <App2 onChange={this.onTemperatureChange} value={this.state.weatherTempVal} lab={weatherTempLab} div={weatherTempDiv} />
             </td></tr>
+            <tr><td colspan="2">Surroundings:</td></tr>
+            <tr><td>People
+            <App2 onChange={this.onSkyConditionsChange} value={this.state.weatherSkyVal} lab={weatherSkyLab} div={weatherSkyDiv} />
+            </td>
+            <td>Place
+            <App2 onChange={this.onTemperatureChange} value={this.state.weatherTempVal} lab={weatherTempLab} div={weatherTempDiv} />
+            </td></tr>
             <tr><td colspan="2">Sensory Experience:</td></tr>
             <tr><td colspan="2">When you recall your moment are there sounds you associate with it?</td></tr>
-            <tr><td colspan="2">Strength of Sounds
+            <tr><td>Strength of Sounds
             <App2 onChange={this.onStrengthofSoundsChange} value={this.state.soundStrengthVal} lab={soundStrengthLab} div={soundStrengthDiv} />
+            </td>
+            <td>Type of Sounds
+            <App2 onChange={this.onTypeofSoundsChange} value={this.state.soundTypeVal} lab={soundTypeLab} div={soundTypeDiv} />
+            </td></tr>
+            <tr><td colspan="2">When you recall your moment are there smells you associate with it?</td></tr>
+            <tr><td>Strength of Smells
+            <App2 onChange={this.onStrengthofSmellsChange} value={this.state.smellStrengthVal} lab={smellStrengthLab} div={smellStrengthDiv} />
+            </td>
+            <td>Type of Smells
+            <App2 onChange={this.onTypeofSmellsChange} value={this.state.smellTypeVal} lab={smellTypeLab} div={smellTypeDiv} />
+            </td></tr>
+            <tr><td>Strength of Tastes
+            <App2 onChange={this.onStrengthofTastesChange} value={this.state.tasteStrengthVal} lab={tasteStrengthLab} div={tasteStrengthDiv} />
+            </td>
+            <td>Type of Tastes
+            <App2 onChange={this.onTypeofTastesChange} value={this.state.tasteTypeVal} lab={tasteTypeLab} div={tasteTypeDiv} />
+            </td></tr>
+            <tr><td colspan="2">Physical Experience:</td></tr>
+            <tr><td colspan="2">When you recall your moment are there sounds you associate with it?</td></tr>
+            <tr><td>Strength of Sounds
+            <App2 onChange={this.onStrengthofSoundsChange} value={this.state.soundStrengthVal} lab={soundStrengthLab} div={soundStrengthDiv} />
+            </td>
+            <td>Type of Sounds
+            <App2 onChange={this.onTypeofSoundsChange} value={this.state.soundTypeVal} lab={soundTypeLab} div={soundTypeDiv} />
             </td></tr>
             </table>
                 <div className="Test">

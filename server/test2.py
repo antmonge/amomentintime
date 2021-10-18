@@ -451,18 +451,13 @@ ctx4 = cairo.Context(srf4)
 ctx4.set_source_surface(srf,0.0,0.0)
 ctx4.paint()
 
+# AWS Bucketeer Connection and Upload
 
 aws_access_key = os.environ.get('BUCKETEER_AWS_ACCESS_KEY_ID')
 aws_secret_key = os.environ.get('BUCKETEER_AWS_SECRET_ACCESS_KEY')
 aws_bucket_name = os.environ.get('BUCKETEER_BUCKET_NAME')
 
 session = boto3.session.Session()
-
-#s3 = session.client(
-#    service_name='s3',
-#    aws_access_key_id=get_aws_access_key_id(),
-#    aws_secret_access_key=get_aws_secret_access_key()
-#)
 
 s3_client = session.client(
     service_name='s3',
