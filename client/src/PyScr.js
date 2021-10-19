@@ -13,14 +13,18 @@ export default class App extends React.Component {
           emotionTemperVal: 50,
           emotionAcceptVal: 50,
           emotionSensVal: 50,
+          weatherSkyVal: 50,
+          weatherTempVal: 50,
+          surroundPeopleVal: 50,
+          surroundPlaceVal: 50,
           soundStrengthVal: 50,
           soundTypeVal: 50,
           smellStrengthVal: 50,
           smellTypeVal: 50,
           tasteStrengthVal: 50,
           tasteTypeVal: 50,
-          weatherSkyVal: 50,
-          weatherTempVal: 50
+          physicalSensationVal: 50,
+          physicalExertionVal: 50
         };
         this.pyth = this.pyth.bind(this)
         this.onIntrospectionChange = this.onIntrospectionChange.bind(this)
@@ -29,12 +33,16 @@ export default class App extends React.Component {
         this.onSensitivityChange = this.onSensitivityChange.bind(this)
         this.onSkyConditionsChange = this.onSkyConditionsChange.bind(this)
         this.onTemperatureChange = this.onTemperatureChange.bind(this)
+        this.onPeopleChange = this.onPeopleChange.bind(this)
+        this.onPlaceChange = this.onPlaceChange.bind(this)
         this.onStrengthofSoundsChange = this.onStrengthofSoundsChange.bind(this)
         this.onTypeofSoundsChange = this.onTypeofSoundsChange.bind(this)
         this.onStrengthofSmellsChange = this.onStrengthofSmellsChange.bind(this)
         this.onTypeofSmellsChange = this.onTypeofSmellsChange.bind(this)
         this.onStrengthofTastesChange = this.onStrengthofTastesChange.bind(this)
         this.onTypeofTastesChange = this.onTypeofTastesChange.bind(this)
+        this.onSensationChange = this.onSensationChange.bind(this)
+        this.onExertionChange = this.onExertionChange.bind(this)
     }
 
     onIntrospectionChange(newVal) {
@@ -61,6 +69,14 @@ export default class App extends React.Component {
           this.setState({weatherTempVal: newVal});
     }
 
+    onPeopleChange(newVal) {
+          this.setState({surroundPeopleVal: newVal});
+    }
+
+    onPlaceChange(newVal) {
+          this.setState({surroundPlaceVal: newVal});
+    }
+
     onStrengthofSoundsChange(newVal) {
           this.setState({soundStrengthVal: newVal});
     }
@@ -83,6 +99,14 @@ export default class App extends React.Component {
 
     onTypeofTastesChange(newVal) {
           this.setState({tasteTypeVal: newVal});
+    }
+
+    onSensationChange(newVal) {
+          this.setState({physicalSensationVal: newVal});
+    }
+
+    onExertionChange(newVal) {
+          this.setState({physicalExertionVal: newVal});
     }
 
     pyth() {
@@ -112,6 +136,10 @@ export default class App extends React.Component {
         const weatherSkyDiv = 'SkyConditions';
         const weatherTempLab = ['Hot', 'Warm', 'Cool', 'Crisp', 'Cold'];
         const weatherTempDiv = 'Temperature';
+        const surroundPeopleLab = ['Family', 'Friends', 'Acquantices', 'Strangers', 'Adversaries'];
+        const surroundPeopleDiv = 'People';
+        const surroundPlaceLab = ['Community', 'City', 'Region', 'Country', 'Foreign'];
+        const surroundPlaceDiv = 'Place';
         const soundStrengthLab = ['Silence', 'Soft', 'Medium', 'Loud', 'Deafening'];
         const soundStrengthDiv = 'StrengthofSounds';
         const soundTypeLab = ['Soothing', '', 'Melodic', '', 'Chaotic'];
@@ -124,10 +152,10 @@ export default class App extends React.Component {
         const tasteStrengthDiv = 'StrengthofTastes';
         const tasteTypeLab = ['Wonderful', 'Pleasant', 'Subtle', '', 'Disgusting'];
         const tasteTypeDiv = 'TypeofTastes';
-        const physicalStrengthLab = ['Pleasure', '', '', '', 'Pain'];
-        const physicalStrengthDiv = 'StrengthofTastes';
-        const physicalTypeLab = ['Relaxing', '', '', '', 'Intense'];
-        const physicalTypeDiv = 'TypeofTastes'
+        const physicalSensationLab = ['Thrill', 'Pleasure', 'Comfort', 'Suffering', 'Agony'];
+        const physicalSensationDiv = 'PhysicalSensation';
+        const physicalExertionLab = ['Sedentary', 'Light', 'Active', 'Vigorous', 'Strenuous'];
+        const physicalExertionDiv = 'PhysicalExertion'
 
         return <div className="App">
             <table>
@@ -144,6 +172,7 @@ export default class App extends React.Component {
             <td>Sensitivity Emotion
             <App2 onChange={this.onSensitivityChange} value={this.state.emotionSensVal} lab={emotionSensLab} div={emotionSensDiv} />
             </td></tr>
+            <tr><td colspan="2"></td></tr>
             <tr><td colspan="2">Weather:</td></tr>
             <tr><td>Sky Conditions
             <App2 onChange={this.onSkyConditionsChange} value={this.state.weatherSkyVal} lab={weatherSkyLab} div={weatherSkyDiv} />
@@ -151,13 +180,15 @@ export default class App extends React.Component {
             <td>Temperature
             <App2 onChange={this.onTemperatureChange} value={this.state.weatherTempVal} lab={weatherTempLab} div={weatherTempDiv} />
             </td></tr>
+            <tr><td colspan="2"></td></tr>
             <tr><td colspan="2">Surroundings:</td></tr>
             <tr><td>People
-            <App2 onChange={this.onSkyConditionsChange} value={this.state.weatherSkyVal} lab={weatherSkyLab} div={weatherSkyDiv} />
+            <App2 onChange={this.onPeopleChange} value={this.state.surroundPeopleVal} lab={surroundPeopleLab} div={surroundPeopleDiv} />
             </td>
             <td>Place
-            <App2 onChange={this.onTemperatureChange} value={this.state.weatherTempVal} lab={weatherTempLab} div={weatherTempDiv} />
+            <App2 onChange={this.onPlaceChange} value={this.state.surroundPlaceVal} lab={surroundPlaceLab} div={surroundPlaceDiv} />
             </td></tr>
+            <tr><td colspan="2"></td></tr>
             <tr><td colspan="2">Sensory Experience:</td></tr>
             <tr><td colspan="2">When you recall your moment are there sounds you associate with it?</td></tr>
             <tr><td>Strength of Sounds
@@ -179,13 +210,13 @@ export default class App extends React.Component {
             <td>Type of Tastes
             <App2 onChange={this.onTypeofTastesChange} value={this.state.tasteTypeVal} lab={tasteTypeLab} div={tasteTypeDiv} />
             </td></tr>
+            <tr><td colspan="2"></td></tr>
             <tr><td colspan="2">Physical Experience:</td></tr>
-            <tr><td colspan="2">When you recall your moment are there sounds you associate with it?</td></tr>
-            <tr><td>Strength of Sounds
-            <App2 onChange={this.onStrengthofSoundsChange} value={this.state.soundStrengthVal} lab={soundStrengthLab} div={soundStrengthDiv} />
+            <tr><td>Sensation
+            <App2 onChange={this.onSensationChange} value={this.state.physicalSensationVal} lab={physicalSensationLab} div={physicalSensationDiv} />
             </td>
-            <td>Type of Sounds
-            <App2 onChange={this.onTypeofSoundsChange} value={this.state.soundTypeVal} lab={soundTypeLab} div={soundTypeDiv} />
+            <td>Exertion
+            <App2 onChange={this.onExertionChange} value={this.state.physicalExertionVal} lab={physicalExertionLab} div={physicalExertionDiv} />
             </td></tr>
             </table>
                 <div className="Test">
