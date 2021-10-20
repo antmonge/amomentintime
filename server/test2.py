@@ -108,10 +108,26 @@ width = 500
 height = 500
 iterations = 100
 randomness = 1
-argv1 = int(sys.argv[1])
-argv2 = int(sys.argv[2])
-weather = int(argv1/20)
-temp = int(argv2/20)
+argintro = int(sys.argv[1])    #Emotion Introspection
+argtemper = int(sys.argv[2])   #Emotion Temper
+argaccept = int(sys.argv[3])   #Emotion Acceptance
+argsens = int(sys.argv[4])     #Emotion Sensitivity
+argsky = int(sys.argv[5])      #Weather Sky Conditions
+argtemp = int(sys.argv[6])    #Weather Temperature
+argpeople = int(sys.argv[7])  #People
+argplace = int(sys.argv[8])   #Place
+argsndstr = int(sys.argv[9])  #Strength of Sound
+argsndtyp = int(sys.argv[10])  #Type of Sound
+argsmlstr = int(sys.argv[11])  #Strength of Smell
+argsmltyp = int(sys.argv[12])  #Type of Smell
+argtststr = int(sys.argv[13])  #Strength of Taste
+argtsttyp = int(sys.argv[14])  #Type of Taste
+argsensat = int(sys.argv[15])  #Physical Sensation
+argexer = int(sys.argv[16])    #Physical Exertion
+#print(argintro, argtemper, argaccept, argsens, argsky, argtemp, argpeople, argplace)
+#print(argintro, argtemper)
+weather = 2
+temp = 2
 sqiterations = int(sqrt(iterations))
 smallxoffset = int(width/sqiterations*randomness*2)
 smallyoffset = int(height/sqiterations*randomness*2)
@@ -429,7 +445,7 @@ gifname = imgname + 'gif'
 svgname = imgname + 'svg'
 pngname = imgname + 'png'
 
-print(gifname)
+#print(gifname)
 
 # Create gif
 

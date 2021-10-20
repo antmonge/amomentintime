@@ -136,7 +136,7 @@ export default class App extends React.Component {
         const weatherSkyDiv = 'SkyConditions';
         const weatherTempLab = ['Hot', 'Warm', 'Cool', 'Crisp', 'Cold'];
         const weatherTempDiv = 'Temperature';
-        const surroundPeopleLab = ['Family', 'Friends', 'Acquantices', 'Strangers', 'Adversaries'];
+        const surroundPeopleLab = ['Family', 'Friends', 'Acquaintances', 'Strangers', 'Adversaries'];
         const surroundPeopleDiv = 'People';
         const surroundPlaceLab = ['Community', 'City', 'Region', 'Country', 'Foreign'];
         const surroundPlaceDiv = 'Place';
@@ -160,62 +160,62 @@ export default class App extends React.Component {
         return <div className="App">
             <table>
             <tr><td colspan="2">Emotional Experience:</td></tr>
-            <tr><td>Introspection Emotion
+            <tr><td className="App3">Introspection Emotion
             <App2 onChange={this.onIntrospectionChange} value={this.state.emotionIntroVal} lab={emotionIntroLab} div={emotionIntroDiv} />
             </td>
-            <td>Temper Emotion
+            <td className="App3">Temper Emotion
             <App2 onChange={this.onTemperChange} value={this.state.emotionTemperVal} lab={emotionTemperLab} div={emotionTemperDiv} />
             </td></tr>
-            <tr><td>Acceptance Emotion
+            <tr><td className="App3">Acceptance Emotion
             <App2 onChange={this.onAcceptanceChange} value={this.state.emotionAcceptVal} lab={emotionAcceptLab} div={emotionAcceptDiv} />
             </td>
-            <td>Sensitivity Emotion
+            <td className="App3">Sensitivity Emotion
             <App2 onChange={this.onSensitivityChange} value={this.state.emotionSensVal} lab={emotionSensLab} div={emotionSensDiv} />
             </td></tr>
             <tr><td colspan="2"></td></tr>
             <tr><td colspan="2">Weather:</td></tr>
-            <tr><td>Sky Conditions
+            <tr><td className="App3">Sky Conditions
             <App2 onChange={this.onSkyConditionsChange} value={this.state.weatherSkyVal} lab={weatherSkyLab} div={weatherSkyDiv} />
             </td>
-            <td>Temperature
+            <td className="App3">Temperature
             <App2 onChange={this.onTemperatureChange} value={this.state.weatherTempVal} lab={weatherTempLab} div={weatherTempDiv} />
             </td></tr>
             <tr><td colspan="2"></td></tr>
             <tr><td colspan="2">Surroundings:</td></tr>
-            <tr><td>People
+            <tr><td className="App3">People
             <App2 onChange={this.onPeopleChange} value={this.state.surroundPeopleVal} lab={surroundPeopleLab} div={surroundPeopleDiv} />
             </td>
-            <td>Place
+            <td className="App3">Place
             <App2 onChange={this.onPlaceChange} value={this.state.surroundPlaceVal} lab={surroundPlaceLab} div={surroundPlaceDiv} />
             </td></tr>
             <tr><td colspan="2"></td></tr>
             <tr><td colspan="2">Sensory Experience:</td></tr>
             <tr><td colspan="2">When you recall your moment are there sounds you associate with it?</td></tr>
-            <tr><td>Strength of Sounds
+            <tr><td className="App3">Strength of Sounds
             <App2 onChange={this.onStrengthofSoundsChange} value={this.state.soundStrengthVal} lab={soundStrengthLab} div={soundStrengthDiv} />
             </td>
-            <td>Type of Sounds
+            <td className="App3">Type of Sounds
             <App2 onChange={this.onTypeofSoundsChange} value={this.state.soundTypeVal} lab={soundTypeLab} div={soundTypeDiv} />
             </td></tr>
             <tr><td colspan="2">When you recall your moment are there smells you associate with it?</td></tr>
-            <tr><td>Strength of Smells
+            <tr><td className="App3">Strength of Smells
             <App2 onChange={this.onStrengthofSmellsChange} value={this.state.smellStrengthVal} lab={smellStrengthLab} div={smellStrengthDiv} />
             </td>
-            <td>Type of Smells
+            <td className="App3">Type of Smells
             <App2 onChange={this.onTypeofSmellsChange} value={this.state.smellTypeVal} lab={smellTypeLab} div={smellTypeDiv} />
             </td></tr>
-            <tr><td>Strength of Tastes
+            <tr><td className="App3">Strength of Tastes
             <App2 onChange={this.onStrengthofTastesChange} value={this.state.tasteStrengthVal} lab={tasteStrengthLab} div={tasteStrengthDiv} />
             </td>
-            <td>Type of Tastes
+            <td className="App3">Type of Tastes
             <App2 onChange={this.onTypeofTastesChange} value={this.state.tasteTypeVal} lab={tasteTypeLab} div={tasteTypeDiv} />
             </td></tr>
             <tr><td colspan="2"></td></tr>
             <tr><td colspan="2">Physical Experience:</td></tr>
-            <tr><td>Sensation
+            <tr><td className="App3">Sensation
             <App2 onChange={this.onSensationChange} value={this.state.physicalSensationVal} lab={physicalSensationLab} div={physicalSensationDiv} />
             </td>
-            <td>Exertion
+            <td className="App3">Exertion
             <App2 onChange={this.onExertionChange} value={this.state.physicalExertionVal} lab={physicalExertionLab} div={physicalExertionDiv} />
             </td></tr>
             </table>

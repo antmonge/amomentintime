@@ -2,6 +2,17 @@
   text-align: center;
 }
 
+.App2 {
+  text-align: center;
+  font-size: calc(6px + 2vmin);
+  color: white
+}
+
+.App3 {
+  text-align: center;
+  font-size: calc(8px + 2vmin);
+  color: white
+}
 .App-logo {
   height: 20vmin;
   pointer-events: none;

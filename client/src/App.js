@@ -11,7 +11,7 @@ export default class App2 extends React.Component {
 
     render() {
         return <div className="App">
-            <div className={this.props.div}>
+            <div className="App2">
                 <RangeStepInput
                     min={1} max={100}
                     value={this.props.value} step={1}
@@ -19,10 +19,10 @@ export default class App2 extends React.Component {
                     className="inputRange"
                     onChange={this.onChange2.bind(this)}
                 />
-                <div className={this.props.div}>
+                <div className="App2">
                     <span>{label(this.props.value, this.props.lab)}</span>
                 </div>
-                <div className={this.props.div}>
+                <div className="App2">
                     <span>{this.props.value}</span>
                 </div>
             </div>
