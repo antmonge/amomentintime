@@ -33,7 +33,7 @@ app.post('/api', (req, res) => {
   python.on('close', (code) => {
     console.log(`child process close all stdio with code ${code}`)
     //send data to browser
-    res.json({message: dataToSend})
+    res.json({message: data.message})
   })
 });
 
