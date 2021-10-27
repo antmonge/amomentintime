@@ -705,7 +705,7 @@ s3_client.upload_file(Filename=svgname, Bucket=aws_bucket_name, Key='public/' + 
 s3_client.upload_file(Filename=pngname, Bucket=aws_bucket_name, Key='public/' + pngname)
 s3_client.upload_file(Filename=pngname, Bucket=aws_bucket_name, Key='public/' + logname)
 
-print(svgname)
+print(pngname)
 
 
 
