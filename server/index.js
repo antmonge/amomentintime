@@ -11,7 +11,7 @@ app.use(express.static(path.resolve(__dirname, '../client/build')));
 app.post('/api', (req, res) => {
   console.log(`Start`)
   console.log(req.body)
-  let dataToSend
+  let dataToSend = '';
 //  let largeDataSet = []
   // spawn new child process to call the python script
   const python = spawn('python', ['server/test2.py', req.body[1], req.body[3], req.body[5], req.body[7], req.body[9], req.body[11], req.body[13], req.body[15], req.body[17], req.body[19], req.body[21], req.body[23], req.body[25], req.body[27], req.body[29], req.body[31]])
@@ -33,7 +33,7 @@ app.post('/api', (req, res) => {
   python.on('close', (code) => {
     console.log(`child process close all stdio with code ${code}`)
     //send data to browser
-    res.json({message: data.message})
+    res.json({message: dataToSend})
   })
 });
 
