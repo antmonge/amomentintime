@@ -5,11 +5,10 @@ import PIL
 import boto3
 from PIL import Image
 import numpy
-#from config import BUCKETEER_AWS_ACCESS_KEY_ID, BUCKETEER_AWS_SECRET_ACCESS_KEY, BUCKETEER_BUCKET_NAME
-from random import randint, choice
-from math import pi, sqrt
+import logging
+from random import randint, choice, sample
+from math import pi, sqrt, ceil
 from io import BytesIO
-#from graphics import update
 
 # Notes
 # Pattern 1 = Solid, 2 = Radial Gradient, 3 = Linear Gradient
@@ -17,6 +16,13 @@ from io import BytesIO
 # Temperature 1-5 Hot-orange, Warm-yellow, Cool-soft green, Crisp-browns, Cold-blue
 
 # Functions that the main program calls
+
+def decrease(number):
+  if number > 50:
+    n = (50 - (number - 50)) + 1
+  else:
+    n = (50 + (50 - number)) + 1
+  return n
 
 def add_image(surface):
   aisrf = cairo.ImageSurface(cairo.FORMAT_ARGB32, 500, 500)
@@ -92,17 +98,115 @@ def grad(r1, g1, b1, r2, g2, b2, op, z, cr, cr1):
   cr1.set_source(gd1)
   cr1.fill()
 
+def grid(iterations, width, height, random):
+  smallx1 = []
+  smallx2 = []
+  smally1 = []
+  smally2 = []
+  largex1 = []
+  largex2 = []
+  largey1 = []
+  largey2 = []
+  gridsize = int(ceil(random/20))
+  randomness = int(ceil(random/10))
+  sqiterations = int(sqrt(iterations))
+  smallxoffset = int(width/sqiterations*randomness*2)
+  smallyoffset = int(height/sqiterations*randomness*2)
+  smalltempx1 = 0
+  smalltempy1 = 0
+  smalltempx2 = smallxoffset
+  smalltempy2 = smallyoffset
+  lqiterations = int(sqiterations/2)
+  largexoffset = int(width/lqiterations*randomness*2)
+  largeyoffset = int(height/lqiterations*randomness*2)
+  if largexoffset > width * 2:
+    largexoffset = width * 2
+  if largeyoffset > height * 2:
+    largeyoffset = height * 2
+  largetempx1 = 0
+  largetempy1 = 0
+  largetempx2 = largexoffset
+  largetempy2 = largeyoffset
+  imultip = 1
+  jmultip = 1
+
+  if gridsize <= 3:
+    # Establish small grid for image placement
+    for i in range(0, sqiterations):
+      for j in range(0, sqiterations):
+        smallx1.append(smalltempx1)
+        smally1.append(smalltempy1)
+        smallx2.append(smalltempx2)
+        smally2.append(smalltempy2)
+        if (smalltempx2 + smallxoffset) > width * 2 and jmultip == 1:
+          smalltempx1 = width * 2 - smallxoffset
+          smalltempx2 = width * 2
+          jmultip = -1
+        elif (smalltempx1 - smallxoffset) < 0 and jmultip == -1:
+          smalltempx1 = 0
+          smalltempx2 = smallxoffset
+          jmultip = 1
+        else:
+          smalltempx1 = smalltempx1 + smallxoffset * jmultip
+          smalltempx2 = smalltempx2 + smallxoffset * jmultip
+      if (smalltempy2 + smallyoffset) > height * 2 and imultip == 1:
+        smalltempy1 = height * 2 - smallyoffset
+        smalltempy2 = height * 2
+        imultip = -1
+      elif (smalltempy1 - smallyoffset) < 0 and imultip == -1:
+        smalltempy1 = 0
+        smalltempy2 = smallyoffset
+        imultip = 1
+      else:
+        smalltempy1 = smalltempy1 + smallyoffset * imultip
+        smalltempy2 = smalltempy2 + smallyoffset * imultip
+      x1 = smallx1
+      x2 = smallx2
+      y1 = smally1
+      y2 = smally2
+      xoffset = smallxoffset
+      yoffset = smallyoffset
+  else:
+    # Establish large grid for image placement
+    for i in range(0, lqiterations):
+      for j in range(0, lqiterations):
+        largex1.append(largetempx1)
+        largey1.append(largetempy1)
+        largex2.append(largetempx2)
+        largey2.append(largetempy2)
+        if (largetempx2 + largexoffset) > width * 2 and jmultip == 1:
+          largetempx1 = width * 2 - largexoffset
+          largetempx2 = width * 2
+          jmultip = -1
+        elif (largetempx1 - largexoffset) < 0 and jmultip == -1:
+          largetempx1 = 0
+          largetempx2 = largexoffset
+          jmultip = 1
+        else:
+          largetempx1 = largetempx1 + largexoffset * jmultip
+          largetempx2 = largetempx2 + largexoffset * jmultip
+      if (largetempy2 + largeyoffset) > height * 2 and imultip == 1:
+        largetempy1 = height * 2 - largeyoffset
+        largetempy2 = height * 2
+        imultip = -1
+      elif (largetempy1 - largeyoffset) < 0 and imultip == -1:
+        largetempy1 = 0
+        largetempy2 = largeyoffset
+        imultip = 1
+      else:
+        largetempy1 = largetempy1 + largeyoffset * imultip
+        largetempy2 = largetempy2 + largeyoffset * imultip
+      x1 = largex1
+      x2 = largex2
+      y1 = largey1
+      y2 = largey2
+      xoffset = largexoffset
+      yoffset = largeyoffset
+  return x1, x2, y1, y2, xoffset, yoffset
+
 # Variables and Setup
 
 images = []
-smallx1 = []
-smallx2 = []
-smally1 = []
-smally2 = []
-largex1 = []
-largex2 = []
-largey1 = []
-largey2 = []
 boldness = []
 width = 500
 height = 500
@@ -124,102 +228,59 @@ argtststr = int(sys.argv[13])  #Strength of Taste
 argtsttyp = int(sys.argv[14])  #Type of Taste
 argsensat = int(sys.argv[15])  #Physical Sensation
 argexer = int(sys.argv[16])    #Physical Exertion
-#print(argintro, argtemper, argaccept, argsens, argsky, argtemp, argpeople, argplace)
-#print(argintro, argtemper)
-weather = 2
-temp = 2
-sqiterations = int(sqrt(iterations))
-smallxoffset = int(width/sqiterations*randomness*2)
-smallyoffset = int(height/sqiterations*randomness*2)
-smalltempx1 = 0
-smalltempy1 = 0
-smalltempx2 = smallxoffset
-smalltempy2 = smallyoffset
-lqiterations = int(sqiterations/2)
-largexoffset = int(width/lqiterations*randomness*2)
-largeyoffset = int(height/lqiterations*randomness*2)
-if largexoffset > width * 2:
-  largexoffset = width * 2
-if largeyoffset > height * 2:
-  largeyoffset = height * 2
-largetempx1 = 0
-largetempy1 = 0
-largetempx2 = largexoffset
-largetempy2 = largeyoffset
 
-# Establish small grid for image placement
+# File Name Setup
 
-imultip = 1
-jmultip = 1
-for i in range(0, sqiterations):
+imgpre = randint(1, 1000000)
+imgtxt = '{}-test.'
+imgname = imgtxt.format(imgpre)
+gifname = imgname + 'gif'
+svgname = imgname + 'svg'
+pngname = imgname + 'png'
+logname = imgname + 'log'
 
-  for j in range(0, sqiterations):
+logging.basicConfig(filename=logname, filemode='w', level=logging.INFO)
+logging.info('Emotion Introspection - %s', argintro)
+logging.info('Emotion Temper - %s', argtemper)
+logging.info('Emotion Acceptance - %s', argaccept)
+logging.info('Emotion Sensitivity - %s', argsens)
+logging.info('Weather Sky Conditions - %s', argsky)
+logging.info('Weather Temperature - %s', argtemp)
+logging.info('People - %s', argpeople)
+logging.info('Place - %s', argplace)
+logging.info('Strength of Sound - %s', argsndstr)
+logging.info('Type of Sound - %s', argsndtyp)
+logging.info('Strength of Smell - %s', argsmlstr)
+logging.info('Type of Smell - %s', argsmltyp)
+logging.info('Strength of Taste - %s', argtststr)
+logging.info('Type of Taste - %s', argtsttyp)
+logging.info('Physical Sensation - %s', argsensat)
+logging.info('Physical Exertion - %s', argexer)
 
-    smallx1.append(smalltempx1)
-    smally1.append(smalltempy1)
-    smallx2.append(smalltempx2)
-    smally2.append(smalltempy2)
+circquant = decrease(argplace)
+circrand = argplace
+circsize = decrease(argpeople)
+circcol = 0
+circpat = argpeople
 
-    if (smalltempx2 + smallxoffset) > width * 2 and jmultip == 1:
-      smalltempx1 = width * 2 - smallxoffset
-      smalltempx2 = width * 2
-      jmultip = -1
-    elif (smalltempx1 - smallxoffset) < 0 and jmultip == -1:
-      smalltempx1 = 0
-      smalltempx2 = smallxoffset
-      jmultip = 1
-    else:
-      smalltempx1 = smalltempx1 + smallxoffset * jmultip
-      smalltempx2 = smalltempx2 + smallxoffset * jmultip
+squigquant = argsens
+squigrand = argsmlstr
+squigsize = argsmltyp
+squigcol = 0
+squigpat = argaccept
 
-  if (smalltempy2 + smallyoffset) > height * 2 and imultip == 1:
-    smalltempy1 = height * 2 - smallyoffset
-    smalltempy2 = height * 2
-    imultip = -1
-  elif (smalltempy1 - smallyoffset) < 0 and imultip == -1:
-    smalltempy1 = 0
-    smalltempy2 = smallyoffset
-    imultip = 1
-  else:
-    smalltempy1 = smalltempy1 + smallyoffset * imultip
-    smalltempy2 = smalltempy2 + smallyoffset * imultip
+triquant = argtemper
+trirand = argintro
+trisize = argsndtyp
+tricol = argsndstr
 
-# Establish large grid for image placement
+linequant = argsensat
+linerand = argexer
+linesize = argtststr
+linecol = 0
 
-imultip = 1
-jmultip = 1
-for i in range(0, lqiterations):
-
-  for j in range(0, lqiterations):
-
-    largex1.append(largetempx1)
-    largey1.append(largetempy1)
-    largex2.append(largetempx2)
-    largey2.append(largetempy2)
-
-    if (largetempx2 + largexoffset) > width * 2 and jmultip == 1:
-      largetempx1 = width * 2 - largexoffset
-      largetempx2 = width * 2
-      jmultip = -1
-    elif (largetempx1 - largexoffset) < 0 and jmultip == -1:
-      largetempx1 = 0
-      largetempx2 = largexoffset
-      jmultip = 1
-    else:
-      largetempx1 = largetempx1 + largexoffset * jmultip
-      largetempx2 = largetempx2 + largexoffset * jmultip
-
-  if (largetempy2 + largeyoffset) > height * 2 and imultip == 1:
-    largetempy1 = height * 2 - largeyoffset
-    largetempy2 = height * 2
-    imultip = -1
-  elif (largetempy1 - largeyoffset) < 0 and imultip == -1:
-    largetempy1 = 0
-    largetempy2 = largeyoffset
-    imultip = 1
-  else:
-    largetempy1 = largetempy1 + largeyoffset * imultip
-    largetempy2 = largetempy2 + largeyoffset * imultip
+backcol1 = argsky
+backcol2 = argtemp
 
 # Establish virtual drawing surfaces
 
@@ -247,22 +308,24 @@ ctx1.rectangle(0,0,width,height)
 ctx1.fill()
 aim = add_image(srf1)
 images.append(aim)
+col1 = int(ceil(backcol1/20))
+col2 = int(ceil(backcol2/20))
 
 pattern = randint(2,3)
 
-if weather == 1:
+if col1 == 1:
   cred1 = color(800, 1000)
   cgreen1 = color(800, 1000)
   cblue1 = color(800, 0)
-elif weather == 2:
+elif col1 == 2:
   cred1 = color(1000, 1000)
   cgreen1 = cred1
   cblue1 = color(800, 550)
-elif weather == 3:
+elif col1 == 3:
   cred1 = color(1000, 1000)
   cgreen1 = color(1000, 1000)
   cblue1 = color(1000, 1000)
-elif weather == 4:
+elif col1 == 4:
   cred1 = color(800, 800)
   cgreen1 = color(800, 800)
   cblue1 = color(800, 800)
@@ -271,19 +334,19 @@ else:
   cgreen1 = color(500, 600)
   cblue1 = color(500, 600)
 
-if temp == 1:
+if col2 == 1:
   cred2 = color(800, 1000)
   cgreen2 = color(800, 800)
   cblue2 = color(800, 0)
-elif temp == 2:
+elif col2 == 2:
   cred2 = color(1000, 1000)
   cgreen2 = cred2
   cblue2 = color(800, 550)
-elif temp == 3:
+elif col2 == 3:
   cred2 = color(800, 550)
   cgreen2 = color(1000, 1000)
   cblue2 = color(800, 550)
-elif temp == 4:
+elif col2 == 4:
   cred2 = color(800, 800)
   cgreen2 = color(500, 500)
   cblue2 = color(500, 500)
@@ -302,50 +365,138 @@ images.append(aim)
 
 # Circles - Energy
 
-# Energy 0-100 Inactive, Calm, Active, Busy, Hectic
-#
+#circquant = argplace
+#circrand = argplace
+#circsize = argpeople
+#circcol = 0
+#circpat = argpeople
 
-for i in range (0, iterations):
-  r = randint(10, 50)/1000
-  x = coordrange(smallx1[i], smallx2[i], smallxoffset, randomness)
-  y = coordrange(smally1[i], smally2[i], smallyoffset, randomness)
+pattern = 2 #not using circpat to drive, hard coded
+circgrid = grid(iterations, width, height, circrand)
+circx1 = circgrid[0]
+circx2 = circgrid[1]
+circy1 = circgrid[2]
+circy2 = circgrid[3]
+circxoffset = circgrid[4]
+circyoffset = circgrid[5]
+circrandint = int(ceil(circrand/10))
+
+its = circquant
+circlen = len(circx1)
+circarray = []
+circtemp = []
+i = 0
+
+for j in range (0, its):
+  test = (j+1)/circlen
+  inttest = int((j+1)/circlen)
+  if test == inttest:
+    circarray.append(j)
+
+for j in range (0, circlen):
+  circtemp.append(j)
+
+if its < circlen:
+  circindex = sample(circtemp, circlen)
+else:
+  circindex = circtemp
+
+for j in range (0, its):
+  if j in circarray:
+    if j + circarray[0] > circlen:
+      circindex = sample(circtemp, circlen)
+      i = 0
+    else:
+      i = 0
+  r = randint(int(ceil(circsize/2)), circsize)/1000
+  #print(i)  First round goes to 23 and then next rounds go to 24
+  x = coordrange(circx1[circindex[i]], circx2[circindex[i]], circxoffset, circrandint)
+  y = coordrange(circy1[circindex[i]], circy2[circindex[i]], circyoffset, circrandint)
   ag1 = 0
   ag2 = 2 * pi
-  cred = randint(0, 1000)/1000
-  cgreen = randint(0, 1000)/1000
-  cblue = randint(0, 1000)/1000
+  cred1 = randint(0, 1000)/1000
+  cgreen1 = randint(0, 1000)/1000
+  cblue1 = randint(0, 1000)/1000
+  cred2 = randint(0, 1000)/1000
+  cgreen2 = randint(0, 1000)/1000
+  cblue2 = randint(0, 1000)/1000
   copaque = 1
-  ctx.set_source_rgba(cred, cgreen, cblue, copaque)
   ctx.arc(x, y, r, ag1, ag2)
-  ctx.fill()
-  ctx1.set_source_rgba(cblue, cgreen, cred, copaque)
   ctx1.arc(x, y, r, ag1, ag2)
-  ctx1.fill()
+  gradient = grad(cred1, cgreen1, cblue1, cred2, cgreen2, cblue2, 1, pattern, ctx, ctx1)
+  #ctx.set_source_rgba(cred, cgreen, cblue, copaque)
+  #ctx.arc(x, y, r, ag1, ag2)
+  #ctx.fill()
+  #ctx1.set_source_rgba(cblue, cgreen, cred, copaque)
+  #ctx1.arc(x, y, r, ag1, ag2)
+  #ctx1.fill()
   aim = add_image(srf1)
   images.append(aim)
+  i += 1
 
 # Squiggly Lines
 
-its = int(iterations/3)
-xt1 = coordrange(smallx1[0], smallx2[0], smallxoffset, randomness)
-yt1 = coordrange(smally1[0], smally2[0], smallyoffset, randomness)
-for i in range (0, its):
-  xt2 = coordrange(smallx1[i*3+1], smallx2[i*3+1], smallxoffset, randomness)
-  xt3 = coordrange(smallx1[i*3+2], smallx2[i*3+2], smallxoffset, randomness)
-  xt4 = coordrange(smallx1[i*3+3], smallx2[i*3+3], smallxoffset, randomness)
-  yt2 = coordrange(smally1[i*3+1], smally2[i*3+1], smallyoffset, randomness)
-  yt3 = coordrange(smally1[i*3+2], smally2[i*3+2], smallyoffset, randomness)
-  yt4 = coordrange(smally1[i*3+3], smally2[i*3+3], smallyoffset, randomness)
+#squigquant = argsens
+#squigrand = argsmlstr
+#squigsize = argsmltyp
+#squigcol = 0
+#squigpat = argaccept
+
+squiggrid = grid(iterations, width, height, squigrand)
+squigx1 = squiggrid[0]
+squigx2 = squiggrid[1]
+squigy1 = squiggrid[2]
+squigy2 = squiggrid[3]
+squigxoffset = squiggrid[4]
+squigyoffset = squiggrid[5]
+squigrandint = int(ceil(squigrand/10))
+squigwidth = squigsize / 2000
+
+its = int(squigquant/3)
+squiglen = len(squigx1)
+squigarray = []
+squigtemp = []
+i = 0
+
+for j in range (0, squigquant):
+  test = (j+1)/squiglen
+  inttest = int((j+1)/squiglen)
+  if test == inttest:
+    squigarray.append(j)
+
+for j in range (0, squiglen):
+  squigtemp.append(j)
+
+if its < squiglen:
+  squigindex = sample(squigtemp, squiglen)
+else:
+  squigindex = squigtemp
+
+xt1 = coordrange(squigx1[squigindex[0]], squigx2[squigindex[0]], squigxoffset, squigrandint)
+yt1 = coordrange(squigy1[squigindex[0]], squigy2[squigindex[0]], squigyoffset, squigrandint)
+for j in range (0, its):
+  if i*3+1 in squigarray or i*3+2 in squigarray or i*3+3 in squigarray:
+    if i*3+3 + squigarray[0] > squiglen:
+      squigindex = sample(squigtemp, squiglen)
+      i = 0
+    else:
+      i = 0
+  xt2 = coordrange(squigx1[squigindex[i*3+1]], squigx2[squigindex[i*3+1]], squigxoffset, squigrandint)
+  xt3 = coordrange(squigx1[squigindex[i*3+2]], squigx2[squigindex[i*3+2]], squigxoffset, squigrandint)
+  xt4 = coordrange(squigx1[squigindex[i*3+3]], squigx2[squigindex[i*3+3]], squigxoffset, squigrandint)
+  yt2 = coordrange(squigy1[squigindex[i*3+1]], squigy2[squigindex[i*3+1]], squigyoffset, squigrandint)
+  yt3 = coordrange(squigy1[squigindex[i*3+2]], squigy2[squigindex[i*3+2]], squigyoffset, squigrandint)
+  yt4 = coordrange(squigy1[squigindex[i*3+3]], squigy2[squigindex[i*3+3]], squigyoffset, squigrandint)
   cred = randint(0, 1000)/1000
   cgreen = randint(0, 1000)/1000
   cblue = randint(0, 1000)/1000
   copaque = 1
-  ctx.set_line_width(0.01)
+  ctx.set_line_width(squigwidth)
   ctx.set_source_rgba(cred, cgreen, cblue, copaque)
   ctx.move_to(xt1, yt1)
   ctx.curve_to(xt2, yt2, xt3, yt3, xt4, yt4)
   ctx.stroke()
-  ctx1.set_line_width(0.01)
+  ctx1.set_line_width(squigwidth)
   ctx1.set_source_rgba(cblue, cgreen, cred, copaque)
   ctx1.move_to(xt1, yt1)
   ctx1.curve_to(xt2, yt2, xt3, yt3, xt4, yt4)
@@ -354,56 +505,98 @@ for i in range (0, its):
   images.append(aim)
   xt1 = xt4
   yt1 = yt4
+  i += 1
 
 # Triangles
 
-trirand = 6
-its = int(iterations/4)
-quad = [1, 2, 3, 4]
-for i in range (0, its):
+#triquant = argtemper
+#trirand = argintro
+#trisize = argsndtyp
+#tricolor = argsndstr
+
+trigrid = grid(iterations, width, height, trirand)
+trix1 = trigrid[0]
+trix2 = trigrid[1]
+triy1 = trigrid[2]
+triy2 = trigrid[3]
+trixoffset = trigrid[4]
+triyoffset = trigrid[5]
+trixoffset2 = trixoffset / 2
+triyoffset2 = triyoffset / 2
+trirandint = int(ceil(trirand/10))
+triwidth = trisize / 5000
+
+its = triquant
+trilen = len(trix1)
+triarray = []
+tritemp = []
+i = 0
+
+for j in range (0, trilen):
+  tritemp.append(j)
+
+for j in range (0, its):
+  test = (j+1)/trilen
+  inttest = int((j+1)/trilen)
+  if test == inttest:
+    triarray.append(j)
+
+if its < trilen:
+  triindex = sample(tritemp, trilen)
+else:
+  triindex = tritemp
+
+#quad = [1, 2, 3, 4]
+for j in range (0, its):
+  if j in triarray:
+    if j + triarray[0] > trilen:
+      triindex = sample(tritemp, trilen)
+      i = 0
+    else:
+      i = 0
   quad = [1, 2, 3, 4]
   qselect = choice(quad)
   if qselect == 1:
-    x1 = coordrange(largex1[i], int(largex1[i] + (largexoffset / 2)), largexoffset, trirand)
-    y1 = coordrange(largey1[i], int(largey1[i] + (largeyoffset / 2)), largeyoffset, trirand)
-    x2 = randint(100, 150)/1000
+    x1 = coordrange(trix1[triindex[i]], int(trix1[triindex[i]] + trixoffset2), trixoffset, trirandint)
+    y1 = coordrange(triy1[triindex[i]], int(triy1[triindex[i]] + triyoffset2), triyoffset, trirandint)
+    x2 = int(trisize + 100)/1000
     y2 = randint(-50, 50)/1000
     x3 = randint(-50, 50)/1000
-    y3 = randint(100, 150)/1000
+    y3 = int(trisize + 100)/1000
   elif qselect == 2:
-    x1 = coordrange(int(largex1[i] + (largexoffset / 2)), largex2[i], largexoffset, trirand)
-    y1 = coordrange(largey1[i], int(largey1[i] + (largeyoffset / 2)), largeyoffset, trirand)
-    x2 = randint(-150, -100)/1000
+    x1 = coordrange(int(trix1[triindex[i]] + trixoffset2), trix2[triindex[i]], trixoffset, trirandint)
+    y1 = coordrange(triy1[triindex[i]], int(triy1[triindex[i]] + triyoffset2), triyoffset, trirandint)
+    x2 = int((trisize*-1)-100)/1000
     y2 = randint(-50, 50)/1000
     x3 = randint(-50, 50)/1000
-    y3 = randint(100, 150)/1000
+    y3 = int(trisize + 100)/1000
   elif qselect == 3:
-    x1 = coordrange(largex1[i], int(largex1[i] + (largexoffset / 2)), largexoffset, trirand)
-    y1 = coordrange(int(largey1[i] + (largeyoffset / 2)), largey2[i], largeyoffset, trirand)
-    x2 = randint(100, 150)/1000
+    x1 = coordrange(trix1[triindex[i]], int(trix1[triindex[i]] + trixoffset2), trixoffset, trirandint)
+    y1 = coordrange(int(triy1[triindex[i]] + triyoffset2), triy2[triindex[i]], triyoffset, trirandint)
+    x2 = int(trisize + 100)/1000
     y2 = randint(-50, 50)/1000
     x3 = randint(-50, 50)/1000
-    y3 = randint(-150, -100)/1000
+    y3 = int((trisize*-1)-100)/1000
   else:
-    x1 = coordrange(int(largex1[i] + (largexoffset / 2)), largex2[i], largexoffset, trirand)
-    y1 = coordrange(int(largey1[i] + (largeyoffset / 2)), largey2[i], largeyoffset, trirand)
-    x2 = randint(-150, -100)/1000
+    x1 = coordrange(int(trix1[triindex[i]] + trixoffset2), trix2[triindex[i]], trixoffset, trirandint)
+    y1 = coordrange(int(triy1[triindex[i]] + triyoffset2), triy2[triindex[i]], triyoffset, trirandint)
+    x2 = int((trisize*-1)-100)/1000
     y2 = randint(-50, 50)/1000
     x3 = randint(-50, 50)/1000
-    y3 = randint(-150, -100)/1000
+    y3 = int((trisize*-1)-100)/1000
 
   cred = randint(0, 1000)/1000
   cgreen = randint(0, 1000)/1000
   cblue = randint(0, 1000)/1000
   copaque = 0.5
-  ctx.set_line_width(0.003)
+  ctx.set_line_width(triwidth)
   ctx.set_source_rgba(cred, cgreen, cblue, copaque)
   ctx.move_to(x1, y1)
   ctx.rel_line_to(x2, y2)
   ctx.rel_line_to (x3, y3)
   ctx.line_to(x1, y1)
   ctx.fill()
-  ctx1.set_line_width(0.003)
+  ctx1.set_line_width(triwidth)
   ctx1.set_source_rgba(cblue, cgreen, cred, copaque)
   ctx1.move_to(x1, y1)
   ctx1.rel_line_to(x2, y2)
@@ -412,40 +605,66 @@ for i in range (0, its):
   ctx1.fill()
   aim = add_image(srf1)
   images.append(aim)
+  i += 1
 
 # Straight Lines
 
-its = randomness * 10
-for i in range (0, its):
-  x1 = randint(0, 1000)/1000
-  y1 = randint(0, 1000)/1000
-  x2 = randint(0, 1000)/1000
-  y2 = randint(0, 1000)/1000
+#linequant = argsensat
+#linerand = argexer
+#linesize = argtststr
+#linecol = 0
+
+linegrid = grid(iterations, width, height, 10)
+linex1 = linegrid[0]
+linex2 = linegrid[1]
+liney1 = linegrid[2]
+liney2 = linegrid[3]
+linexoffset = linegrid[4]
+lineyoffset = linegrid[5]
+linerandint = int(ceil(linerand/10))
+linewidth = linesize / 4000
+
+its = int(linequant/2)
+linelen = len(linex1)
+linearray = []
+linetemp = []
+i = 0
+
+for j in range (0, linequant):
+  test = (j+1)/linelen
+  inttest = int((j+1)/linelen)
+  if test == inttest:
+    linearray.append(j)
+
+for j in range (0, linelen):
+  linetemp.append(j)
+
+lineindex = sample(linetemp, linelen)
+
+for j in range (0, its):
+  if i*2 in linearray or i*2+1  in linearray:
+    i = 0
+  x1 = coordrange(linex1[lineindex[i*2]], linex2[lineindex[i*2]], linexoffset, linerandint)
+  x2 = coordrange(linex1[lineindex[i*2+1]], linex2[lineindex[i*2+1]], linexoffset, linerandint)
+  y1 = coordrange(liney1[lineindex[i*2]], liney2[lineindex[i*2]], lineyoffset, linerandint)
+  y2 = coordrange(liney1[lineindex[i*2+1]], liney2[lineindex[i*2+1]], lineyoffset, linerandint)
   cred = randint(0, 1000)/1000
   cgreen = randint(0, 1000)/1000
   cblue = randint(0, 1000)/1000
   copaque = 1
-  ctx.set_line_width(0.002)
+  ctx.set_line_width(linewidth)
   ctx.set_source_rgba(cred, cgreen, cblue, copaque)
   ctx.move_to(x1, y1)
   ctx.line_to(x2, y2)
   ctx.stroke()
-  ctx1.set_line_width(0.002)
+  ctx1.set_line_width(linewidth)
   ctx1.set_source_rgba(cblue, cgreen, cred, copaque)
   ctx1.move_to(x1, y1)
   ctx1.line_to(x2, y2)
   ctx1.stroke()
   aim = add_image(srf1)
   images.append(aim)
-
-imgpre = randint(1, 1000000)
-imgtxt = '{}-test.'
-imgname = imgtxt.format(imgpre)
-gifname = imgname + 'gif'
-svgname = imgname + 'svg'
-pngname = imgname + 'png'
-
-#print(gifname)
+  i += 1
 
 # Create gif
 
@@ -484,8 +703,9 @@ s3_client = session.client(
 s3_client.upload_file(Filename=gifname, Bucket=aws_bucket_name, Key='public/' + gifname)
 s3_client.upload_file(Filename=svgname, Bucket=aws_bucket_name, Key='public/' + svgname)
 s3_client.upload_file(Filename=pngname, Bucket=aws_bucket_name, Key='public/' + pngname)
+s3_client.upload_file(Filename=pngname, Bucket=aws_bucket_name, Key='public/' + logname)
 
-
+print(svgname)
 
 
 

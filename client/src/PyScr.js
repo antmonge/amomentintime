@@ -6,7 +6,7 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          imgsrc: "https://bucketeer-be56a818-47b8-45ac-8891-d13ecbace823.s3.amazonaws.com/public/test.gif",
+          imgsrc: "https://bucketeer-be56a818-47b8-45ac-8891-d13ecbace823.s3.amazonaws.com/public/test.svg",
           value: "Not Clicked",
           data: "NA",
           emotionIntroVal: 50,

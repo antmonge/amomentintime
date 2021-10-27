@@ -19,13 +19,13 @@ app.post('/api', (req, res) => {
   // collect data from script
   python.stdout.on('data', function (data) {
     console.log(`Pipe data from python script ...`)
-    dataToSend =  data;
+    dataToSend += data.toString();
 //    //largeDataSet.push(data)
   })
 
   python.stderr.on('data', function (data) {
     console.log(`Python script error ${data}`)
-    dataToSend =  data;
+    dataToSend += data.toString();
 //    //largeDataSet.push(data)
   })
 
@@ -33,7 +33,7 @@ app.post('/api', (req, res) => {
   python.on('close', (code) => {
     console.log(`child process close all stdio with code ${code}`)
     //send data to browser
-    res.json({message: data.message})
+    res.json({message: dataToSend})
   })
 });
 
