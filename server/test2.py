@@ -12,8 +12,22 @@ from io import BytesIO
 
 # Notes
 # Pattern 1 = Solid, 2 = Radial Gradient, 3 = Linear Gradient
-# Weather 1-5 Sunny-yellows, Partly Cloudy-soft yellows, Mostly Cloudy-white, Cloudy-light grey, Stormy-mid grey
-# Temperature 1-5 Hot-orange, Warm-yellow, Cool-soft green, Crisp-browns, Cold-blue
+# Introspection Ecstacy, Joy, Contentment, Sadness, Grief
+# Temper - Bliss, Calmness, Annoyance, Anger, Rage
+# Acceptance - Proud, Satisfied, Ambivalent, Embarrassed, Humiliated
+# Sensitivity - Enthusiasm, Eagerness, Anxiety, Fear, Terror
+# Sky Conditions - Sunny-yellows, Partly Cloudy-soft yellows, Mostly Cloudy-white, Cloudy-light grey, Stormy-mid grey
+# Temperature - Hot-orange, Warm-yellow, Cool-soft green, Crisp-browns, Cold-blue
+# People - Family, Friends, Acquantices, Strangers, Adversaries
+# Place - Community, City, Region, Country, Foreign
+# Sound Strength - Silent, Faint, Moderate, Loud, Deafening
+# Sound Type - Monotone, Soothing, Melodic, Lively, Chaotic
+# Smell Strength - Scentless, Subtle, Scented, Aromatic, Potent
+# Smell Type - Fragrant, Pleasant, Neutral, Stale, Pungent
+# Taste Strength - Bland, Mild, Seasoned, Flavorful, Intense
+# Taste Type - Mouthwatering, Pleasant, Tasteful, Disagreeable, Repulsive
+# Sensation - Thrill, Pleasure, Comfort, Suffering, Agony
+# Exertion - Sedentary, Light, Active, Vigorous, Strenuous
 
 # Functions that the main program calls
 
@@ -49,16 +63,16 @@ def coordrange(c1, c2, offset, rnd):
     c = randint(temp1, temp2)/1000
   return c
 
-def color(b, c):
-  x = (b+c)/2
-  x1 = int(x - 70)
-  x2 = int(x + 70)
-  if c < 500:
-    x1 = c
-    x2 = c + 100
-  if c > 800:
-    x1 = c - 100
-    x2 = c
+def color(x1, x2):
+#  x = (b+c)/2
+#  x1 = int(x - 70)
+#  x2 = int(x + 70)
+#  if c < 500:
+#    x1 = c
+#    x2 = c + 100
+#  if c > 800:
+#    x1 = c - 100
+#    x2 = c
   y = randint(x1, x2)/1000
   return y
 
@@ -260,24 +274,24 @@ logging.info('Physical Exertion - %s', argexer)
 circquant = decrease(argplace)
 circrand = argplace
 circsize = decrease(argpeople)
-circcol = 0
+circcol1 = argsensat
 circpat = argpeople
 
 squigquant = argsens
 squigrand = argsmlstr
 squigsize = argsmltyp
-squigcol = 0
+squigcol1 = argsens
 squigpat = argaccept
 
 triquant = argtemper
 trirand = argintro
 trisize = argsndtyp
-tricol = argsndstr
+tricol1 = argsndstr
 
 linequant = argsensat
 linerand = argexer
 linesize = argtststr
-linecol = 0
+linecol1 = argtsttyp
 
 backcol1 = argsky
 backcol2 = argtemp
@@ -316,11 +330,11 @@ pattern = randint(2,3)
 if col1 == 1:
   cred1 = color(800, 1000)
   cgreen1 = color(800, 1000)
-  cblue1 = color(800, 0)
+  cblue1 = color(0, 800)
 elif col1 == 2:
   cred1 = color(1000, 1000)
   cgreen1 = cred1
-  cblue1 = color(800, 550)
+  cblue1 = color(550, 800)
 elif col1 == 3:
   cred1 = color(1000, 1000)
   cgreen1 = color(1000, 1000)
@@ -337,15 +351,15 @@ else:
 if col2 == 1:
   cred2 = color(800, 1000)
   cgreen2 = color(800, 800)
-  cblue2 = color(800, 0)
+  cblue2 = color(0, 800)
 elif col2 == 2:
   cred2 = color(1000, 1000)
   cgreen2 = cred2
-  cblue2 = color(800, 550)
+  cblue2 = color(550, 800)
 elif col2 == 3:
-  cred2 = color(800, 550)
+  cred2 = color(550, 800)
   cgreen2 = color(1000, 1000)
-  cblue2 = color(800, 550)
+  cblue2 = color(550, 800)
 elif col2 == 4:
   cred2 = color(800, 800)
   cgreen2 = color(500, 500)
@@ -363,15 +377,17 @@ gradient = grad(cred1, cgreen1, cblue1, cred2, cgreen2, cblue2, 1, pattern, ctx,
 aim = add_image(srf1)
 images.append(aim)
 
-# Circles - Energy
+# Circles
 
 #circquant = argplace
 #circrand = argplace
 #circsize = argpeople
-#circcol = 0
+#circcol = argsensat
 #circpat = argpeople
 
-pattern = 2 #not using circpat to drive, hard coded
+# Sensation - Thrill, Pleasure, Comfort, Suffering, Agony
+# Orange, Blue, Grey, Black, Red
+
 circgrid = grid(iterations, width, height, circrand)
 circx1 = circgrid[0]
 circx2 = circgrid[1]
@@ -380,6 +396,81 @@ circy2 = circgrid[3]
 circxoffset = circgrid[4]
 circyoffset = circgrid[5]
 circrandint = int(ceil(circrand/10))
+col1 = int(ceil(circcol1/20))
+
+pattern = 2 #not using circpat to drive, hard coded
+
+if col1 == 1:
+  xred1 = 800
+  xred2 = 1000
+  xgreen1 = 400
+  xgreen2 = 600
+  xblue1 = 0
+  xblue2 = 100
+elif col1 == 2:
+  xred1 = 0
+  xred2 = 200
+  xgreen1 = 0
+  xgreen2 = 200
+  xblue1 = 800
+  xblue2 = 1000
+elif col1 == 3:
+  xred1 = 500
+  xred2 = 750
+  xgreen1 = 500
+  xgreen2 = 750
+  xblue1 = 500
+  xblue2 = 750
+elif col1 == 4:
+  xred1 = 0
+  xred2 = 200
+  xgreen1 = 0
+  xgreen2 = 200
+  xblue1 = 0
+  xblue2 = 200
+else:
+  xred1 = 800
+  xred2 = 1000
+  xgreen1 = 0
+  xgreen2 = 200
+  xblue1 = 0
+  xblue2 = 200
+
+if col2 == 1:
+  xred3 = 800
+  xred4 = 1000
+  xgreen3 = 400
+  xgreen4 = 600
+  xblue3 = 0
+  xblue4 = 200
+elif col2 == 2:
+  xred3 = 0
+  xred4 = 200
+  xgreen3 = 0
+  xgreen4 = 200
+  xblue3 = 800
+  xblue4 = 1000
+elif col2 == 3:
+  xred3 = 500
+  xred4 = 750
+  xgreen3 = 500
+  xgreen4 = 750
+  xblue3 = 500
+  xblue4 = 750
+elif col2 == 4:
+  xred3 = 0
+  xred4 = 200
+  xgreen3 = 0
+  xgreen4 = 200
+  xblue3 = 0
+  xblue4 = 200
+else:
+  xred3 = 800
+  xred4 = 1000
+  xgreen3 = 0
+  xgreen4 = 200
+  xblue3 = 0
+  xblue4 = 200
 
 its = circquant
 circlen = len(circx1)
@@ -414,13 +505,13 @@ for j in range (0, its):
   y = coordrange(circy1[circindex[i]], circy2[circindex[i]], circyoffset, circrandint)
   ag1 = 0
   ag2 = 2 * pi
-  cred1 = randint(0, 1000)/1000
-  cgreen1 = randint(0, 1000)/1000
-  cblue1 = randint(0, 1000)/1000
-  cred2 = randint(0, 1000)/1000
-  cgreen2 = randint(0, 1000)/1000
-  cblue2 = randint(0, 1000)/1000
   copaque = 1
+  cred1 = color(xred1, xred2)
+  cgreen1 = color(xgreen1, xgreen2)
+  cblue1 = color(xblue1, xblue2)
+  cred2 = color(xred3, xred4)
+  cgreen2 = color(xgreen3, xgreen4)
+  cblue2 = color(xblue3, xblue4)
   ctx.arc(x, y, r, ag1, ag2)
   ctx1.arc(x, y, r, ag1, ag2)
   gradient = grad(cred1, cgreen1, cblue1, cred2, cgreen2, cblue2, 1, pattern, ctx, ctx1)
@@ -439,8 +530,11 @@ for j in range (0, its):
 #squigquant = argsens
 #squigrand = argsmlstr
 #squigsize = argsmltyp
-#squigcol = 0
+#squigcol1 = argsens
 #squigpat = argaccept
+
+# Sensitivity - Enthusiasm, Eagerness, Anxiety, Fear, Terror
+# Pink, Blue, Soft Green, Orange, Red
 
 squiggrid = grid(iterations, width, height, squigrand)
 squigx1 = squiggrid[0]
@@ -451,6 +545,45 @@ squigxoffset = squiggrid[4]
 squigyoffset = squiggrid[5]
 squigrandint = int(ceil(squigrand/10))
 squigwidth = squigsize / 2000
+col1 = int(ceil(squigcol1/20))
+
+pattern = 2 #not using circpat to drive, hard coded
+
+if col1 == 1:
+  xred1 = 850
+  xred2 = 1000
+  xgreen1 = 0
+  xgreen2 = 200
+  xblue1 = 850
+  xblue2 = 1000
+elif col1 == 2:
+  xred1 = 0
+  xred2 = 200
+  xgreen1 = 0
+  xgreen2 = 200
+  xblue1 = 800
+  xblue2 = 1000
+elif col1 == 3:
+  xred1 = 600
+  xred2 = 800
+  xgreen1 = 950
+  xgreen2 = 1000
+  xblue1 = 600
+  xblue2 = 800
+elif col1 == 4:
+  xred1 = 800
+  xred2 = 1000
+  xgreen1 = 400
+  xgreen2 = 600
+  xblue1 = 0
+  xblue2 = 200
+else:
+  xred1 = 800
+  xred2 = 1000
+  xgreen1 = 0
+  xgreen2 = 200
+  xblue1 = 0
+  xblue2 = 200
 
 its = int(squigquant/3)
 squiglen = len(squigx1)
@@ -487,17 +620,17 @@ for j in range (0, its):
   yt2 = coordrange(squigy1[squigindex[i*3+1]], squigy2[squigindex[i*3+1]], squigyoffset, squigrandint)
   yt3 = coordrange(squigy1[squigindex[i*3+2]], squigy2[squigindex[i*3+2]], squigyoffset, squigrandint)
   yt4 = coordrange(squigy1[squigindex[i*3+3]], squigy2[squigindex[i*3+3]], squigyoffset, squigrandint)
-  cred = randint(0, 1000)/1000
-  cgreen = randint(0, 1000)/1000
-  cblue = randint(0, 1000)/1000
   copaque = 1
+  cred1 = color(xred1, xred2)
+  cgreen1 = color(xgreen1, xgreen2)
+  cblue1 = color(xblue1, xblue2)
   ctx.set_line_width(squigwidth)
-  ctx.set_source_rgba(cred, cgreen, cblue, copaque)
+  ctx.set_source_rgba(cred1, cgreen1, cblue1, copaque)
   ctx.move_to(xt1, yt1)
   ctx.curve_to(xt2, yt2, xt3, yt3, xt4, yt4)
   ctx.stroke()
   ctx1.set_line_width(squigwidth)
-  ctx1.set_source_rgba(cblue, cgreen, cred, copaque)
+  ctx1.set_source_rgba(cblue1, cgreen1, cred1, copaque)
   ctx1.move_to(xt1, yt1)
   ctx1.curve_to(xt2, yt2, xt3, yt3, xt4, yt4)
   ctx1.stroke()
@@ -514,6 +647,9 @@ for j in range (0, its):
 #trisize = argsndtyp
 #tricolor = argsndstr
 
+# Sound Strength - Silent, Faint, Moderate, Loud, Deafening
+#White, Light Blue, Purple, Brown, Black
+
 trigrid = grid(iterations, width, height, trirand)
 trix1 = trigrid[0]
 trix2 = trigrid[1]
@@ -525,6 +661,45 @@ trixoffset2 = trixoffset / 2
 triyoffset2 = triyoffset / 2
 trirandint = int(ceil(trirand/10))
 triwidth = trisize / 5000
+col1 = int(ceil(tricol1/20))
+
+pattern = 2 #not using circpat to drive, hard coded
+
+if col1 == 1:
+  xred1 = 950
+  xred2 = 1000
+  xgreen1 = 950
+  xgreen2 = 1000
+  xblue1 = 950
+  xblue2 = 1000
+elif col1 == 2:
+  xred1 = 200
+  xred2 = 300
+  xgreen1 = 200
+  xgreen2 = 300
+  xblue1 = 800
+  xblue2 = 1000
+elif col1 == 3:
+  xred1 = 250
+  xred2 = 400
+  xgreen1 = 0
+  xgreen2 = 200
+  xblue1 = 800
+  xblue2 = 1000
+elif col1 == 4:
+  xred1 = 330
+  xred2 = 600
+  xgreen1 = 0
+  xgreen2 = 225
+  xblue1 = 0
+  xblue2 = 50
+else:
+  xred1 = 0
+  xred2 = 200
+  xgreen1 = 0
+  xgreen2 = 200
+  xblue1 = 0
+  xblue2 = 200
 
 its = triquant
 trilen = len(trix1)
@@ -585,19 +760,19 @@ for j in range (0, its):
     x3 = randint(-50, 50)/1000
     y3 = int((trisize*-1)-100)/1000
 
-  cred = randint(0, 1000)/1000
-  cgreen = randint(0, 1000)/1000
-  cblue = randint(0, 1000)/1000
   copaque = 0.5
+  cred1 = color(xred1, xred2)
+  cgreen1 = color(xgreen1, xgreen2)
+  cblue1 = color(xblue1, xblue2)
   ctx.set_line_width(triwidth)
-  ctx.set_source_rgba(cred, cgreen, cblue, copaque)
+  ctx.set_source_rgba(cred1, cgreen1, cblue1, copaque)
   ctx.move_to(x1, y1)
   ctx.rel_line_to(x2, y2)
   ctx.rel_line_to (x3, y3)
   ctx.line_to(x1, y1)
   ctx.fill()
   ctx1.set_line_width(triwidth)
-  ctx1.set_source_rgba(cblue, cgreen, cred, copaque)
+  ctx1.set_source_rgba(cblue1, cgreen1, cred1, copaque)
   ctx1.move_to(x1, y1)
   ctx1.rel_line_to(x2, y2)
   ctx1.rel_line_to (x3, y3)
@@ -612,7 +787,10 @@ for j in range (0, its):
 #linequant = argsensat
 #linerand = argexer
 #linesize = argtststr
-#linecol = 0
+#linecol1 = argtsttyp
+
+# Taste Type - Mouthwatering, Pleasant, Tasteful, Disagreeable, Repulsive
+# Light Blue, Pink, Light Rainbow, Brown/Green, Green/Yellow
 
 linegrid = grid(iterations, width, height, 10)
 linex1 = linegrid[0]
@@ -623,6 +801,43 @@ linexoffset = linegrid[4]
 lineyoffset = linegrid[5]
 linerandint = int(ceil(linerand/10))
 linewidth = linesize / 4000
+col1 = int(ceil(linecol1/20))
+
+if col1 == 1:
+  xred1 = 200
+  xred2 = 300
+  xgreen1 = 200
+  xgreen2 = 300
+  xblue1 = 800
+  xblue2 = 1000
+elif col1 == 2:
+  xred1 = 850
+  xred2 = 1000
+  xgreen1 = 0
+  xgreen2 = 200
+  xblue1 = 850
+  xblue2 = 1000
+elif col1 == 3:
+  xred1 = 300
+  xred2 = 700
+  xgreen1 = 300
+  xgreen2 = 700
+  xblue1 = 300
+  xblue2 = 700
+elif col1 == 4:
+  xred1 = 350
+  xred2 = 450
+  xgreen1 = 350
+  xgreen2 = 450
+  xblue1 = 0
+  xblue2 = 50
+else:
+  xred1 = 200
+  xred2 = 1000
+  xgreen1 = 200
+  xgreen2 = 1000
+  xblue1 = 0
+  xblue2 = 0
 
 its = int(linequant/2)
 linelen = len(linex1)
@@ -648,17 +863,17 @@ for j in range (0, its):
   x2 = coordrange(linex1[lineindex[i*2+1]], linex2[lineindex[i*2+1]], linexoffset, linerandint)
   y1 = coordrange(liney1[lineindex[i*2]], liney2[lineindex[i*2]], lineyoffset, linerandint)
   y2 = coordrange(liney1[lineindex[i*2+1]], liney2[lineindex[i*2+1]], lineyoffset, linerandint)
-  cred = randint(0, 1000)/1000
-  cgreen = randint(0, 1000)/1000
-  cblue = randint(0, 1000)/1000
+  cred1 = color(xred1, xred2)
+  cgreen1 = color(xgreen1, xgreen2)
+  cblue1 = color(xblue1, xblue2)
   copaque = 1
   ctx.set_line_width(linewidth)
-  ctx.set_source_rgba(cred, cgreen, cblue, copaque)
+  ctx.set_source_rgba(cred1, cgreen1, cblue1, copaque)
   ctx.move_to(x1, y1)
   ctx.line_to(x2, y2)
   ctx.stroke()
   ctx1.set_line_width(linewidth)
-  ctx1.set_source_rgba(cblue, cgreen, cred, copaque)
+  ctx1.set_source_rgba(cblue1, cgreen1, cred1, copaque)
   ctx1.move_to(x1, y1)
   ctx1.line_to(x2, y2)
   ctx1.stroke()
