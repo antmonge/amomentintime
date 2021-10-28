@@ -916,15 +916,17 @@ s3_client = session.client(
     aws_secret_access_key=aws_secret_key,
 )
 
+#s3_bucket = s3_client.Bucket(aws_bucket_name)
+
 gifcontent = mimetypes.guess_type(gifname)[0]
 svgcontent = mimetypes.guess_type(svgname)[0]
 pngcontent = mimetypes.guess_type(pngname)[0]
 logcontent = mimetypes.guess_type(logname)[0]
 
-s3_client.upload_file(Filename=gifname, Bucket=aws_bucket_name, Key='public/' + gifname, ExtraArgs={'ContentType': 'image/gif'})
-s3_client.upload_file(Filename=svgname, Bucket=aws_bucket_name, Key='public/' + svgname, ExtraArgs={'ContentType': 'image/svg+xml'})
-s3_client.upload_file(Filename=pngname, Bucket=aws_bucket_name, Key='public/' + pngname, ExtraArgs={'ContentType': pngcontent})
-s3_client.upload_file(Filename=pngname, Bucket=aws_bucket_name, Key='public/' + logname, ExtraArgs={'ContentType': logcontent})
+#s3_client.upload_file(Filename=gifname, Bucket=aws_bucket_name, Key='public/' + gifname, ExtraArgs={'ContentType': 'image/gif'})
+#s3_client.upload_file(Filename=svgname, Bucket=aws_bucket_name, Key='public/' + svgname, ExtraArgs={'ContentType': 'image/svg+xml'})
+#s3_client.upload_file(Filename=pngname, Bucket=aws_bucket_name, Key='public/' + pngname, ExtraArgs={'ContentType': pngcontent})
+s3_client.upload_file(Filename=logname, Bucket=aws_bucket_name, Key='public/' + logname, ExtraArgs={'ContentType': 'plain/text'})
 
 print(pngname)
 
