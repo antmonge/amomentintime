@@ -252,7 +252,7 @@ imgname = imgtxt.format(imgpre)
 gifname = imgname + 'gif'
 svgname = imgname + 'svg'
 pngname = imgname + 'png'
-logname = imgname + 'txt'
+logname = imgname + 'log'
 
 logging.basicConfig(filename=logname, filemode='w', level=logging.INFO)
 logging.info('Emotion Introspection - %s', argintro)
