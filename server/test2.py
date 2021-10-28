@@ -921,10 +921,10 @@ svgcontent = mimetypes.guess_type(svgname)
 pngcontent = mimetypes.guess_type(pngname)
 logcontent = mimetypes.guess_type(logname)
 
-s3_client.upload_file(Filename=gifname, Bucket=aws_bucket_name, Key='public/' + gifname, ExtraArgs={'ContentType': gifcontent})
-s3_client.upload_file(Filename=svgname, Bucket=aws_bucket_name, Key='public/' + svgname, ExtraArgs={'ContentType': svgcontent})
-s3_client.upload_file(Filename=pngname, Bucket=aws_bucket_name, Key='public/' + pngname, ExtraArgs={'ContentType': pngcontent})
-s3_client.upload_file(Filename=pngname, Bucket=aws_bucket_name, Key='public/' + logname, ExtraArgs={'ContentType': logcontent})
+s3_client.upload_file(Filename=gifname, Bucket=aws_bucket_name, Key='public/' + gifname, ExtraArgs={'ContentType': 'image/gif'})
+s3_client.upload_file(Filename=svgname, Bucket=aws_bucket_name, Key='public/' + svgname, ExtraArgs={'ContentType': 'image/svg+xml'})
+s3_client.upload_file(Filename=pngname, Bucket=aws_bucket_name, Key='public/' + pngname, ExtraArgs={'ContentType': 'image/png'})
+s3_client.upload_file(Filename=pngname, Bucket=aws_bucket_name, Key='public/' + logname, ExtraArgs={'ContentType': 'plain/text'})
 
 print(pngname)
 
