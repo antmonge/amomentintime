@@ -915,10 +915,10 @@ s3_client = session.client(
     aws_secret_access_key=aws_secret_key,
 )
 
-s3_client.upload_file(Filename=gifname, Bucket=aws_bucket_name, Key='public/' + gifname)
-s3_client.upload_file(Filename=svgname, Bucket=aws_bucket_name, Key='public/' + svgname)
-s3_client.upload_file(Filename=pngname, Bucket=aws_bucket_name, Key='public/' + pngname)
-s3_client.upload_file(Filename=pngname, Bucket=aws_bucket_name, Key='public/' + logname)
+s3_client.upload_file(Filename=gifname, Bucket=aws_bucket_name, Key='public/' + gifname, ExtraArgs={'ContentType': "image/gif"})
+s3_client.upload_file(Filename=svgname, Bucket=aws_bucket_name, Key='public/' + svgname, ExtraArgs={'ContentType': "image/svg+xml"})
+s3_client.upload_file(Filename=pngname, Bucket=aws_bucket_name, Key='public/' + pngname, ExtraArgs={'ContentType': "image/png"})
+s3_client.upload_file(Filename=pngname, Bucket=aws_bucket_name, Key='public/' + logname, ExtraArgs={'ContentType': "text/plain"})
 
 print(pngname)
 
