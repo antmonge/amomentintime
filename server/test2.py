@@ -12,7 +12,9 @@ from math import pi, sqrt, ceil
 from io import BytesIO
 
 # Notes
+
 # Pattern 1 = Solid, 2 = Radial Gradient, 3 = Linear Gradient
+
 # Introspection Ecstacy, Joy, Contentment, Sadness, Grief
 # Temper - Bliss, Calmness, Annoyance, Anger, Rage
 # Acceptance - Proud, Satisfied, Ambivalent, Embarrassed, Humiliated
@@ -52,16 +54,32 @@ def coordrange(c1, c2, offset, rnd):
   if rnd == 1:
     temp = c1 + offsethalf
     c = int(temp)/1000
-  elif rnd > 5:
-    rnd = 10
-    temp1 = int(c1 + (offsethalf - (offsethalf / 9 * (rnd-1))))
-    temp2 = int(c2 - (offsethalf - (offsethalf / 9 * (rnd-1))))
+  elif rnd in (2,4,8):
+    temp1 = int(c1 + (offsethalf * .2))
+    temp2 = int(c2 - (offsethalf * .2))
+    c = randint(temp1, temp2)/1000
+  elif rnd in (3,5,9):
+    temp1 = int(c1 + (offsethalf * .1))
+    temp2 = int(c2 - (offsethalf * .1))
     c = randint(temp1, temp2)/1000
   else:
-    rnd = rnd * 1.5
-    temp1 = int(c1 + (offsethalf - (offsethalf / 9 * (rnd-1))))
-    temp2 = int(c2 - (offsethalf - (offsethalf / 9 * (rnd-1))))
+    temp1 = c1
+    temp2 = c2
     c = randint(temp1, temp2)/1000
+ #elif rnd > 10:
+    #rnd = 10
+    #temp1 = int(c1 + (offsethalf - (offsethalf / 9 * (rnd-1))))
+    #temp2 = int(c2 - (offsethalf - (offsethalf / 9 * (rnd-1))))
+    #temp1 = c1
+    #temp2 = c2
+    #c = randint(temp1, temp2)/1000
+  #else:
+    #rnd = rnd * 1.5
+    #temp1 = int(c1 + (offsethalf - (offsethalf / 9 * (rnd-1))))
+    #temp2 = int(c2 - (offsethalf - (offsethalf / 9 * (rnd-1))))
+    #temp1 = int(c1 + (offsethalf - (offsethalf * (rnd/10))))
+    #temp2 = int(c2 - (offsethalf - (offsethalf * (rnd/10))))
+    #c = randint(temp1, temp2)/1000
   return c
 
 def color(x1, x2):
@@ -113,7 +131,68 @@ def grad(r1, g1, b1, r2, g2, b2, op, z, cr, cr1):
   cr1.set_source(gd1)
   cr1.fill()
 
-def grid(iterations, width, height, random):
+def grid(iterations, width, height, random, gridsize):
+  smallx1 = []
+  smallx2 = []
+  smally1 = []
+  smally2 = []
+  #gridsize = int(ceil(random/20))
+  randomness = int(ceil(random/10))
+  if randomness in (1,2,3):
+    sqiterations = 10
+  elif randomness in (8,9,10):
+    sqiterations = 1
+  elif randomness in (4,5):
+    sqiterations = 4
+  else:
+    sqiterations = 2
+  smallxoffset = int(width/sqiterations*2)
+  smallyoffset = int(height/sqiterations*2)
+  smalltempx1 = 0
+  smalltempy1 = 0
+  smalltempx2 = smallxoffset
+  smalltempy2 = smallyoffset
+  imultip = 1
+  jmultip = 1
+
+  for i in range(0, sqiterations):
+    for j in range(0, sqiterations):
+      smallx1.append(smalltempx1)
+      smally1.append(smalltempy1)
+      smallx2.append(smalltempx2)
+      smally2.append(smalltempy2)
+      if (smalltempx2 + smallxoffset) > width * 2 and jmultip == 1:
+        smalltempx1 = width * 2 - smallxoffset
+        smalltempx2 = width * 2
+        jmultip = -1
+      elif (smalltempx1 - smallxoffset) < 0 and jmultip == -1:
+        smalltempx1 = 0
+        smalltempx2 = smallxoffset
+        jmultip = 1
+      else:
+        smalltempx1 = smalltempx1 + smallxoffset * jmultip
+        smalltempx2 = smalltempx2 + smallxoffset * jmultip
+    if (smalltempy2 + smallyoffset) > height * 2 and imultip == 1:
+      smalltempy1 = height * 2 - smallyoffset
+      smalltempy2 = height * 2
+      imultip = -1
+    elif (smalltempy1 - smallyoffset) < 0 and imultip == -1:
+      smalltempy1 = 0
+      smalltempy2 = smallyoffset
+      imultip = 1
+    else:
+      smalltempy1 = smalltempy1 + smallyoffset * imultip
+      smalltempy2 = smalltempy2 + smallyoffset * imultip
+    x1 = smallx1
+    x2 = smallx2
+    y1 = smally1
+    y2 = smally2
+    xoffset = smallxoffset
+    yoffset = smallyoffset
+
+  return x1, x2, y1, y2, xoffset, yoffset
+
+def grid2(iterations, width, height, random, gridsize):
   smallx1 = []
   smallx2 = []
   smally1 = []
@@ -122,7 +201,7 @@ def grid(iterations, width, height, random):
   largex2 = []
   largey1 = []
   largey2 = []
-  gridsize = int(ceil(random/20))
+  #gridsize = int(ceil(random/20))
   randomness = int(ceil(random/10))
   sqiterations = int(sqrt(iterations))
   smallxoffset = int(width/sqiterations*randomness*2)
@@ -145,7 +224,7 @@ def grid(iterations, width, height, random):
   imultip = 1
   jmultip = 1
 
-  if gridsize <= 3:
+  if gridsize == 1:
     # Establish small grid for image placement
     for i in range(0, sqiterations):
       for j in range(0, sqiterations):
@@ -244,9 +323,15 @@ argtsttyp = int(sys.argv[14])  #Type of Taste
 argsensat = int(sys.argv[15])  #Physical Sensation
 argexer = int(sys.argv[16])    #Physical Exertion
 
+if len(sys.argv) == 19:
+  argprototype = sys.argv[17]  #Testing Variable for Prototype Number
+  argscenario = sys.argv[18]  #Testing Variable for Test Case Scenario
+  imgpre = argprototype + '-' + argscenario
+else:
+  imgpre = randint(1, 1000000)
+
 # File Name Setup
 
-imgpre = randint(1, 1000000)
 imgtxt = '{}-test.'
 imgname = imgtxt.format(imgpre)
 gifname = imgname + 'gif'
@@ -389,7 +474,7 @@ images.append(aim)
 # Sensation - Thrill, Pleasure, Comfort, Suffering, Agony
 # Orange, Blue, Grey, Black, Red
 
-circgrid = grid(iterations, width, height, circrand)
+circgrid = grid(iterations, width, height, circrand, 1)
 circx1 = circgrid[0]
 circx2 = circgrid[1]
 circy1 = circgrid[2]
@@ -537,7 +622,7 @@ for j in range (0, its):
 # Sensitivity - Enthusiasm, Eagerness, Anxiety, Fear, Terror
 # Pink, Blue, Soft Green, Orange, Red
 
-squiggrid = grid(iterations, width, height, squigrand)
+squiggrid = grid(iterations, width, height, squigrand, 1)
 squigx1 = squiggrid[0]
 squigx2 = squiggrid[1]
 squigy1 = squiggrid[2]
@@ -651,16 +736,17 @@ for j in range (0, its):
 # Sound Strength - Silent, Faint, Moderate, Loud, Deafening
 #White, Light Blue, Purple, Brown, Black
 
-trigrid = grid(iterations, width, height, trirand)
+trigrid = grid(iterations, width, height, trirand, 1)
 trix1 = trigrid[0]
 trix2 = trigrid[1]
 triy1 = trigrid[2]
 triy2 = trigrid[3]
 trixoffset = trigrid[4]
 triyoffset = trigrid[5]
-trixoffset2 = trixoffset / 2
-triyoffset2 = triyoffset / 2
+trixoffset2 = int(trixoffset / 2)
+triyoffset2 = int(triyoffset / 2)
 trirandint = int(ceil(trirand/10))
+#trirandint = 1
 triwidth = trisize / 5000
 col1 = int(ceil(tricol1/20))
 
@@ -733,29 +819,29 @@ for j in range (0, its):
   quad = [1, 2, 3, 4]
   qselect = choice(quad)
   if qselect == 1:
-    x1 = coordrange(trix1[triindex[i]], int(trix1[triindex[i]] + trixoffset2), trixoffset, trirandint)
-    y1 = coordrange(triy1[triindex[i]], int(triy1[triindex[i]] + triyoffset2), triyoffset, trirandint)
+    x1 = coordrange(trix1[triindex[i]], int(trix1[triindex[i]] + trixoffset2), trixoffset2, trirandint)
+    y1 = coordrange(triy1[triindex[i]], int(triy1[triindex[i]] + triyoffset2), triyoffset2, trirandint)
     x2 = int(trisize + 100)/1000
     y2 = randint(-50, 50)/1000
     x3 = randint(-50, 50)/1000
     y3 = int(trisize + 100)/1000
   elif qselect == 2:
-    x1 = coordrange(int(trix1[triindex[i]] + trixoffset2), trix2[triindex[i]], trixoffset, trirandint)
-    y1 = coordrange(triy1[triindex[i]], int(triy1[triindex[i]] + triyoffset2), triyoffset, trirandint)
+    x1 = coordrange(int(trix1[triindex[i]] + trixoffset2), trix2[triindex[i]], trixoffset2, trirandint)
+    y1 = coordrange(triy1[triindex[i]], int(triy1[triindex[i]] + triyoffset2), triyoffset2, trirandint)
     x2 = int((trisize*-1)-100)/1000
     y2 = randint(-50, 50)/1000
     x3 = randint(-50, 50)/1000
     y3 = int(trisize + 100)/1000
   elif qselect == 3:
-    x1 = coordrange(trix1[triindex[i]], int(trix1[triindex[i]] + trixoffset2), trixoffset, trirandint)
-    y1 = coordrange(int(triy1[triindex[i]] + triyoffset2), triy2[triindex[i]], triyoffset, trirandint)
+    x1 = coordrange(trix1[triindex[i]], int(trix1[triindex[i]] + trixoffset2), trixoffset2, trirandint)
+    y1 = coordrange(int(triy1[triindex[i]] + triyoffset2), triy2[triindex[i]], triyoffset2, trirandint)
     x2 = int(trisize + 100)/1000
     y2 = randint(-50, 50)/1000
     x3 = randint(-50, 50)/1000
     y3 = int((trisize*-1)-100)/1000
   else:
-    x1 = coordrange(int(trix1[triindex[i]] + trixoffset2), trix2[triindex[i]], trixoffset, trirandint)
-    y1 = coordrange(int(triy1[triindex[i]] + triyoffset2), triy2[triindex[i]], triyoffset, trirandint)
+    x1 = coordrange(int(trix1[triindex[i]] + trixoffset2), trix2[triindex[i]], trixoffset2, trirandint)
+    y1 = coordrange(int(triy1[triindex[i]] + triyoffset2), triy2[triindex[i]], triyoffset2, trirandint)
     x2 = int((trisize*-1)-100)/1000
     y2 = randint(-50, 50)/1000
     x3 = randint(-50, 50)/1000
@@ -793,7 +879,7 @@ for j in range (0, its):
 # Taste Type - Mouthwatering, Pleasant, Tasteful, Disagreeable, Repulsive
 # Light Blue, Pink, Light Rainbow, Brown/Green, Green/Yellow
 
-linegrid = grid(iterations, width, height, 10)
+linegrid = grid(iterations, width, height, 10, 2)
 linex1 = linegrid[0]
 linex2 = linegrid[1]
 liney1 = linegrid[2]
@@ -916,17 +1002,15 @@ s3_client = session.client(
     aws_secret_access_key=aws_secret_key,
 )
 
-#s3_bucket = s3_client.Bucket(aws_bucket_name)
-
 gifcontent = mimetypes.guess_type(gifname)[0]
 svgcontent = mimetypes.guess_type(svgname)[0]
 pngcontent = mimetypes.guess_type(pngname)[0]
 logcontent = mimetypes.guess_type(logname)[0]
 
 s3_client.upload_file(Filename=gifname, Bucket=aws_bucket_name, Key='public/' + gifname, ExtraArgs={'ContentType': 'image/gif'})
-#s3_client.upload_file(Filename=svgname, Bucket=aws_bucket_name, Key='public/1' + svgname, ExtraArgs={'ContentType': 'image/svg'})
+#s3_client.upload_file(Filename=svgname, Bucket=aws_bucket_name, Key='public/1' + svgname, ExtraArgs={'ContentType': svgcontent})
 s3_client.upload_file(Filename=svgname, Bucket=aws_bucket_name, Key='public/' + svgname, ExtraArgs={'ContentType': 'image/svg+xml'})
-#s3_client.upload_file(Filename=svgname, Bucket=aws_bucket_name, Key='public/3' + svgname, ExtraArgs={'ContentType': svgcontent})
+#s3_client.upload_file(Filename=svgname, Bucket=aws_bucket_name, Key='public/3' + svgname, ExtraArgs={'ContentType': 'image/svg'})
 s3_client.upload_file(Filename=pngname, Bucket=aws_bucket_name, Key='public/' + pngname, ExtraArgs={'ContentType': 'image/png'})
 s3_client.upload_file(Filename=logname, Bucket=aws_bucket_name, Key='public/' + logname, ExtraArgs={'ContentType': 'plain/text'})
 
