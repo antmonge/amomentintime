@@ -700,12 +700,20 @@ for j in range (0, its):
       i = 0
     else:
       i = 0
-  xt2 = coordrange(squigx1[squigindex[i*3+1]], squigx2[squigindex[i*3+1]], squigxoffset, squigrandint)
-  xt3 = coordrange(squigx1[squigindex[i*3+2]], squigx2[squigindex[i*3+2]], squigxoffset, squigrandint)
-  xt4 = coordrange(squigx1[squigindex[i*3+3]], squigx2[squigindex[i*3+3]], squigxoffset, squigrandint)
-  yt2 = coordrange(squigy1[squigindex[i*3+1]], squigy2[squigindex[i*3+1]], squigyoffset, squigrandint)
-  yt3 = coordrange(squigy1[squigindex[i*3+2]], squigy2[squigindex[i*3+2]], squigyoffset, squigrandint)
-  yt4 = coordrange(squigy1[squigindex[i*3+3]], squigy2[squigindex[i*3+3]], squigyoffset, squigrandint)
+  if i*3+3 > squiglen :
+    xt2 = coordrange(squigx1[squigindex[i]], squigx2[squigindex[i]], squigxoffset, squigrandint)
+    xt3 = coordrange(squigx1[squigindex[i]], squigx2[squigindex[i]], squigxoffset, squigrandint)
+    xt4 = coordrange(squigx1[squigindex[i]], squigx2[squigindex[i]], squigxoffset, squigrandint)
+    yt2 = coordrange(squigy1[squigindex[i]], squigy2[squigindex[i]], squigyoffset, squigrandint)
+    yt3 = coordrange(squigy1[squigindex[i]], squigy2[squigindex[i]], squigyoffset, squigrandint)
+    yt4 = coordrange(squigy1[squigindex[i]], squigy2[squigindex[i]], squigyoffset, squigrandint)
+  else:
+    xt2 = coordrange(squigx1[squigindex[i*3+1]], squigx2[squigindex[i*3+1]], squigxoffset, squigrandint)
+    xt3 = coordrange(squigx1[squigindex[i*3+2]], squigx2[squigindex[i*3+2]], squigxoffset, squigrandint)
+    xt4 = coordrange(squigx1[squigindex[i*3+3]], squigx2[squigindex[i*3+3]], squigxoffset, squigrandint)
+    yt2 = coordrange(squigy1[squigindex[i*3+1]], squigy2[squigindex[i*3+1]], squigyoffset, squigrandint)
+    yt3 = coordrange(squigy1[squigindex[i*3+2]], squigy2[squigindex[i*3+2]], squigyoffset, squigrandint)
+    yt4 = coordrange(squigy1[squigindex[i*3+3]], squigy2[squigindex[i*3+3]], squigyoffset, squigrandint)
   copaque = 1
   cred1 = color(xred1, xred2)
   cgreen1 = color(xgreen1, xgreen2)
