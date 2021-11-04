@@ -13,6 +13,7 @@
   font-size: calc(8px + 2vmin);
   color: white
 }
+
 .App-logo {
   height: 20vmin;
   pointer-events: none;
@@ -66,4 +67,28 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+ul.Navigation li {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+}
+
+.ProtoHeader {
+  text-align: center;
+  font-size: calc(8px + 2vmin);
+  color: white
+}
+
+.ProtoImg {
+  height: 20vmin;
+  pointer-events: none;
+}
+
+.ProtoCap {
+  text-align: center;
+  font-size: calc(5px + 2vmin);
+  color: white;
 }

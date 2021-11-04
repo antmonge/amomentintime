@@ -157,38 +157,59 @@ export default class App extends React.Component {
         const physicalExertionLab = ['Sedentary', 'Light', 'Active', 'Vigorous', 'Strenuous'];
         const physicalExertionDiv = 'PhysicalExertion';
 
-        return <div className="App">
+        return <div className="App-header" id="home">
+          <div className="App-header">
             <table>
-            <tr><td colspan="2">Emotional Experience:</td></tr>
-            <tr><td className="App3">Introspection Emotion
-            <App2 onChange={this.onIntrospectionChange} value={this.state.emotionIntroVal} lab={emotionIntroLab} div={emotionIntroDiv} />
-            </td>
-            <td className="App3">Temper Emotion
-            <App2 onChange={this.onTemperChange} value={this.state.emotionTemperVal} lab={emotionTemperLab} div={emotionTemperDiv} />
-            </td></tr>
-            <tr><td className="App3">Acceptance Emotion
-            <App2 onChange={this.onAcceptanceChange} value={this.state.emotionAcceptVal} lab={emotionAcceptLab} div={emotionAcceptDiv} />
-            </td>
-            <td className="App3">Sensitivity Emotion
-            <App2 onChange={this.onSensitivityChange} value={this.state.emotionSensVal} lab={emotionSensLab} div={emotionSensDiv} />
-            </td></tr>
-            <tr><td colspan="2"></td></tr>
-            <tr><td colspan="2">Weather:</td></tr>
-            <tr><td className="App3">Sky Conditions
-            <App2 onChange={this.onSkyConditionsChange} value={this.state.weatherSkyVal} lab={weatherSkyLab} div={weatherSkyDiv} />
-            </td>
-            <td className="App3">Temperature
-            <App2 onChange={this.onTemperatureChange} value={this.state.weatherTempVal} lab={weatherTempLab} div={weatherTempDiv} />
-            </td></tr>
-            <tr><td colspan="2"></td></tr>
-            <tr><td colspan="2">Surroundings:</td></tr>
-            <tr><td className="App3">People
-            <App2 onChange={this.onPeopleChange} value={this.state.surroundPeopleVal} lab={surroundPeopleLab} div={surroundPeopleDiv} />
-            </td>
-            <td className="App3">Place
-            <App2 onChange={this.onPlaceChange} value={this.state.surroundPlaceVal} lab={surroundPlaceLab} div={surroundPlaceDiv} />
-            </td></tr>
-            <tr><td colspan="2"></td></tr>
+              <tr>
+                <td colspan="2">Emotional Experience:</td>
+              </tr>
+              <tr>
+                <td className="App3">Introspection Emotion
+                <App2 onChange={this.onIntrospectionChange} value={this.state.emotionIntroVal} lab={emotionIntroLab} div={emotionIntroDiv} />
+                </td>
+                <td className="App3">Temper Emotion
+                <App2 onChange={this.onTemperChange} value={this.state.emotionTemperVal} lab={emotionTemperLab} div={emotionTemperDiv} />
+                </td>
+              </tr>
+              <tr>
+                <td className="App3">Acceptance Emotion
+                <App2 onChange={this.onAcceptanceChange} value={this.state.emotionAcceptVal} lab={emotionAcceptLab} div={emotionAcceptDiv} />
+                </td>
+                <td className="App3">Sensitivity Emotion
+                <App2 onChange={this.onSensitivityChange} value={this.state.emotionSensVal} lab={emotionSensLab} div={emotionSensDiv} />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2"></td>
+              </tr>
+              <tr>
+                <td colspan="2">Weather:</td>
+              </tr>
+              <tr>
+                <td className="App3">Sky Conditions
+                <App2 onChange={this.onSkyConditionsChange} value={this.state.weatherSkyVal} lab={weatherSkyLab} div={weatherSkyDiv} />
+                </td>
+                <td className="App3">Temperature
+                <App2 onChange={this.onTemperatureChange} value={this.state.weatherTempVal} lab={weatherTempLab} div={weatherTempDiv} />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2"></td>
+              </tr>
+              <tr>
+                <td colspan="2">Surroundings:</td>
+              </tr>
+              <tr>
+                <td className="App3">People
+                <App2 onChange={this.onPeopleChange} value={this.state.surroundPeopleVal} lab={surroundPeopleLab} div={surroundPeopleDiv} />
+                </td>
+                <td className="App3">Place
+                <App2 onChange={this.onPlaceChange} value={this.state.surroundPlaceVal} lab={surroundPlaceLab} div={surroundPlaceDiv} />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2"></td>
+              </tr>
             <tr><td colspan="2">Sensory Experience:</td></tr>
             <tr><td colspan="2">When you recall your moment are there sounds you associate with it?</td></tr>
             <tr><td className="App3">Strength of Sounds
@@ -219,13 +240,14 @@ export default class App extends React.Component {
             <App2 onChange={this.onExertionChange} value={this.state.physicalExertionVal} lab={physicalExertionLab} div={physicalExertionDiv} />
             </td></tr>
             </table>
+          </div>
                 <div className="Test">
                     <button onClick={this.pyth}>Mint</button>
                     <div className="Test">
-                        <span>{this.state.data}</span>
+                      <span>{this.state.data}</span>
                     </div>
                     <div className="Test">
-		       <img src={this.state.imgsrc} alt="Did Not Mint Yet" />
+                      <img src={this.state.imgsrc} alt="Did Not Mint Yet" />
                     </div>
                 </div>
         </div>;
