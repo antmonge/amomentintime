@@ -82,9 +82,21 @@ ul.Navigation li {
   color: white
 }
 
+.ProtoList {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+  pointer-events: none;
+}
+
 .ProtoImg {
   height: 20vmin;
   pointer-events: none;
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
 }
 
 .ProtoCap {

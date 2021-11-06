@@ -1,0 +1,63 @@
+.HomeHeader {
+  text-align: center;
+  background-color: #282c34;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  font-size: calc(10px + 2vmin);
+}
+
+.HomeMint {
+  text-align: center;
+  background-color: #282c34;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  font-size: calc(10px + 2vmin);
+}
+
+.HomeProto {
+  text-align: center;
+  background-color: #282c34;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  font-size: calc(10px + 2vmin);
+}
+
+ul.Navigation li {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+}
+
+.ProtoHeader {
+  text-align: center;
+  font-size: calc(8px + 2vmin);
+  color: white
+}
+
+.ProtoImg {
+  height: 20vmin;
+  pointer-events: none;
+}
+
+.ProtoCap {
+  text-align: center;
+  font-size: calc(5px + 2vmin);
+  color: white;
+}
+
+ul.ProtoImg li {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+}

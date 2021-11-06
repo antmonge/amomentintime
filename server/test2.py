@@ -66,32 +66,9 @@ def coordrange(c1, c2, offset, rnd):
     temp1 = c1
     temp2 = c2
     c = randint(temp1, temp2)/1000
- #elif rnd > 10:
-    #rnd = 10
-    #temp1 = int(c1 + (offsethalf - (offsethalf / 9 * (rnd-1))))
-    #temp2 = int(c2 - (offsethalf - (offsethalf / 9 * (rnd-1))))
-    #temp1 = c1
-    #temp2 = c2
-    #c = randint(temp1, temp2)/1000
-  #else:
-    #rnd = rnd * 1.5
-    #temp1 = int(c1 + (offsethalf - (offsethalf / 9 * (rnd-1))))
-    #temp2 = int(c2 - (offsethalf - (offsethalf / 9 * (rnd-1))))
-    #temp1 = int(c1 + (offsethalf - (offsethalf * (rnd/10))))
-    #temp2 = int(c2 - (offsethalf - (offsethalf * (rnd/10))))
-    #c = randint(temp1, temp2)/1000
   return c
 
 def color(x1, x2):
-#  x = (b+c)/2
-#  x1 = int(x - 70)
-#  x2 = int(x + 70)
-#  if c < 500:
-#    x1 = c
-#    x2 = c + 100
-#  if c > 800:
-#    x1 = c - 100
-#    x2 = c
   y = randint(x1, x2)/1000
   return y
 
@@ -136,7 +113,6 @@ def grid(iterations, width, height, random, gridsize):
   smallx2 = []
   smally1 = []
   smally2 = []
-  #gridsize = int(ceil(random/20))
   randomness = int(ceil(random/10))
   if randomness in (1,2,3):
     sqiterations = 10
@@ -190,112 +166,6 @@ def grid(iterations, width, height, random, gridsize):
     xoffset = smallxoffset
     yoffset = smallyoffset
 
-  return x1, x2, y1, y2, xoffset, yoffset
-
-def grid2(iterations, width, height, random, gridsize):
-  smallx1 = []
-  smallx2 = []
-  smally1 = []
-  smally2 = []
-  largex1 = []
-  largex2 = []
-  largey1 = []
-  largey2 = []
-  #gridsize = int(ceil(random/20))
-  randomness = int(ceil(random/10))
-  sqiterations = int(sqrt(iterations))
-  smallxoffset = int(width/sqiterations*randomness*2)
-  smallyoffset = int(height/sqiterations*randomness*2)
-  smalltempx1 = 0
-  smalltempy1 = 0
-  smalltempx2 = smallxoffset
-  smalltempy2 = smallyoffset
-  lqiterations = int(sqiterations/2)
-  largexoffset = int(width/lqiterations*randomness*2)
-  largeyoffset = int(height/lqiterations*randomness*2)
-  if largexoffset > width * 2:
-    largexoffset = width * 2
-  if largeyoffset > height * 2:
-    largeyoffset = height * 2
-  largetempx1 = 0
-  largetempy1 = 0
-  largetempx2 = largexoffset
-  largetempy2 = largeyoffset
-  imultip = 1
-  jmultip = 1
-
-  if gridsize == 1:
-    # Establish small grid for image placement
-    for i in range(0, sqiterations):
-      for j in range(0, sqiterations):
-        smallx1.append(smalltempx1)
-        smally1.append(smalltempy1)
-        smallx2.append(smalltempx2)
-        smally2.append(smalltempy2)
-        if (smalltempx2 + smallxoffset) > width * 2 and jmultip == 1:
-          smalltempx1 = width * 2 - smallxoffset
-          smalltempx2 = width * 2
-          jmultip = -1
-        elif (smalltempx1 - smallxoffset) < 0 and jmultip == -1:
-          smalltempx1 = 0
-          smalltempx2 = smallxoffset
-          jmultip = 1
-        else:
-          smalltempx1 = smalltempx1 + smallxoffset * jmultip
-          smalltempx2 = smalltempx2 + smallxoffset * jmultip
-      if (smalltempy2 + smallyoffset) > height * 2 and imultip == 1:
-        smalltempy1 = height * 2 - smallyoffset
-        smalltempy2 = height * 2
-        imultip = -1
-      elif (smalltempy1 - smallyoffset) < 0 and imultip == -1:
-        smalltempy1 = 0
-        smalltempy2 = smallyoffset
-        imultip = 1
-      else:
-        smalltempy1 = smalltempy1 + smallyoffset * imultip
-        smalltempy2 = smalltempy2 + smallyoffset * imultip
-      x1 = smallx1
-      x2 = smallx2
-      y1 = smally1
-      y2 = smally2
-      xoffset = smallxoffset
-      yoffset = smallyoffset
-  else:
-    # Establish large grid for image placement
-    for i in range(0, lqiterations):
-      for j in range(0, lqiterations):
-        largex1.append(largetempx1)
-        largey1.append(largetempy1)
-        largex2.append(largetempx2)
-        largey2.append(largetempy2)
-        if (largetempx2 + largexoffset) > width * 2 and jmultip == 1:
-          largetempx1 = width * 2 - largexoffset
-          largetempx2 = width * 2
-          jmultip = -1
-        elif (largetempx1 - largexoffset) < 0 and jmultip == -1:
-          largetempx1 = 0
-          largetempx2 = largexoffset
-          jmultip = 1
-        else:
-          largetempx1 = largetempx1 + largexoffset * jmultip
-          largetempx2 = largetempx2 + largexoffset * jmultip
-      if (largetempy2 + largeyoffset) > height * 2 and imultip == 1:
-        largetempy1 = height * 2 - largeyoffset
-        largetempy2 = height * 2
-        imultip = -1
-      elif (largetempy1 - largeyoffset) < 0 and imultip == -1:
-        largetempy1 = 0
-        largetempy2 = largeyoffset
-        imultip = 1
-      else:
-        largetempy1 = largetempy1 + largeyoffset * imultip
-        largetempy2 = largetempy2 + largeyoffset * imultip
-      x1 = largex1
-      x2 = largex2
-      y1 = largey1
-      y2 = largey2
-      xoffset = largexoffset
-      yoffset = largeyoffset
   return x1, x2, y1, y2, xoffset, yoffset
 
 # Variables and Setup
@@ -558,7 +428,7 @@ else:
   xblue3 = 0
   xblue4 = 200
 
-its = circquant
+its = int(ceil(circquant*.7))
 circlen = len(circx1)
 circarray = []
 circtemp = []
@@ -796,7 +666,7 @@ else:
   xblue1 = 0
   xblue2 = 200
 
-its = triquant
+its = int(ceil(triquant*.7))
 trilen = len(trix1)
 triarray = []
 tritemp = []
