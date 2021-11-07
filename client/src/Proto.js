@@ -15,6 +15,12 @@ function protoRender (protoNum, protos){
   );
 }
 
+function scaleRender (scale){
+    return (
+    scale.map(item => <li><ul><li>{item.question}</li><li>{item.driver}</li><li>{item.direction}</li><li>{item.one}</li><li>{item.two}</li><li>{item.three}</li><li>{item.four}</li><li>{item.five}</li></ul></li>)
+  );
+}
+
 function Proto() {
   const proto = [
     {id: 0, label: 'Crazy Productive Day', file: 'CrazyProductiveDay'},
@@ -49,14 +55,36 @@ function Proto() {
     {id: 29, label: 'Random Act Kindness', file: 'RandomActKindness'}
   ];
 
+  const scale1 = [
+    {id: 0, question: 'Introspection Emotion', driver: 'Triangle Randomness', direction: 'Increasing', one: 'Ecstasy', two: 'Joy', three: 'Contentment', four: 'Sadness', five: 'Grief'},
+    {id: 1, question: 'Temper Emotion', driver: 'Triangle Quantity', direction: 'Increasing', one: 'Bliss', two: 'Calmness', three: 'Annoyance', four: 'Anger', five: 'Rage'},
+    {id: 2, question: 'Acceptance Emotion', driver: 'Squiggle Pattern', direction: 'Selection', one: 'Proud', two: 'Satisfied', three: 'Ambivalent', four: 'Embarrassed', five: 'Humiliated'},
+    {id: 3, question: 'Sensitivity Emotion', driver: 'Squiggle Quantity', direction: 'Increasing', one: 'Enthusiasm', two: 'Eagerness', three: 'Anxiety', four: 'Fear', five: 'Terror'},
+    {id: 4, question: 'Sky Conditions', driver: 'Background Color', direction: 'Selection', one: 'Sunny', two: 'Partly Cloudy', three: 'Mostly Cloudy', four: 'Cloudy', five: 'Stormy'},
+    {id: 5, question: 'Temperature', driver: 'Background Color', direction: 'Selection', one: 'Hot', two: 'Warm', three: 'Cool', four: 'Crisp', five: 'Cold'},
+    {id: 6, question: 'People', driver: 'Circle Size', direction: 'Decreasing', one: 'Family', two: 'Friends', three: 'Acquantices', four: 'Strangers', five: 'Adversaries'},
+    {id: 7, question: 'Place', driver: 'Circle Quantity, Randomness', direction: 'Decreasing, Increasing', one: 'Community', two: 'City', three: 'Region', four: 'Country', five: 'Foreign'},
+    {id: 8, question: 'Strength of Sounds', driver: 'Triangle Color', direction: 'Selection', one: 'Silent', two: 'Faint', three: 'Moderate', four: 'Loud', five: 'Deafening'},
+    {id: 9, question: 'Type of Sounds', driver: 'Triangle Size', direction: 'Increasing', one: 'Monotone', two: 'Soothing', three: 'Melodic', four: 'Lively', five: 'Chaotic'},
+    {id: 10, question: 'Strength of Smells', driver: 'Squiggle Randomness', direction: 'Increasing', one: 'Scentless', two: 'Subtle', three: 'Scented', four: 'Aromatic', five: 'Potent'},
+    {id: 11, question: 'Type of Smells', driver: 'Squiggle Size', direction: 'Increasing', one: 'Fragrant', two: 'Pleasant', three: 'Neutral', four: 'Stale', five: 'Pungent'},
+    {id: 12, question: 'Strength of Tastes', driver: 'Line Size', direction: 'Increasing', one: 'Bland', two: 'Mild', three: 'Seasoned', four: 'Flavorful', five: 'Intense'},
+    {id: 13, question: 'Type of Tastes', driver: 'Line Color', direction: 'Selection', one: 'Mouthwatering', two: 'Pleasant', three: 'Tsateful', four: 'Disagreeable', five: 'Repulsive'},
+    {id: 14, question: 'Sensation', driver: 'Line Quantity', direction: 'Increasing', one: 'Thrill', two: 'Pleasure', three: 'Comfort', four: 'Suffering', five: 'Agony'},
+    {id: 15, question: 'Exertion', driver: 'Line Randomness', direction: 'Increasing', one: 'Sedentary', two: 'Light', three: 'Active', four: 'Vigorous', five: 'Strenuous'},
+  ];
+
   return (
     <div className="ProtoList" id="proto">
+          <ul className="ProtoList1">
+            {scaleRender(scale1)}
+          </ul>
           {protoHeader(6)}
-          <ul className="ProtoImg">
+          <ul className="ProtoList1">
             {protoRender(6, proto)}
           </ul>
           {protoHeader(7)}
-          <ul className="ProtoImg">
+          <ul className="ProtoList1">
             {protoRender(7, proto)}
           </ul>
     </div>

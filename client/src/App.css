@@ -19,10 +19,6 @@
   pointer-events: none;
 }
 
-.Footer {
-  height: 20vmin;
-}
-
 .App-proto {
   height: 40vmin;
   pointer-events: none;
@@ -60,13 +56,48 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ProtoHeader {
+  text-align: center;
+  font-size: calc(8px + 2vmin);
+  color: white
+}
+
+.ProtoImg {
+  height: 20vmin;
+  pointer-events: none;
+}
+
+.ProtoCap {
+  text-align: center;
+  font-size: calc(5px + 2vmin);
+  color: white;
+}
+
+.ProtoList {
+  text-align: center;
+  font-size: calc(8px + 2vmin);
+  color: white;
+}
+
+.ProtoList1 li {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+}
+
+.ProtoList1 ul li {
+  display: block;
+  padding: 0px;
+  font-size: calc(5px + 2vmin);
+  text-align: left;
+}
+
+ul.ProtoImg li {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
 }
 
 ul.Navigation li {
@@ -76,31 +107,3 @@ ul.Navigation li {
   padding: 10px;
 }
 
-.ProtoHeader {
-  text-align: center;
-  font-size: calc(8px + 2vmin);
-  color: white
-}
-
-.ProtoList {
-  display: inline;
-  list-style-type: none;
-  margin: 0;
-  padding: 10px;
-  pointer-events: none;
-}
-
-.ProtoImg {
-  height: 20vmin;
-  pointer-events: none;
-  display: inline;
-  list-style-type: none;
-  margin: 0;
-  padding: 10px;
-}
-
-.ProtoCap {
-  text-align: center;
-  font-size: calc(5px + 2vmin);
-  color: white;
-}

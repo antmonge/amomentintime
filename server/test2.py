@@ -54,11 +54,11 @@ def coordrange(c1, c2, offset, rnd):
   if rnd == 1:
     temp = c1 + offsethalf
     c = int(temp)/1000
-  elif rnd in (2,4,8):
+  elif rnd in (2,5,8):
     temp1 = int(c1 + (offsethalf * .2))
     temp2 = int(c2 - (offsethalf * .2))
     c = randint(temp1, temp2)/1000
-  elif rnd in (3,5,9):
+  elif rnd in (3,6,9):
     temp1 = int(c1 + (offsethalf * .1))
     temp2 = int(c2 - (offsethalf * .1))
     c = randint(temp1, temp2)/1000
@@ -114,11 +114,11 @@ def grid(iterations, width, height, random, gridsize):
   smally1 = []
   smally2 = []
   randomness = int(ceil(random/10))
-  if randomness in (1,2,3):
+  if randomness in (1,2,3,4):
     sqiterations = 10
   elif randomness in (8,9,10):
     sqiterations = 1
-  elif randomness in (4,5):
+  elif randomness in (5,6,7):
     sqiterations = 4
   else:
     sqiterations = 2
@@ -365,11 +365,11 @@ if col1 == 1:
   xblue2 = 100
 elif col1 == 2:
   xred1 = 0
-  xred2 = 200
+  xred2 = 400
   xgreen1 = 0
-  xgreen2 = 200
-  xblue1 = 800
-  xblue2 = 1000
+  xgreen2 = 400
+  xblue1 = 400
+  xblue2 = 800
 elif col1 == 3:
   xred1 = 500
   xred2 = 750
@@ -385,12 +385,12 @@ elif col1 == 4:
   xblue1 = 0
   xblue2 = 200
 else:
-  xred1 = 800
-  xred2 = 1000
+  xred1 = 400
+  xred2 = 800
   xgreen1 = 0
-  xgreen2 = 200
+  xgreen2 = 400
   xblue1 = 0
-  xblue2 = 200
+  xblue2 = 400
 
 if col2 == 1:
   xred3 = 800
@@ -398,7 +398,7 @@ if col2 == 1:
   xgreen3 = 400
   xgreen4 = 600
   xblue3 = 0
-  xblue4 = 200
+  xblue4 = 100
 elif col2 == 2:
   xred3 = 0
   xred4 = 200
@@ -421,12 +421,12 @@ elif col2 == 4:
   xblue3 = 0
   xblue4 = 200
 else:
-  xred3 = 800
-  xred4 = 1000
+  xred3 = 400
+  xred4 = 800
   xgreen3 = 0
-  xgreen4 = 200
+  xgreen4 = 400
   xblue3 = 0
-  xblue4 = 200
+  xblue4 = 400
 
 its = int(ceil(circquant*.7))
 circlen = len(circx1)
@@ -514,11 +514,11 @@ if col1 == 1:
   xblue2 = 1000
 elif col1 == 2:
   xred1 = 0
-  xred2 = 200
+  xred2 = 400
   xgreen1 = 0
-  xgreen2 = 200
-  xblue1 = 800
-  xblue2 = 1000
+  xgreen2 = 400
+  xblue1 = 400
+  xblue2 = 800
 elif col1 == 3:
   xred1 = 600
   xred2 = 800
@@ -534,12 +534,12 @@ elif col1 == 4:
   xblue1 = 0
   xblue2 = 200
 else:
-  xred1 = 800
-  xred2 = 1000
+  xred1 = 400
+  xred2 = 800
   xgreen1 = 0
-  xgreen2 = 200
+  xgreen2 = 400
   xblue1 = 0
-  xblue2 = 200
+  xblue2 = 400
 
 its = int(squigquant/3)
 squiglen = len(squigx1)
@@ -606,10 +606,10 @@ for j in range (0, its):
 
 # Triangles
 
-#triquant = argtemper
-#trirand = argintro
-#trisize = argsndtyp
-#tricolor = argsndstr
+#triquant = argtemper 60
+#trirand = argintro 61
+#trisize = argsndtyp 75
+#tricolor = argsndstr 75
 
 # Sound Strength - Silent, Faint, Moderate, Loud, Deafening
 #White, Light Blue, Purple, Brown, Black
@@ -639,11 +639,11 @@ if col1 == 1:
   xblue2 = 1000
 elif col1 == 2:
   xred1 = 200
-  xred2 = 300
+  xred2 = 400
   xgreen1 = 200
-  xgreen2 = 300
-  xblue1 = 800
-  xblue2 = 1000
+  xgreen2 = 400
+  xblue1 = 400
+  xblue2 = 600
 elif col1 == 3:
   xred1 = 250
   xred2 = 400
@@ -770,11 +770,11 @@ col1 = int(ceil(linecol1/20))
 
 if col1 == 1:
   xred1 = 200
-  xred2 = 300
+  xred2 = 400
   xgreen1 = 200
-  xgreen2 = 300
-  xblue1 = 800
-  xblue2 = 1000
+  xgreen2 = 400
+  xblue1 = 400
+  xblue2 = 600
 elif col1 == 2:
   xred1 = 850
   xred2 = 1000
