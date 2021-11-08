@@ -231,27 +231,27 @@ logging.info('Type of Taste - %s', argtsttyp)
 logging.info('Physical Sensation - %s', argsensat)
 logging.info('Physical Exertion - %s', argexer)
 
-circquant = decrease(argplace)
-circrand = argplace
-circsize = spectrum(argpeople)
+circquant = spectrum(argsens)
+circrand = spectrum(argaccept)
+circsize = spectrum(argaccept)
 circcol1 = argsensat
-circpat = argpeople
 
-squigquant = spectrum(argsens)
-squigrand = argsmlstr
-squigsize = spectrum(argsmltyp)
-squigcol1 = argsens
-squigpat = argaccept
+squigquant = argexer
+squigrand = spectrum(argintro)
+squigsize = spectrum(argintro)
+squigcol1 = argtemper
 
-triquant = spectrum(argtemper)
-trirand = spectrum(argintro)
-trisize = argsndtyp
-tricol1 = argsndstr
+triquant = spectrum(argtststr)
+trirand = spectrum(argtststr)
+trisize = spectrum(argsmltyp)
+tricol1 = argtsttyp
+triopaq = argsmlstr
 
-linequant = spectrum(argsensat)
-linerand = argexer
-linesize = argtststr
-linecol1 = argtsttyp
+linequant = argsndtyp
+linerand = argsndtyp
+linesize = argplace
+linecol1 = argpeople
+lineopaq = argsndstr
 
 backcol1 = argsky
 backcol2 = argtemp
@@ -339,11 +339,10 @@ images.append(aim)
 
 # Circles
 
-#circquant = argplace
-#circrand = argplace
-#circsize = argpeople
-#circcol = argsensat
-#circpat = argpeople
+#circquant = spectrum(argsens)
+#circrand = spectrum(argaccept)
+#circsize = spectrum(argaccept)
+#circcol1 = argsensat
 
 # Sensation - Thrill, Pleasure, Comfort, Suffering, Agony
 # Orange, Blue, Grey, Black, Red
@@ -487,14 +486,13 @@ for j in range (0, its):
 
 # Squiggly Lines
 
-#squigquant = argsens
-#squigrand = argsmlstr
-#squigsize = argsmltyp
-#squigcol1 = argsens
-#squigpat = argaccept
+#squigquant = argexer
+#squigrand = spectrum(argintro)
+#squigsize = spectrum(argintro)
+#squigcol1 = argtemper
 
-# Sensitivity - Enthusiasm, Eagerness, Anxiety, Fear, Terror
-# Pink, Blue, Soft Green, Orange, Red
+# Temper - Bliss, Calmness, Annoyance, Anger, Rage
+# Soft Rainbow, Soft Green, Brown/Green, Orange, Red
 
 squiggrid = grid(iterations, width, height, 10, 2)
 squigx1 = squiggrid[0]
@@ -507,29 +505,27 @@ squigrandint = int(ceil(squigrand/10))
 squigwidth = squigsize / 2500
 col1 = int(ceil(squigcol1/20))
 
-pattern = 2 #not using circpat to drive, hard coded
-
 if col1 == 1:
-  xred1 = 850
-  xred2 = 1000
-  xgreen1 = 0
-  xgreen2 = 200
-  xblue1 = 850
-  xblue2 = 1000
+  xred1 = 300
+  xred2 = 700
+  xgreen1 = 300
+  xgreen2 = 700
+  xblue1 = 300
+  xblue2 = 700
 elif col1 == 2:
-  xred1 = 0
-  xred2 = 400
-  xgreen1 = 0
-  xgreen2 = 400
-  xblue1 = 400
-  xblue2 = 800
-elif col1 == 3:
   xred1 = 600
   xred2 = 800
   xgreen1 = 950
   xgreen2 = 1000
   xblue1 = 600
   xblue2 = 800
+elif col1 == 3:
+  xred1 = 350
+  xred2 = 450
+  xgreen1 = 350
+  xgreen2 = 450
+  xblue1 = 0
+  xblue2 = 500
 elif col1 == 4:
   xred1 = 800
   xred2 = 1000
@@ -596,13 +592,11 @@ for j in range (0, its):
   ctx.set_source_rgba(cred1, cgreen1, cblue1, copaque)
   ctx.move_to(xt1, yt1)
   ctx.curve_to(xt2, yt2, xt3, yt3, xt4, yt4)
-  #ctx.curve_to(xt1, yt1, xt2, yt2, xt3, yt3)
   ctx.stroke()
   ctx1.set_line_width(squigwidth)
   ctx1.set_source_rgba(cblue1, cgreen1, cred1, copaque)
   ctx1.move_to(xt1, yt1)
   ctx1.curve_to(xt2, yt2, xt3, yt3, xt4, yt4)
-  #ctx1.curve_to(xt1, yt1, xt2, yt2, xt3, yt3)
   ctx1.stroke()
   aim = add_image(srf1)
   images.append(aim)
@@ -612,13 +606,14 @@ for j in range (0, its):
 
 # Triangles
 
-#triquant = argtemper 60
-#trirand = argintro 61
-#trisize = argsndtyp 75
-#tricolor = argsndstr 75
+#triquant = spectrum(argtststr)
+#trirand = spectrum(argtststr)
+#trisize = spectrum(argsmltyp)
+#tricol1 = argtsttyp
+#triopaq = argsmlstr
 
-# Sound Strength - Silent, Faint, Moderate, Loud, Deafening
-#White, Light Blue, Purple, Brown, Black
+# Taste Type - Mouthwatering, Pleasant, Tasteful, Disagreeable, Repulsive
+# Light Blue, Pink, Light Rainbow, Brown/Green, Green/Yellow
 
 trigrid = grid(iterations, width, height, trirand, 1)
 trix1 = trigrid[0]
@@ -630,47 +625,45 @@ triyoffset = trigrid[5]
 trixoffset2 = int(trixoffset / 2)
 triyoffset2 = int(triyoffset / 2)
 trirandint = int(ceil(trirand/10))
-#trirandint = 1
 triwidth = trisize / 5000
 col1 = int(ceil(tricol1/20))
-
-pattern = 2 #not using circpat to drive, hard coded
+copaque = triopaq / 100
 
 if col1 == 1:
-  xred1 = 950
-  xred2 = 1000
-  xgreen1 = 950
-  xgreen2 = 1000
-  xblue1 = 950
-  xblue2 = 1000
-elif col1 == 2:
   xred1 = 200
   xred2 = 400
   xgreen1 = 200
   xgreen2 = 400
   xblue1 = 400
   xblue2 = 600
-elif col1 == 3:
-  xred1 = 250
-  xred2 = 400
+elif col1 == 2:
+  xred1 = 850
+  xred2 = 1000
   xgreen1 = 0
   xgreen2 = 200
-  xblue1 = 800
+  xblue1 = 850
   xblue2 = 1000
+elif col1 == 3:
+  xred1 = 300
+  xred2 = 700
+  xgreen1 = 300
+  xgreen2 = 700
+  xblue1 = 300
+  xblue2 = 700
 elif col1 == 4:
-  xred1 = 330
-  xred2 = 600
-  xgreen1 = 0
-  xgreen2 = 225
+  xred1 = 350
+  xred2 = 450
+  xgreen1 = 350
+  xgreen2 = 450
   xblue1 = 0
   xblue2 = 50
 else:
-  xred1 = 0
-  xred2 = 200
-  xgreen1 = 0
-  xgreen2 = 200
+  xred1 = 200
+  xred2 = 1000
+  xgreen1 = 200
+  xgreen2 = 1000
   xblue1 = 0
-  xblue2 = 200
+  xblue2 = 0
 
 its = int(ceil(triquant*.7))
 trilen = len(trix1)
@@ -692,7 +685,6 @@ if its < trilen:
 else:
   triindex = tritemp
 
-#quad = [1, 2, 3, 4]
 for j in range (0, its):
   if j in triarray:
     if j + triarray[0] > trilen:
@@ -731,7 +723,6 @@ for j in range (0, its):
     x3 = randint(-50, 50)/1000
     y3 = int((trisize*-1)-100)/1000
 
-  copaque = 0.5
   cred1 = color(xred1, xred2)
   cgreen1 = color(xgreen1, xgreen2)
   cblue1 = color(xblue1, xblue2)
@@ -755,13 +746,14 @@ for j in range (0, its):
 
 # Straight Lines
 
-#linequant = argsensat
-#linerand = argexer
-#linesize = argtststr
-#linecol1 = argtsttyp
+#linequant = argsndtyp
+#linerand = argsndtyp
+#linesize = argplace
+#linecol1 = argpeople
+#lineopaq = argsndstr
 
-# Taste Type - Mouthwatering, Pleasant, Tasteful, Disagreeable, Repulsive
-# Light Blue, Pink, Light Rainbow, Brown/Green, Green/Yellow
+# People - Family, Friends, Acquantices, Strangers, Adversaries
+# Light Rainbow, Rainbow, Orange, Brown/Green, Red
 
 linegrid = grid(iterations, width, height, 10, 2)
 linex1 = linegrid[0]
@@ -775,26 +767,26 @@ linewidth = linesize / 4800
 col1 = int(ceil(linecol1/20))
 
 if col1 == 1:
-  xred1 = 200
-  xred2 = 400
-  xgreen1 = 200
-  xgreen2 = 400
-  xblue1 = 400
-  xblue2 = 600
-elif col1 == 2:
-  xred1 = 850
-  xred2 = 1000
-  xgreen1 = 0
-  xgreen2 = 200
-  xblue1 = 850
-  xblue2 = 1000
-elif col1 == 3:
   xred1 = 300
   xred2 = 700
   xgreen1 = 300
   xgreen2 = 700
   xblue1 = 300
   xblue2 = 700
+elif col1 == 2:
+  xred1 = 100
+  xred2 = 900
+  xgreen1 = 100
+  xgreen2 = 900
+  xblue1 = 100
+  xblue2 = 900
+elif col1 == 3:
+  xred1 = 800
+  xred2 = 1000
+  xgreen1 = 400
+  xgreen2 = 600
+  xblue1 = 0
+  xblue2 = 100
 elif col1 == 4:
   xred1 = 350
   xred2 = 450
@@ -803,12 +795,12 @@ elif col1 == 4:
   xblue1 = 0
   xblue2 = 50
 else:
-  xred1 = 200
-  xred2 = 1000
-  xgreen1 = 200
-  xgreen2 = 1000
+  xred1 = 400
+  xred2 = 800
+  xgreen1 = 0
+  xgreen2 = 400
   xblue1 = 0
-  xblue2 = 0
+  xblue2 = 400
 
 its = int(linequant/2)
 linelen = len(linex1)
