@@ -492,7 +492,7 @@ for j in range (0, its):
 # Sensitivity - Enthusiasm, Eagerness, Anxiety, Fear, Terror
 # Pink, Blue, Soft Green, Orange, Red
 
-squiggrid = grid(iterations, width, height, squigrand, 1)
+squiggrid = grid(iterations, width, height, 10, 2)
 squigx1 = squiggrid[0]
 squigx2 = squiggrid[1]
 squigy1 = squiggrid[2]
@@ -500,7 +500,7 @@ squigy2 = squiggrid[3]
 squigxoffset = squiggrid[4]
 squigyoffset = squiggrid[5]
 squigrandint = int(ceil(squigrand/10))
-squigwidth = squigsize / 2000
+squigwidth = squigsize / 2500
 col1 = int(ceil(squigcol1/20))
 
 pattern = 2 #not using circpat to drive, hard coded
@@ -592,11 +592,13 @@ for j in range (0, its):
   ctx.set_source_rgba(cred1, cgreen1, cblue1, copaque)
   ctx.move_to(xt1, yt1)
   ctx.curve_to(xt2, yt2, xt3, yt3, xt4, yt4)
+  #ctx.curve_to(xt1, yt1, xt2, yt2, xt3, yt3)
   ctx.stroke()
   ctx1.set_line_width(squigwidth)
   ctx1.set_source_rgba(cblue1, cgreen1, cred1, copaque)
   ctx1.move_to(xt1, yt1)
   ctx1.curve_to(xt2, yt2, xt3, yt3, xt4, yt4)
+  #ctx1.curve_to(xt1, yt1, xt2, yt2, xt3, yt3)
   ctx1.stroke()
   aim = add_image(srf1)
   images.append(aim)
@@ -765,7 +767,7 @@ liney2 = linegrid[3]
 linexoffset = linegrid[4]
 lineyoffset = linegrid[5]
 linerandint = int(ceil(linerand/10))
-linewidth = linesize / 4000
+linewidth = linesize / 4800
 col1 = int(ceil(linecol1/20))
 
 if col1 == 1:
