@@ -35,10 +35,14 @@ from io import BytesIO
 # Functions that the main program calls
 
 def decrease(number):
-  if number > 50:
-    n = (50 - (number - 50)) + 1
+  n = (50 + (50 - number)) + 1
+  return n
+
+def spectrum(number):
+  if number < 51:
+    n = ((50 + (50 - number)) + 1) - number + 1
   else:
-    n = (50 + (50 - number)) + 1
+    n = number - ((50 + (50 - number)) + 1) + 1
   return n
 
 def add_image(surface):
@@ -229,22 +233,22 @@ logging.info('Physical Exertion - %s', argexer)
 
 circquant = decrease(argplace)
 circrand = argplace
-circsize = decrease(argpeople)
+circsize = spectrum(argpeople)
 circcol1 = argsensat
 circpat = argpeople
 
-squigquant = argsens
+squigquant = spectrum(argsens)
 squigrand = argsmlstr
-squigsize = argsmltyp
+squigsize = spectrum(argsmltyp)
 squigcol1 = argsens
 squigpat = argaccept
 
-triquant = argtemper
-trirand = argintro
+triquant = spectrum(argtemper)
+trirand = spectrum(argintro)
 trisize = argsndtyp
 tricol1 = argsndstr
 
-linequant = argsensat
+linequant = spectrum(argsensat)
 linerand = argexer
 linesize = argtststr
 linecol1 = argtsttyp
