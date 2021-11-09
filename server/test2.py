@@ -627,7 +627,7 @@ triyoffset2 = int(triyoffset / 2)
 trirandint = int(ceil(trirand/10))
 triwidth = trisize / 5000
 col1 = int(ceil(tricol1/20))
-copaque = triopaq / 100
+copaque = (triopaq + 33) * 0.006
 
 if col1 == 1:
   xred1 = 200
@@ -765,6 +765,7 @@ lineyoffset = linegrid[5]
 linerandint = int(ceil(linerand/10))
 linewidth = linesize / 4800
 col1 = int(ceil(linecol1/20))
+copaque = (lineopaq + 33) * 0.006
 
 if col1 == 1:
   xred1 = 300
@@ -829,7 +830,6 @@ for j in range (0, its):
   cred1 = color(xred1, xred2)
   cgreen1 = color(xgreen1, xgreen2)
   cblue1 = color(xblue1, xblue2)
-  copaque = 1
   ctx.set_line_width(linewidth)
   ctx.set_source_rgba(cred1, cgreen1, cblue1, copaque)
   ctx.move_to(x1, y1)
