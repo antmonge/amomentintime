@@ -14,7 +14,8 @@ app.post('/api', (req, res) => {
   let dataToSend = '';
 //  let largeDataSet = []
   // spawn new child process to call the python script
-  const python = spawn('python', ['server/test2.py', req.body[1], req.body[3], req.body[5], req.body[7], req.body[9], req.body[11], req.body[13], req.body[15], req.body[17], req.body[19], req.body[21], req.body[23], req.body[25], req.body[27], req.body[29], req.body[31]])
+  const python = spawn('python', [req.body[32], req.body[1], req.body[3], req.body[5], req.body[7], req.body[9], req.body[11], req.body[13], req.body[15], req.body[17], req.body[19], req.body[21], req.body[23], req.body[25], req.body[27], req.body[29], req.body[31]])
+  const python2 = spawn('python', [req.body[32], req.body[1], req.body[3], req.body[5], req.body[7], req.body[9], req.body[11], req.body[13], req.body[15], req.body[17], req.body[19], req.body[21], req.body[23], req.body[25], req.body[27], req.body[29], req.body[31]])
 //  console.log('Start')
   // collect data from script
   python.stdout.on('data', function (data) {
