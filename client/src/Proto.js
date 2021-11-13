@@ -117,27 +117,25 @@ function Proto() {
           <ul className="ProtoList1">
             {scaleRender(scale1)}
           </ul>
-          {protoHeader(6)}
-          <ul className="ProtoList1">
-            {protoRender(6, proto)}
-          </ul>
           {protoHeader(7)}
           <ul className="ProtoList1">
             {protoRender(7, proto)}
-          </ul>
-          <ul className="ProtoList1">
-            {scaleRender(scale2)}
           </ul>
           {protoHeader(8)}
           <ul className="ProtoList1">
             {protoRender(8, proto)}
           </ul>
-          <ul className="ProtoList1">
-            {scaleRender(scale3)}
-          </ul>
           {protoHeader(9)}
           <ul className="ProtoList1">
             {protoRender(9, proto)}
+          </ul>
+          {protoHeader(10)}
+          <ul className="ProtoList1">
+            {protoRender(10, proto)}
+          </ul>
+          {protoHeader(11)}
+          <ul className="ProtoList1">
+            {protoRender(11, proto)}
           </ul>
     </div>
   );
