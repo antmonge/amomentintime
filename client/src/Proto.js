@@ -125,6 +125,10 @@ function Proto() {
           <ul className="ProtoList1">
             {protoRender(11, proto)}
           </ul>
+          {protoHeader(12)}
+          <ul className="ProtoList1">
+            {protoRender(12, proto)}
+          </ul>
     </div>
   );
 }
