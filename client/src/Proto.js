@@ -117,6 +117,27 @@ function Proto() {
           <ul className="ProtoList1">
             {scaleRender(scale1)}
           </ul>
+          <p>Prototype Originals</p>
+          <ul className="ProtoList1">
+            <li><img className="ProtoImg" src={require(`./proto/proto1.svg`).default} alt="Proto1"/></li>
+            <li><img className="ProtoImg" src={require(`./proto/proto2.svg`).default} alt="Proto1"/></li>
+            <li><img className="ProtoImg" src={require(`./proto/proto3.svg`).default} alt="Proto1"/></li>
+            <li><img className="ProtoImg" src={require(`./proto/proto4a.svg`).default} alt="Proto4a"/></li>
+            <li><img className="ProtoImg" src={require(`./proto/proto4b.svg`).default} alt="Proto4b"/></li>
+            <li><img className="ProtoImg" src={require(`./proto/proto4c.svg`).default} alt="Proto4c"/></li>
+            <li><img className="ProtoImg" src={require(`./proto/proto4d.svg`).default} alt="Proto4d"/></li>
+            <li><img className="ProtoImg" src={require(`./proto/proto5a.svg`).default} alt="Proto5a"/></li>
+            <li><img className="ProtoImg" src={require(`./proto/proto5b.svg`).default} alt="Proto5b"/></li>
+            <li><img className="ProtoImg" src={require(`./proto/proto5c.svg`).default} alt="Proto5c"/></li>
+            <li><img className="ProtoImg" src={require(`./proto/proto5d.svg`).default} alt="Proto5d"/></li>
+            <li><img className="ProtoImg" src={require(`./proto/proto5e.svg`).default} alt="Proto5e"/></li>
+            <li><img className="ProtoImg" src={require(`./proto/proto5f.svg`).default} alt="Proto5f"/></li>
+            <li><img className="ProtoImg" src={require(`./proto/proto5g.svg`).default} alt="Proto5g"/></li>
+            <li><img className="ProtoImg" src={require(`./proto/proto5h.svg`).default} alt="Proto5h"/></li>
+            <li><img className="ProtoImg" src={require(`./proto/proto5i.svg`).default} alt="Proto5i"/></li>
+            <li><img className="ProtoImg" src={require(`./proto/proto5j.svg`).default} alt="Proto5j"/></li>
+            <li><img className="ProtoImg" src={require(`./proto/proto5k.svg`).default} alt="Proto5k"/></li>
+          </ul>
           {protoHeader(9)}
           <ul className="ProtoList1">
             {protoRender(9, proto)}
@@ -128,6 +149,10 @@ function Proto() {
           {protoHeader(12)}
           <ul className="ProtoList1">
             {protoRender(12, proto)}
+          </ul>
+          {protoHeader(13)}
+          <ul className="ProtoList1">
+            {protoRender(13, proto)}
           </ul>
     </div>
   );
