@@ -290,33 +290,33 @@ col2 = int(ceil(backcol2/20))
 pattern = randint(2,3)
 
 if col1 == 1:
-  xred1 = 600
-  xred2 = 800
-  xgreen1 = 600
+  xred1 = 950
+  xred2 = 1000
+  xgreen1 = 950
+  xgreen2 = 1000
+  xblue1 = 0
+  xblue2 = 400
+elif col1 == 2:
+  xred1 = 950
+  xred2 = 1000
+  xgreen1 = 400
   xgreen2 = 800
   xblue1 = 0
   xblue2 = 200
-elif col1 == 2:
-  xred1 = 800
-  xred2 = 1000
-  xgreen1 = 400
-  xgreen2 = 600
-  xblue1 = 0
-  xblue2 = 100
 elif col1 == 3:
-  xred1 = 200
-  xred2 = 400
-  xgreen1 = 200
-  xgreen2 = 400
-  xblue1 = 400
-  xblue2 = 600
+  xred1 = 400
+  xred2 = 800
+  xgreen1 = 700
+  xgreen2 = 900
+  xblue1 = 950
+  xblue2 = 1000
 elif col1 == 4:
-  xred1 = 100
-  xred2 = 500
-  xgreen1 = 100
-  xgreen2 = 500
-  xblue1 = 100
-  xblue2 = 500
+  xred1 = 400
+  xred2 = 800
+  xgreen1 = 400
+  xgreen2 = 800
+  xblue1 = 400
+  xblue2 = 800
 else:
   xred1 = 0
   xred2 = 200
@@ -326,40 +326,40 @@ else:
   xblue2 = 200
 
 if col2 == 1:
-  xred3 = 400
-  xred4 = 800
-  xgreen3 = 0
-  xgreen4 = 400
-  xblue3 = 0
-  xblue4 = 400
-elif col2 == 2:
-  xred3 = 800
+  xred3 = 950
   xred4 = 1000
-  xgreen3 = 400
-  xgreen4 = 600
-  xblue3 = 0
-  xblue4 = 100
-elif col2 == 3:
-  xred3 = 0
-  xred4 = 400
-  xgreen3 = 600
-  xgreen4 = 1000
-  xblue3 = 0
-  xblue4 = 400
-elif col2 == 4:
-  xred3 = 400
-  xred4 = 600
-  xgreen3 = 400
-  xgreen4 = 600
+  xgreen3 = 0
+  xgreen4 = 200
   xblue3 = 0
   xblue4 = 200
+elif col2 == 2:
+  xred3 = 950
+  xred4 = 1000
+  xgreen3 = 400
+  xgreen4 = 800
+  xblue3 = 0
+  xblue4 = 200
+elif col2 == 3:
+  xred3 = 0
+  xred4 = 200
+  xgreen3 = 950
+  xgreen4 = 1000
+  xblue3 = 0
+  xblue4 = 200
+elif col2 == 4:
+  xred3 = 100
+  xred4 = 300
+  xgreen3 = 200
+  xgreen4 = 600
+  xblue3 = 0
+  xblue4 = 50
 else:
-  xred3 = 500
-  xred4 = 900
-  xgreen3 = 500
-  xgreen4 = 900
-  xblue3 = 500
-  xblue4 = 900
+  xred3 = 200
+  xred4 = 400
+  xgreen3 = 200
+  xgreen4 = 400
+  xblue3 = 200
+  xblue4 = 400
 
 ctx.rectangle(0,0,width,height)
 ctx1.rectangle(0,0,width,height)
@@ -394,7 +394,7 @@ circxoffset = circgrid[4]
 circyoffset = circgrid[5]
 circrandint = int(ceil(circrand/10))
 col1 = int(ceil(circcol1/20))
-copaque = (circopaq + 33) * 0.006
+copaque = (circopaq + 42) * 0.007
 
 pattern = 2 #not using circpat to drive, hard coded
 
@@ -506,7 +506,7 @@ squigyoffset = squiggrid[5]
 squigrandint = int(ceil(squigrand/10))
 squigwidth = squigsize / 2500
 col1 = int(ceil(squigcol1/20))
-copaque = (squigopaq + 33) * 0.006
+copaque = (squigopaq + 42) * 0.007
 
 if col1 == 1:
   xred1 = 600
@@ -629,7 +629,7 @@ triyoffset2 = int(triyoffset / 2)
 trirandint = int(ceil(trirand/10))
 triwidth = trisize / 5000
 col1 = int(ceil(tricol1/20))
-copaque = (triopaq + 33) * 0.006
+copaque = (triopaq + 42) * 0.007
 
 if col1 == 1:
   xred1 = 200
@@ -767,7 +767,7 @@ lineyoffset = linegrid[5]
 linerandint = int(ceil(linerand/10))
 linewidth = linesize / 4800
 col1 = int(ceil(linecol1/20))
-copaque = (lineopaq + 33) * 0.006
+copaque = (lineopaq + 42) * 0.007
 
 if col1 == 1:
   xred1 = 600

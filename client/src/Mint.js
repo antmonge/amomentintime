@@ -113,7 +113,7 @@ export default class App extends React.Component {
 
     pyth() {
 
-      const formData = ['IntrospectionEmotion', this.state.emotionIntroVal, 'TemperEmotion', this.state.emotionTemperVal, 'AcceptanceEmotion', this.state.emotionAcceptVal, 'SensitivityEmotion', this.state.emotionSensVal, 'SkyConditions', this.state.weatherSkyVal, 'Temperature', this.state.weatherTempVal, 'People', this.state.surroundPeopleVal, 'Place', this.state.surroundPlaceVal, 'StrengthofSounds', this.state.soundStrengthVal, 'TypeofSounds', this.state.soundTypeVal, 'StrengthofSmells', this.state.smellStrengthVal, 'TypeofSmells', this.state.smellTypeVal, 'StrengthofTastes', this.state.tasteStrengthVal, 'TypeofTastes', this.state.tasteTypeVal, 'PhysicalSensation', this.state.physicalSensationVal, 'PhysicalExertion', this.state.physicalExertionVal, 'server/proto12.py'];
+      const formData = ['IntrospectionEmotion', this.state.emotionIntroVal, 'TemperEmotion', this.state.emotionTemperVal, 'AcceptanceEmotion', this.state.emotionAcceptVal, 'SensitivityEmotion', this.state.emotionSensVal, 'SkyConditions', this.state.weatherSkyVal, 'Temperature', this.state.weatherTempVal, 'People', this.state.surroundPeopleVal, 'Place', this.state.surroundPlaceVal, 'StrengthofSounds', this.state.soundStrengthVal, 'TypeofSounds', this.state.soundTypeVal, 'StrengthofSmells', this.state.smellStrengthVal, 'TypeofSmells', this.state.smellTypeVal, 'StrengthofTastes', this.state.tasteStrengthVal, 'TypeofTastes', this.state.tasteTypeVal, 'PhysicalSensation', this.state.physicalSensationVal, 'PhysicalExertion', this.state.physicalExertionVal, 'server/proto9.py'];
 
       fetch("/api", {
         method: 'POST',
@@ -127,7 +127,7 @@ export default class App extends React.Component {
 
     pyth2() {
 
-      const formData = ['IntrospectionEmotion', this.state.emotionIntroVal, 'TemperEmotion', this.state.emotionTemperVal, 'AcceptanceEmotion', this.state.emotionAcceptVal, 'SensitivityEmotion', this.state.emotionSensVal, 'SkyConditions', this.state.weatherSkyVal, 'Temperature', this.state.weatherTempVal, 'People', this.state.surroundPeopleVal, 'Place', this.state.surroundPlaceVal, 'StrengthofSounds', this.state.soundStrengthVal, 'TypeofSounds', this.state.soundTypeVal, 'StrengthofSmells', this.state.smellStrengthVal, 'TypeofSmells', this.state.smellTypeVal, 'StrengthofTastes', this.state.tasteStrengthVal, 'TypeofTastes', this.state.tasteTypeVal, 'PhysicalSensation', this.state.physicalSensationVal, 'PhysicalExertion', this.state.physicalExertionVal, 'server/proto11.py'];
+      const formData = ['IntrospectionEmotion', this.state.emotionIntroVal, 'TemperEmotion', this.state.emotionTemperVal, 'AcceptanceEmotion', this.state.emotionAcceptVal, 'SensitivityEmotion', this.state.emotionSensVal, 'SkyConditions', this.state.weatherSkyVal, 'Temperature', this.state.weatherTempVal, 'People', this.state.surroundPeopleVal, 'Place', this.state.surroundPlaceVal, 'StrengthofSounds', this.state.soundStrengthVal, 'TypeofSounds', this.state.soundTypeVal, 'StrengthofSmells', this.state.smellStrengthVal, 'TypeofSmells', this.state.smellTypeVal, 'StrengthofTastes', this.state.tasteStrengthVal, 'TypeofTastes', this.state.tasteTypeVal, 'PhysicalSensation', this.state.physicalSensationVal, 'PhysicalExertion', this.state.physicalExertionVal, 'server/proto14.py'];
 
       fetch("/api", {
         method: 'POST',
@@ -258,8 +258,8 @@ export default class App extends React.Component {
             </table>
           </div>
                 <div className="Test">
-                    <button onClick={this.pyth}>Mint Proto 12</button>
-                    <button onClick={this.pyth2}>Mint Proto 11</button>
+                    <button onClick={this.pyth}>Mint Proto 9</button>
+                    <button onClick={this.pyth2}>Mint Proto 14</button>
                     <div className="Test">
                       <span>{this.state.data}</span>
                     </div>

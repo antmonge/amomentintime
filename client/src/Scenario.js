@@ -54,7 +54,8 @@ function Scenario() {
     {id: 3, label: 'Prototype 14', file: 'Proto14', num: 14},
     {id: 4, label: 'Prototype 12', file: 'Proto12', num: 12},
     {id: 5, label: 'Prototype 11', file: 'Proto11', num: 11},
-    {id: 6, label: 'Prototype 13', file: 'Proto13', num: 13}
+    {id: 6, label: 'Prototype 15', file: 'Proto15', num: 15},
+    {id: 7, label: 'Prototype 13', file: 'Proto13', num: 13}
     ];
 
   return (

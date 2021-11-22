@@ -231,27 +231,27 @@ logging.info('Type of Taste - %s', argtsttyp)
 logging.info('Physical Sensation - %s', argsensat)
 logging.info('Physical Exertion - %s', argexer)
 
-circquant = int((spectrum(argintro) + 42) * 0.7)
+circquant = int((spectrum(argintro) + 11) * 0.9)
 circrand = spectrum(argaccept)
-circsize = int((spectrum(argpeople) + 42) * 0.7)
+circsize = int((spectrum(argpeople) + 11) * 0.9)
 circopaq = spectrum(argsndtyp)
 circcol1 = argtemper
 
-squigquant = int((spectrum(argintro) + 42) * 0.7)
+squigquant = int((spectrum(argintro) + 11) * 0.9)
 squigrand = argtststr
-squigsize = int((spectrum(argpeople) + 42) * 0.7)
+squigsize = int((spectrum(argpeople) + 11) * 0.9)
 squigopaq = spectrum(argtsttyp)
 squigcol1 = argplace
 
-triquant = int((spectrum(argintro) + 42) * 0.7)
+triquant = int((spectrum(argintro) + 11) * 0.9)
 trirand = argsmlstr
-trisize = int((spectrum(argpeople) + 42) * 0.7)
+trisize = int((spectrum(argpeople) + 11) * 0.9)
 triopaq = spectrum(argsmltyp)
 tricol1 = argsens
 
-linequant = int((spectrum(argintro) + 42) * 0.7)
+linequant = int((spectrum(argintro) + 11) * 0.9)
 linerand = argsndstr
-linesize = int((spectrum(argpeople) + 42) * 0.7)
+linesize = int((spectrum(argpeople) + 11) * 0.9)
 lineopaq = argexer
 linecol1 = argsensat
 
@@ -358,7 +358,7 @@ circxoffset = circgrid[4]
 circyoffset = circgrid[5]
 circrandint = int(ceil(circrand/10))
 col1 = int(ceil(circcol1/20))
-copaque = (circopaq + 33) * 0.006
+copaque = (circopaq + 42) * 0.007
 
 pattern = 2 #not using circpat to drive, hard coded
 
@@ -506,7 +506,7 @@ squigyoffset = squiggrid[5]
 squigrandint = int(ceil(squigrand/10))
 squigwidth = squigsize / 2500
 col1 = int(ceil(squigcol1/20))
-copaque = (squigopaq + 33) * 0.006
+copaque = (squigopaq + 42) * 0.007
 
 if col1 == 1:
   xred1 = 600
@@ -629,7 +629,7 @@ triyoffset2 = int(triyoffset / 2)
 trirandint = int(ceil(trirand/10))
 triwidth = trisize / 5000
 col1 = int(ceil(tricol1/20))
-copaque = (triopaq + 33) * 0.006
+copaque = (triopaq + 42) * 0.007
 
 if col1 == 1:
   xred1 = 100
@@ -767,7 +767,7 @@ lineyoffset = linegrid[5]
 linerandint = int(ceil(linerand/10))
 linewidth = linesize / 4800
 col1 = int(ceil(linecol1/20))
-copaque = (lineopaq + 33) * 0.006
+copaque = (lineopaq + 42) * 0.007
 
 if col1 == 1:
   xred1 = 800
