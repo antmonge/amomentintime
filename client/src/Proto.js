@@ -56,29 +56,20 @@ function Proto() {
   ];
 
   const scale1 = [
-    {id: 0, question: 'Introspection Emotion', driver: 'Triangle Randomness', direction: 'Increasing', one: 'Ecstasy', two: 'Joy', three: 'Contentment', four: 'Sadness', five: 'Grief'},
-    {id: 1, question: 'Temper Emotion', driver: 'Triangle Quantity', direction: 'Increasing', one: 'Bliss', two: 'Calmness', three: 'Annoyance', four: 'Anger', five: 'Rage'},
-    {id: 2, question: 'Acceptance Emotion', driver: 'Squiggle Pattern', direction: 'Selection', one: 'Proud', two: 'Satisfied', three: 'Ambivalent', four: 'Embarrassed', five: 'Humiliated'},
-    {id: 3, question: 'Sensitivity Emotion', driver: 'Squiggle Quantity', direction: 'Increasing', one: 'Enthusiasm', two: 'Eagerness', three: 'Anxiety', four: 'Fear', five: 'Terror'},
-    {id: 4, question: 'Sky Conditions', driver: 'Background Color', direction: 'Selection', one: 'Sunny', two: 'Partly Cloudy', three: 'Mostly Cloudy', four: 'Cloudy', five: 'Stormy'},
-    {id: 5, question: 'Temperature', driver: 'Background Color', direction: 'Selection', one: 'Hot', two: 'Warm', three: 'Cool', four: 'Crisp', five: 'Cold'},
-    {id: 6, question: 'People', driver: 'Circle Size', direction: 'Decreasing', one: 'Family', two: 'Friends', three: 'Acquantices', four: 'Strangers', five: 'Adversaries'},
-    {id: 7, question: 'Place', driver: 'Circle Quantity, Randomness', direction: 'Decreasing, Increasing', one: 'Community', two: 'City', three: 'Region', four: 'Country', five: 'Foreign'},
-    {id: 8, question: 'Strength of Sounds', driver: 'Triangle Color', direction: 'Selection', one: 'Silent', two: 'Faint', three: 'Moderate', four: 'Loud', five: 'Deafening'},
-    {id: 9, question: 'Type of Sounds', driver: 'Triangle Size', direction: 'Increasing', one: 'Monotone', two: 'Soothing', three: 'Melodic', four: 'Lively', five: 'Chaotic'},
-    {id: 10, question: 'Strength of Smells', driver: 'Squiggle Randomness', direction: 'Increasing', one: 'Scentless', two: 'Subtle', three: 'Scented', four: 'Aromatic', five: 'Potent'},
-    {id: 11, question: 'Type of Smells', driver: 'Squiggle Size', direction: 'Increasing', one: 'Fragrant', two: 'Pleasant', three: 'Neutral', four: 'Stale', five: 'Pungent'},
-    {id: 12, question: 'Strength of Tastes', driver: 'Line Size', direction: 'Increasing', one: 'Bland', two: 'Mild', three: 'Seasoned', four: 'Flavorful', five: 'Intense'},
-    {id: 13, question: 'Type of Tastes', driver: 'Line Color', direction: 'Selection', one: 'Mouthwatering', two: 'Pleasant', three: 'Tsateful', four: 'Disagreeable', five: 'Repulsive'},
-    {id: 14, question: 'Sensation', driver: 'Line Quantity', direction: 'Increasing', one: 'Thrill', two: 'Pleasure', three: 'Comfort', four: 'Suffering', five: 'Agony'},
-    {id: 15, question: 'Exertion', driver: 'Line Randomness', direction: 'Increasing', one: 'Sedentary', two: 'Light', three: 'Active', four: 'Vigorous', five: 'Strenuous'},
+    {id: 0, question: 'Taste Strength', driver: 'Circle Color', direction: 'Selection', one: 'Bland-White', two: 'Mild-Light Blue', three: 'Seasoned-Purple', four: 'Flavorful-Brown', five: 'Intense-Black'},
+    {id: 1, question: 'Smell Strength', driver: 'Squiggle Color', direction: 'Selection', one: 'Scentless-Pink', two: 'Subtle-Blue', three: 'Scented-Soft Green', four: 'Aromatic-Orange', five: 'Potent-Red'},
+    {id: 2, question: 'Smell Type', driver: 'Triangle Color', direction: 'Selection', one: 'Fragrant-Orange', two: 'Pleasant-Red', three: 'Neutral-Blue', four: 'Stale-Grey', five: 'Pungent-Black'},
+    {id: 3, question: 'Taste Type', driver: 'Line Color', direction: 'Selection', one: 'Mouthwatering-Light Blue', two: 'Pleasant-Pink', three: 'Tasteful-Soft Rainbow', four: 'Disagreeable-Brown/Green', five: 'Repulsive-Green/Yellow'},
+  ];
+    const scale2 = [
+    {id: 0, question: 'Temper', driver: 'Circle Color', direction: 'Selection', one: 'Bliss-White', two: 'Calmness-Light Sky Blue', three: 'Annoyance-Light Purple', four: 'Anger-Dark Rose', five: 'Rage-Dark Red'},
+    {id: 1, question: 'Place', driver: 'Squiggle Color', direction: 'Selection', one: 'Community-Soft Green', two: 'City-Soft Rainbow', three: 'Region-Rainbow', four: 'Country-Purple', five: 'Foreign-Brown'},
+    {id: 2, question: 'Sensitivity', driver: 'Triangle Color', direction: 'Selection', one: 'Enthusiasm-Rainbow', two: 'Eagerness-Teal', three: 'Anxiety-Army Green', four: 'Fear-Orange', five: 'Terror-Black'},
+    {id: 3, question: 'Sensation', driver: 'Line Color', direction: 'Selection', one: 'Thrill-Yellow', two: 'Pleasure-Pink', three: 'Comfort-Light Blue', four: 'Suffering-Grey', five: 'Agony-Red'},
   ];
 
   return (
     <div className="ProtoList" id="proto">
-          <ul className="ProtoList1">
-            {scaleRender(scale1)}
-          </ul>
           <p>Prototype Originals</p>
           <ul className="ProtoList1">
             <li><img className="ProtoImg" src={require(`./proto/proto1.svg`).default} alt="Proto1"/></li>
@@ -100,25 +91,19 @@ function Proto() {
             <li><img className="ProtoImg" src={require(`./proto/proto5j.svg`).default} alt="Proto5j"/></li>
             <li><img className="ProtoImg" src={require(`./proto/proto5k.svg`).default} alt="Proto5k"/></li>
           </ul>
+          <ul className="ProtoList1">
+            {scaleRender(scale1)}
+          </ul>
           {protoHeader(9)}
           <ul className="ProtoList1">
             {protoRender(9, proto)}
           </ul>
-          {protoHeader(11)}
-          <ul className="ProtoList1">
-            {protoRender(11, proto)}
-          </ul>
-          {protoHeader(12)}
-          <ul className="ProtoList1">
-            {protoRender(12, proto)}
-          </ul>
-          {protoHeader(13)}
-          <ul className="ProtoList1">
-            {protoRender(13, proto)}
-          </ul>
           {protoHeader(14)}
           <ul className="ProtoList1">
             {protoRender(14, proto)}
+          </ul>
+          <ul className="ProtoList1">
+            {scaleRender(scale2)}
           </ul>
           {protoHeader(15)}
           <ul className="ProtoList1">
