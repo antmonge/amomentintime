@@ -255,8 +255,8 @@ linesize = int((spectrum(argpeople) + 11) * 0.9)
 lineopaq = argexer
 linecol1 = argsensat
 
-backcol1 = argsky
-backcol2 = argtemp
+backcol2 = argsky
+backcol1 = argtemp
 
 # Establish virtual drawing surfaces
 
