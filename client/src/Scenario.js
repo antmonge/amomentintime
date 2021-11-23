@@ -52,7 +52,8 @@ function Scenario() {
   const prototype = [
     {id: 2, label: 'Prototype 9', file: 'Proto9', num: 9},
     {id: 3, label: 'Prototype 14', file: 'Proto14', num: 14},
-    {id: 6, label: 'Prototype 15', file: 'Proto15', num: 15}
+    {id: 6, label: 'Prototype 16', file: 'Proto16', num: 16},
+    {id: 7, label: 'Prototype 15', file: 'Proto15', num: 15}
     ];
 
   return (

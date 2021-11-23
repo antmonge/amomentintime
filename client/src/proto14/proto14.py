@@ -291,16 +291,16 @@ pattern = randint(2,3)
 
 if col1 == 1 and col2 == 1:
   cred1 = color(950, 1000)
-  cgreen1 = color(50, 150)
-  cblue1 = color(50, 150)
-elif col1 == 1 and col2 == 2:
-  cred1 = color(950, 1000)
   cgreen1 = color(420, 520)
   cblue1 = color(180, 280)
-elif col1 == 1 and col2 == 3:
+elif col1 == 1 and col2 == 2:
   cred1 = color(950, 1000)
   cgreen1 = color(580, 680)
-  cblue1 = color(580, 680)
+  cblue1 = color(360, 460)
+elif col1 == 1 and col2 == 3:
+  cred1 = color(950, 1000)
+  cgreen1 = color(700, 800)
+  cblue1 = color(500, 600)
 elif col1 == 1 and col2 == 4:
   cred1 = color(890, 990)
   cgreen1 = color(810, 910)
@@ -311,16 +311,16 @@ elif col1 == 1 and col2 == 5:
   cblue1 = color(350, 450)
 elif col1 == 2 and col2 == 1:
   cred1 = color(950, 1000)
-  cgreen1 = color(50, 150)
-  cblue1 = color(950, 1000)
-elif col1 == 2 and col2 == 2:
-  cred1 = color(950, 1000)
   cgreen1 = color(360, 460)
   cblue1 = color(650, 750)
+elif col1 == 2 and col2 == 2:
+  cred1 = color(950, 1000)
+  cgreen1 = color(500, 600)
+  cblue1 = color(790, 890)
 elif col1 == 2 and col2 == 3:
   cred1 = color(950, 1000)
-  cgreen1 = color(660, 760)
-  cblue1 = color(710, 810)
+  cgreen1 = color(610, 710)
+  cblue1 = color(890, 990)
 elif col1 == 2 and col2 == 4:
   cred1 = color(810, 910)
   cgreen1 = color(730, 830)
@@ -332,15 +332,15 @@ elif col1 == 2 and col2 == 5:
 elif col1 == 3 and col2 == 1:
   cred1 = color(950, 1000)
   cgreen1 = color(850, 950)
-  cblue1 = color(50, 150)
-elif col1 == 3 and col2 == 2:
-  cred1 = color(950, 1000)
-  cgreen1 = color(850, 950)
   cblue1 = color(350, 450)
-elif col1 == 3 and col2 == 3:
+elif col1 == 3 and col2 == 2:
   cred1 = color(950, 1000)
   cgreen1 = color(950, 1000)
   cblue1 = color(540, 640)
+elif col1 == 3 and col2 == 3:
+  cred1 = color(950, 1000)
+  cgreen1 = color(950, 1000)
+  cblue1 = color(730, 830)
 elif col1 == 3 and col2 == 4:
   cred1 = color(810, 910)
   cgreen1 = color(810, 910)
@@ -350,17 +350,17 @@ elif col1 == 3 and col2 == 5:
   cgreen1 = color(580, 680)
   cblue1 = color(580, 680)
 elif col1 == 4 and col2 == 1:
-  cred1 = color(50, 150)
-  cgreen1 = color(950, 1000)
-  cblue1 = color(50, 150)
-elif col1 == 4 and col2 == 2:
   cred1 = color(350, 450)
   cgreen1 = color(950, 1000)
   cblue1 = color(350, 450)
-elif col1 == 4 and col2 == 3:
+elif col1 == 4 and col2 == 2:
   cred1 = color(540, 640)
   cgreen1 = color(950, 1000)
   cblue1 = color(540, 640)
+elif col1 == 4 and col2 == 3:
+  cred1 = color(730, 830)
+  cgreen1 = color(950, 1000)
+  cblue1 = color(730, 830)
 elif col1 == 4 and col2 == 4:
   cred1 = color(650, 750)
   cgreen1 = color(810, 910)
@@ -370,15 +370,15 @@ elif col1 == 4 and col2 == 5:
   cgreen1 = color(700, 800)
   cblue1 = color(700, 800)
 elif col1 == 5 and col2 == 1:
-  cred1 = color(50, 150)
-  cgreen1 = color(950, 1000)
-  cblue1 = color(950, 1000)
-elif col1 == 5 and col2 == 2:
   cred1 = color(350, 450)
   cgreen1 = color(950, 1000)
   cblue1 = color(950, 1000)
-elif col1 == 5 and col2 == 3:
+elif col1 == 5 and col2 == 2:
   cred1 = color(540, 640)
+  cgreen1 = color(950, 1000)
+  cblue1 = color(950, 1000)
+elif col1 == 5 and col2 == 3:
+  cred1 = color(730, 830)
   cgreen1 = color(950, 1000)
   cblue1 = color(950, 1000)
 elif col1 == 5 and col2 == 4:
@@ -425,7 +425,7 @@ circxoffset = circgrid[4]
 circyoffset = circgrid[5]
 circrandint = int(ceil(circrand/10))
 col1 = int(ceil(circcol1/20))
-copaque = (circopaq + 33) * 0.006
+copaque = (circopaq + 150) * 0.004
 
 pattern = 2 #not using circpat to drive, hard coded
 
@@ -537,7 +537,7 @@ squigyoffset = squiggrid[5]
 squigrandint = int(ceil(squigrand/10))
 squigwidth = squigsize / 2500
 col1 = int(ceil(squigcol1/20))
-copaque = (squigopaq + 33) * 0.006
+copaque = (squigopaq + 150) * 0.004
 
 if col1 == 1:
   xred1 = 950
@@ -660,7 +660,7 @@ triyoffset2 = int(triyoffset / 2)
 trirandint = int(ceil(trirand/10))
 triwidth = trisize / 5000
 col1 = int(ceil(tricol1/20))
-copaque = (triopaq + 33) * 0.006
+copaque = (triopaq + 150) * 0.004
 
 if col1 == 1:
   xred1 = 950
@@ -798,7 +798,7 @@ lineyoffset = linegrid[5]
 linerandint = int(ceil(linerand/10))
 linewidth = linesize / 4800
 col1 = int(ceil(linecol1/20))
-copaque = (lineopaq + 33) * 0.006
+copaque = (lineopaq + 150) * 0.004
 
 if col1 == 1:
   xred1 = 400

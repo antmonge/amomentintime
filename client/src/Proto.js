@@ -102,6 +102,10 @@ function Proto() {
           <ul className="ProtoList1">
             {protoRender(14, proto)}
           </ul>
+          {protoHeader(16)}
+          <ul className="ProtoList1">
+            {protoRender(16, proto)}
+          </ul>
           <ul className="ProtoList1">
             {scaleRender(scale2)}
           </ul>
