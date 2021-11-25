@@ -4,7 +4,7 @@ import './App.css';
 function protoHeader (label, introspection, temper, acceptance, sensitivity, sky, temp, people, place, sndstr, sndtyp, smlstr, smltyp, tststr, tsttyp, sensation, exertion){
 
   return (
-      <div><p>{label}</p><ul className="ProtoList1"><li>Introspection >> {introspection}</li><li>Temper >> {temper}</li><li>Acceptance >> {acceptance}</li><li>Sensitivity >> {sensitivity}</li><li>Sky >> {sky}</li><li>Temp >> {temp}</li><li>People >> {people}</li><li>Place >> {place}</li><li>Sound Strength >> {sndstr}</li><li>Sound Type >> {sndtyp}</li><li>Smell Strength >> {smlstr}</li><li>Smell Type >> {smltyp}</li><li>Taste Strength >> {tststr}</li><li>Taste Type >> {tsttyp}</li><li>Sensation >> {sensation}</li><li>Exertion >> {exertion}</li></ul></div>
+      <div><p>{label}</p>{/*<ul className="ProtoList1"><li>Introspection >> {introspection}</li><li>Temper >> {temper}</li><li>Acceptance >> {acceptance}</li><li>Sensitivity >> {sensitivity}</li><li>Sky >> {sky}</li><li>Temp >> {temp}</li><li>People >> {people}</li><li>Place >> {place}</li><li>Sound Strength >> {sndstr}</li><li>Sound Type >> {sndtyp}</li><li>Smell Strength >> {smlstr}</li><li>Smell Type >> {smltyp}</li><li>Taste Strength >> {tststr}</li><li>Taste Type >> {tsttyp}</li><li>Sensation >> {sensation}</li><li>Exertion >> {exertion}</li></ul>*/}</div>
     );
 }
 
@@ -58,7 +58,7 @@ function Scenario() {
 
   return (
     <div className="ProtoList" id="scen">
-          {scenario.map(proto => <div>{protoHeader(proto.label, proto.introspection, proto.temper, proto.acceptance, proto.sensitivity, proto.sky, proto.temp, proto.people, proto.place, proto.sndstr, proto.sndtyp, proto.smlstr, proto.smltyp, proto.tststr, proto.tsttyp, proto.sensation, proto.exertion)}<ul className="ProtoImg">{protoRender(proto.file, prototype)}</ul></div>)}
+          {scenario.map(proto => <div>{protoHeader(proto.label, proto.introspection, proto.temper, proto.acceptance, proto.sensitivity, proto.sky, proto.temp, proto.people, proto.place, proto.sndstr, proto.sndtyp, proto.smlstr, proto.smltyp, proto.tststr, proto.tsttyp, proto.sensation, proto.exertion)}<ul className="ProtoImg">{protoRender(proto.file, prototype)}</ul><p> </p></div>)}
     </div>
   );
 }
