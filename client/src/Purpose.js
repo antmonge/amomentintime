@@ -35,7 +35,7 @@ export default class Purpose extends React.Component {
       </div>
       <div className="PurposeBodyA">
       <div className="PurposeHeader"><p>The Art</p></div>
-      <div className="PurposeBody"><p>Neither of our founders has an artistic background.  However, both are logical and analytical in nature.  The beauty of gnerative art allows those that may not have natural paint brush abilities can still be artists in a digital sense by using their structured logic skills to express artistic exhibitions.  The gnerative art here layers emotions interpreted through vector images and a spectrum of colors.  The art was inspired by the pioneered efforts by Rudy Mancuso to translate audio senses to visual senses in the form of a painting.</p></div>
+      <div className="PurposeBody"><p>Neither of our founders has an artistic background.  However, both are logical and analytical in nature.  The beauty of generative art is that it allows those that may not have natural paint brush abilities to let their inner artists shine through in a digital sense by using their structured logic skills to express artistic expressions.  The generative art created here layers emotions interpreted through vector images and a spectrum of colors.  The art was inspired by the pioneered efforts of Rudy Mancuso to translate audio senses to visual senses in the form of a painting.</p></div>
       </div>
       <div className="PurposeBodyB">
       <div className="PurposeHeader"><p>The Community</p></div>
