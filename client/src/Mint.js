@@ -7,7 +7,7 @@ export default class App extends React.Component {
         super(props);
         this.state = {
           imgsrc1: "https://bucketeer-be56a818-47b8-45ac-8891-d13ecbace823.s3.amazonaws.com/public/test.svg",
-          imgsrc2: "https://bucketeer-be56a818-47b8-45ac-8891-d13ecbace823.s3.amazonaws.com/public/test.svg",
+          imgsrc2: "https://bucketeer-be56a818-47b8-45ac-8891-d13ecbace823.s3.amazonaws.com/public/test.gif",
           value: "Not Clicked",
           data: "NA",
           emotionIntroVal: 50,
@@ -28,7 +28,6 @@ export default class App extends React.Component {
           physicalExertionVal: 50
         };
         this.pyth = this.pyth.bind(this)
-        this.pyth2 = this.pyth2.bind(this)
         this.onIntrospectionChange = this.onIntrospectionChange.bind(this)
         this.onTemperChange = this.onTemperChange.bind(this)
         this.onAcceptanceChange = this.onAcceptanceChange.bind(this)
@@ -113,7 +112,7 @@ export default class App extends React.Component {
 
     pyth() {
 
-      const formData = ['IntrospectionEmotion', this.state.emotionIntroVal, 'TemperEmotion', this.state.emotionTemperVal, 'AcceptanceEmotion', this.state.emotionAcceptVal, 'SensitivityEmotion', this.state.emotionSensVal, 'SkyConditions', this.state.weatherSkyVal, 'Temperature', this.state.weatherTempVal, 'People', this.state.surroundPeopleVal, 'Place', this.state.surroundPlaceVal, 'StrengthofSounds', this.state.soundStrengthVal, 'TypeofSounds', this.state.soundTypeVal, 'StrengthofSmells', this.state.smellStrengthVal, 'TypeofSmells', this.state.smellTypeVal, 'StrengthofTastes', this.state.tasteStrengthVal, 'TypeofTastes', this.state.tasteTypeVal, 'PhysicalSensation', this.state.physicalSensationVal, 'PhysicalExertion', this.state.physicalExertionVal, 'server/proto9.py'];
+      const formData = ['IntrospectionEmotion', this.state.emotionIntroVal, 'TemperEmotion', this.state.emotionTemperVal, 'AcceptanceEmotion', this.state.emotionAcceptVal, 'SensitivityEmotion', this.state.emotionSensVal, 'SkyConditions', this.state.weatherSkyVal, 'Temperature', this.state.weatherTempVal, 'People', this.state.surroundPeopleVal, 'Place', this.state.surroundPlaceVal, 'StrengthofSounds', this.state.soundStrengthVal, 'TypeofSounds', this.state.soundTypeVal, 'StrengthofSmells', this.state.smellStrengthVal, 'TypeofSmells', this.state.smellTypeVal, 'StrengthofTastes', this.state.tasteStrengthVal, 'TypeofTastes', this.state.tasteTypeVal, 'PhysicalSensation', this.state.physicalSensationVal, 'PhysicalExertion', this.state.physicalExertionVal, 'server/proto17.py'];
 
       fetch("/api", {
         method: 'POST',
@@ -123,20 +122,6 @@ export default class App extends React.Component {
     })
         .then(res => res.json())
         .then(data => this.setState({imgsrc1: "https://bucketeer-be56a818-47b8-45ac-8891-d13ecbace823.s3.amazonaws.com/public/" + data.message.trim()}));
-    }
-
-    pyth2() {
-
-      const formData = ['IntrospectionEmotion', this.state.emotionIntroVal, 'TemperEmotion', this.state.emotionTemperVal, 'AcceptanceEmotion', this.state.emotionAcceptVal, 'SensitivityEmotion', this.state.emotionSensVal, 'SkyConditions', this.state.weatherSkyVal, 'Temperature', this.state.weatherTempVal, 'People', this.state.surroundPeopleVal, 'Place', this.state.surroundPlaceVal, 'StrengthofSounds', this.state.soundStrengthVal, 'TypeofSounds', this.state.soundTypeVal, 'StrengthofSmells', this.state.smellStrengthVal, 'TypeofSmells', this.state.smellTypeVal, 'StrengthofTastes', this.state.tasteStrengthVal, 'TypeofTastes', this.state.tasteTypeVal, 'PhysicalSensation', this.state.physicalSensationVal, 'PhysicalExertion', this.state.physicalExertionVal, 'server/proto16.py'];
-
-      fetch("/api", {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-        .then(res => res.json())
-        .then(data => this.setState({imgsrc2: "https://bucketeer-be56a818-47b8-45ac-8891-d13ecbace823.s3.amazonaws.com/public/" + data.message.trim()}));
     }
 
     render() {
@@ -258,8 +243,7 @@ export default class App extends React.Component {
             </table>
           </div>
                 <div className="Test">
-                    <button onClick={this.pyth}>Mint Proto 9</button>
-                    <button onClick={this.pyth2}>Mint Proto 16</button>
+                    <button onClick={this.pyth}>Mint Proto 17</button>
                     <div className="Test">
                       <span>{this.state.data}</span>
                     </div>

@@ -61,12 +61,6 @@ function Proto() {
     {id: 2, question: 'Smell Type', driver: 'Triangle Color', direction: 'Selection', one: 'Fragrant-Orange', two: 'Pleasant-Red', three: 'Neutral-Blue', four: 'Stale-Grey', five: 'Pungent-Black'},
     {id: 3, question: 'Taste Type', driver: 'Line Color', direction: 'Selection', one: 'Mouthwatering-Light Blue', two: 'Pleasant-Pink', three: 'Tasteful-Soft Rainbow', four: 'Disagreeable-Brown/Green', five: 'Repulsive-Green/Yellow'},
   ];
-    const scale2 = [
-    {id: 0, question: 'Temper', driver: 'Circle Color', direction: 'Selection', one: 'Bliss-White', two: 'Calmness-Light Sky Blue', three: 'Annoyance-Light Purple', four: 'Anger-Dark Rose', five: 'Rage-Dark Red'},
-    {id: 1, question: 'Place', driver: 'Squiggle Color', direction: 'Selection', one: 'Community-Soft Green', two: 'City-Soft Rainbow', three: 'Region-Rainbow', four: 'Country-Purple', five: 'Foreign-Brown'},
-    {id: 2, question: 'Sensitivity', driver: 'Triangle Color', direction: 'Selection', one: 'Enthusiasm-Rainbow', two: 'Eagerness-Teal', three: 'Anxiety-Army Green', four: 'Fear-Orange', five: 'Terror-Black'},
-    {id: 3, question: 'Sensation', driver: 'Line Color', direction: 'Selection', one: 'Thrill-Yellow', two: 'Pleasure-Pink', three: 'Comfort-Light Blue', four: 'Suffering-Grey', five: 'Agony-Red'},
-  ];
 
   return (
     <div className="ProtoList" id="proto">
@@ -94,24 +88,9 @@ function Proto() {
           <ul className="ProtoList1">
             {scaleRender(scale1)}
           </ul>
-          {protoHeader(9)}
+          {protoHeader(17)}
           <ul className="ProtoList1">
-            {protoRender(9, proto)}
-          </ul>
-          {protoHeader(14)}
-          <ul className="ProtoList1">
-            {protoRender(14, proto)}
-          </ul>
-          {protoHeader(16)}
-          <ul className="ProtoList1">
-            {protoRender(16, proto)}
-          </ul>
-          <ul className="ProtoList1">
-            {scaleRender(scale2)}
-          </ul>
-          {protoHeader(15)}
-          <ul className="ProtoList1">
-            {protoRender(15, proto)}
+            {protoRender(17, proto)}
           </ul>
     </div>
   );
