@@ -121,7 +121,7 @@ export default class App extends React.Component {
       body: JSON.stringify(formData),
     })
         .then(res => res.json())
-        .then(data => this.setState({imgsrc1: "https://bucketeer-be56a818-47b8-45ac-8891-d13ecbace823.s3.amazonaws.com/public/" + data.message.trim() + "png"}));
+        .then(data => this.setState({imgsrc1: "https://bucketeer-be56a818-47b8-45ac-8891-d13ecbace823.s3.amazonaws.com/public/" + data.message.trim() + "png", imgsrc2: "https://bucketeer-be56a818-47b8-45ac-8891-d13ecbace823.s3.amazonaws.com/public/" + data.message.trim() + "gif"}));
     }
 
     render() {
