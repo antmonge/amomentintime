@@ -73,6 +73,36 @@
   color: white;
 }
 
+.MintList {
+  text-align: left;
+  font-size: calc(8px + 2vmin);
+  color: white;
+}
+
+.MintList1 li {
+  display: block;
+  text-align: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 5px;
+}
+
+.MintList1 ul li {
+  display: inline-block;
+  text-align: left;
+  list-style-type: none;
+  margin: 0;
+  padding: 0px;
+}
+
+.MintList1 ul li ul li{
+  display: block;
+  text-align: left;
+  margin: 0;
+  padding: 2px;
+  font-size: calc(5px + 2vmin);
+}
+
 .ProtoList {
   text-align: center;
   font-size: calc(8px + 2vmin);
