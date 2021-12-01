@@ -241,7 +241,7 @@ squigquant = spectrum(argsens)
 squigrand = spectrum(argtemper)
 squigsize = spectrum(argintro)
 squigopaq = spectrum(argaccept)
-squigcol1 = argtemper
+squigcol1 = argsmlstr
 
 triquant = spectrum(argsensat)
 trirand = argexer
