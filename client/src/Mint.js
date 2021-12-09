@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import App2 from './App';
 
-export default class App extends React.Component {
+export default class Mint extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -158,7 +158,7 @@ export default class App extends React.Component {
         const physicalExertionLab = ['Sedentary', 'Light', 'Active', 'Vigorous', 'Strenuous'];
         const physicalExertionDiv = 'PhysicalExertion';
 
-        return <div className="App-header" id="top">
+        return <div className="App-header" id="mint">
           <div className="MintList">
             <ul className="MintList1"><li>Emotional Experience:</li>
             <li>
@@ -219,7 +219,7 @@ export default class App extends React.Component {
             </li></ul>
           </div>
                 <div className="Test">
-                    <button onClick={this.pyth}>Mint Proto 17</button>
+                    <button onClick={this.pyth}>Preview Proto 17</button>
                     <div className="Test">
                       <span>{this.state.data}</span>
                     </div>

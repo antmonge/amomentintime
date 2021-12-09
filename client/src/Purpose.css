@@ -21,25 +21,54 @@
 }
 
 .PurposeBodyA {
-  text-align: center;
+  text-align: left;
   background-color: #5e636c;
-  min-height: 10vh;
-  display: flex;
-  flex-direction: column;
+  min-height: 20vh;
   align-items: center;
-  justify-content: top;
+  justify-content: center;
   font-size: calc(10px + 2vmin);
 }
 
+.PurposeBodyA img {
+  margin-left: 15px;
+  margin-right: 15px;
+  float: right;
+  height: 20vmin;
+  pointer-events: none;
+}
+
+.PurposeBodyA h3,
+.PurposeBodyA p {
+  margin-right: 15px;
+  margin-left: 15px;
+  display: block;
+}
+
 .PurposeBodyB {
-  text-align: center;
+  text-align: left;
   background-color: #282c34;
-  min-height: 10vh;
-  display: flex;
-  flex-direction: column;
+  min-height: 20vh;
   align-items: center;
-  justify-content: top;
+  justify-content: center;
   font-size: calc(10px + 2vmin);
 }
+
+.PurposeBodyB img {
+  margin-right: 15px;
+  margin-left: 15px;
+  float: left;
+  height: 20vmin;
+  pointer-events: none;
+}
+
+.PurposeBodyB h3,
+.PurposeBodyB p {
+  margin-left: 15px;
+  margin-right: 15px;
+  display: block;
+}
+
+
+
 
 
