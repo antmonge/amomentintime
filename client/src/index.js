@@ -6,6 +6,7 @@ import proto1 from './proto1.gif'
 import proto2 from './proto2.gif'
 import proto3 from './proto3.gif'
 import proto4 from './proto4.gif'
+import logo from './logo.svg'
 import Home from './Home';
 import Mint from './Mint';
 import Purpose from './Purpose';
@@ -21,9 +22,7 @@ ReactDOM.render(
           <table>
             <tr>
               <td><img src={proto1} className="App-logo" alt="proto1" /></td>
-              <td><img src={proto2} className="App-logo" alt="proto2" /></td>
-              <td>A Moment in Time</td>
-              <td><img src={proto3} className="App-logo" alt="proto3" /></td>
+              <td><img src={logo} className="App-logo" alt="logo" /></td>
               <td><img src={proto4} className="App-logo" alt="proto4" /></td>
             </tr>
           </table>
