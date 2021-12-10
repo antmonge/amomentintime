@@ -6,7 +6,7 @@ import proto1 from './proto1.gif'
 import proto2 from './proto2.gif'
 import proto3 from './proto3.gif'
 import proto4 from './proto4.gif'
-import logo from './logo.svg'
+import logo from './logo.png'
 import Home from './Home';
 import Mint from './Mint';
 import Purpose from './Purpose';
