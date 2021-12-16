@@ -2,11 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Route, NavLink, HashRouter} from 'react-router-dom';
 import './Index.css';
-import proto1 from './proto1.gif'
-import proto2 from './proto2.gif'
-import proto3 from './proto3.gif'
-import proto4 from './proto4.gif'
-import logo from './logo.png'
+import logo from './logo2.png'
+import discord from './Discord.png'
+import twitter from './Twitter.png'
 import Home from './Home';
 import Mint from './Mint';
 import Purpose from './Purpose';
@@ -19,17 +17,13 @@ ReactDOM.render(
     <div className="App">
       <div className="Header">
         <header className="App-header">
-          <table>
-            <tr>
-              <td><img src={proto1} className="App-logo" alt="proto1" /></td>
-              <td><img src={logo} className="App-logo" alt="logo" /></td>
-              <td><img src={proto4} className="App-logo" alt="proto4" /></td>
-            </tr>
-          </table>
-          <ul className="Navigation">
-            <li><NavLink to="/Home">Home</NavLink></li>
-            <li><NavLink to="/Mint">Mint</NavLink></li>
-            <li><NavLink to="/Purpose">Purpose</NavLink></li>
+          <ul className="MainNav">
+            <li className="MainNav"><img src={logo} className="MainLogo" alt="logo" /></li>
+            <li className="MainNav"><NavLink to="/Home">Home</NavLink></li>
+            <li className="MainNav"><NavLink to="/Mint">Mint</NavLink></li>
+            <li className="MainNav"><NavLink to="/Purpose">Purpose</NavLink></li>
+            <li className="MainNav"><img src={discord} className="MainSoc" alt="logo" /></li>
+            <li className="MainNav"><img src={twitter} className="MainSoc" alt="logo" /></li>
           </ul>
         </header>
       </div>
